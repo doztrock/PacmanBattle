@@ -8,8 +8,16 @@ class ProgressBar {
   private boolean useStroke = false;
   private float fillRGB[];
   private float strokeRGB[];
+  private int minProgress;
+  private int maxProgress;
+  private int progress;
 
-  ProgressBar(int x, int y, int sizeW, int sizeH) {
+  ProgressBar(int minProgress, int maxProgress, int x, int y, int sizeW, int sizeH) {
+
+    this.setMinProgress(minProgress);
+    this.setMaxProgress(maxProgress);
+
+    this.setProgress(this.getMinProgress());
 
     this.setX(x);
     this.setY(y);
@@ -22,16 +30,34 @@ class ProgressBar {
     return;
   }
 
-  private void draw(int x, int y, int sizeW, int sizeH) {
+  private void drawOuterElement(int x, int y, int sizeW, int sizeH) {
 
     if (this.useFill == true) {
       fill(this.fillRGB[0], this.fillRGB[1], this.fillRGB[2]);
+      this.useFill = false;
     }
 
     if (this.useStroke == true) {
       stroke(this.strokeRGB[0], this.strokeRGB[1], this.strokeRGB[2]);
+      this.useStroke = false;
     }
 
+    rect(x, y, sizeW, sizeH);
+
+    return;
+  }
+
+  private void drawInnerElement(int x, int y, int sizeW, int sizeH) {
+
+    if (this.useFill == true) {
+      fill(this.fillRGB[0], this.fillRGB[1], this.fillRGB[2]);
+      this.useFill = false;
+    }
+
+    if (this.useStroke == true) {
+      stroke(this.strokeRGB[0], this.strokeRGB[1], this.strokeRGB[2]);
+      this.useStroke = false;
+    }
 
     rect(x, y, sizeW, sizeH);
 
@@ -102,8 +128,43 @@ class ProgressBar {
     return;
   }
 
+  public void setMinProgress(int minProgress) {    
+    this.minProgress = minProgress;
+    return;
+  }
+
+  public int getMinProgress() {
+    return this.minProgress;
+  }
+
+  public void setMaxProgress(int maxProgress) {    
+    this.maxProgress = maxProgress;
+    return;
+  }
+
+  public int getMaxProgress() {
+    return this.maxProgress;
+  }
+
+  public void setProgress(int progress) {    
+    this.progress = progress;
+    return;
+  }
+
+  public int getProgress() {
+    return this.progress;
+  }
+
   public void show() {
-    this.draw(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+
+    this.setFill(52, 152, 219);
+    this.setStroke(41, 128, 185);  
+    this.drawOuterElement(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+
+    this.setFill(26, 188, 156);
+    this.setStroke(22, 160, 133); 
+    this.drawInnerElement(this.getX() + 5, this.getY() + 5, (int) ((this.getProgress() * (this.getWidth() - 10)) / this.getMaxProgress()), this.getHeight() - 10);
+
     return;
   }
 }
