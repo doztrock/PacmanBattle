@@ -1,4 +1,4 @@
-ProgressBar progressBar = new ProgressBar(15, 100, 50, 50, 350, 70);
+ProgressBar progressBar = new ProgressBar(50, 50, 350, 70);
 int iteracion = 0;
 
 void setup() {
@@ -9,7 +9,9 @@ void draw() {
 
   background(0);
 
-  //progressBar.setProgress(iteracion);
+  if (iteracion % 50 == 0)
+    progressBar.setProgress(progressBar.getProgress() + 10);
+
   progressBar.show();
 
   iteracion++;
