@@ -13,6 +13,26 @@ class Movable {
   private float strokeRGB[];
   private int positionX;
   private int positionY;
+  
+  PositionRegistry positionRegistry;
+  int index;
+
+  Movable(PositionRegistry positionRegistry) {
+
+    this.shape = ShapeType.Rect;
+    this.setHeight(50);
+    this.setWidth(70);
+    this.fillRGB = new float[3];
+    this.strokeRGB = new float[3];
+
+    this.positionX = 0;
+    this.positionY = 0;
+    
+    this.positionRegistry = positionRegistry;
+    this.index = positionRegistry.register(this);
+
+    return;
+  }
 
   Movable(ShapeType shape, int sizeH, int sizeW) {
 
@@ -127,6 +147,9 @@ class Movable {
     this.positionY = y;
 
     this.draw(this.positionX, this.positionY);
+
+
+    this.positionRegistry.getRegistry().get(this.index).setPosition(this.getX(), this.getX(), this.getY(), this.getY());
 
     return;
   }
