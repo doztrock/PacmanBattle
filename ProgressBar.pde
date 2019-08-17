@@ -163,12 +163,25 @@ class ProgressBar {
 
   public void show() {
 
-    this.setFill(52, 152, 219);
-    this.setStroke(41, 128, 185);  
+    this.setFill(255, 255, 255);
+    this.setStroke(255, 255, 255);  
     this.outerElement(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
-    this.setFill(26, 188, 156);
-    this.setStroke(22, 160, 133); 
+    this.setFill(0, 0, 0);
+    this.setStroke(0, 0, 0); 
+    this.innerElement(this.getX() + 5, this.getY() + 5, (int) ((this.getProgress() * (this.getWidth() - 10)) / 100), this.getHeight() - 10);
+
+    return;
+  }
+
+  public void show(float or, float og, float ob, float ir, float ig, float ib) {
+
+    this.setFill(or, og, ob);
+    this.setStroke(or, og, ob);  
+    this.outerElement(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+
+    this.setFill(ir, ig, ib);
+    this.setStroke(ir, ig, ib); 
     this.innerElement(this.getX() + 5, this.getY() + 5, (int) ((this.getProgress() * (this.getWidth() - 10)) / 100), this.getHeight() - 10);
 
     return;
