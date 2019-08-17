@@ -3,14 +3,15 @@ int iteracion = 0;
 
 void setup() {
   size(800, 600);
+  progressBar.setProgress(0);
 } 
 
 void draw() {
 
   background(0);
 
-  if (iteracion % 50 == 0)
-    progressBar.setProgress(progressBar.getProgress() + 10);
+  if (iteracion % 10 == 0)
+    progressBar.setProgress(0);
 
   progressBar.show();
 

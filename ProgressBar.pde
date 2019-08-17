@@ -1,13 +1,34 @@
 class ProgressBar {
 
+  /**
+   * Constantes de progreso
+   */
+  public static final int MAX_PROGRESS = 100;
+  public static final int MIN_PROGRESS = 0;
+
+  /**
+   * Posicion de la barra de progreso
+   */
   private int positionX;
   private int positionY;
+
+  /**
+   * Dimensiones de la barra de progreso
+   */
   private int sizeW;
-  private int sizeH;  
+  private int sizeH;
+
+  /**
+   * Opciones de color de la barra de progreso
+   */
   private boolean useFill = false;
   private boolean useStroke = false;
   private float fillRGB[];
   private float strokeRGB[];
+
+  /**
+   * Progreso
+   */
   private int progress;
 
   ProgressBar(int x, int y, int sizeW, int sizeH) {
@@ -20,7 +41,7 @@ class ProgressBar {
     this.fillRGB = new float[3];
     this.strokeRGB = new float[3];
 
-    this.setProgress(0);
+    this.setProgress(MIN_PROGRESS);
 
     return;
   }
@@ -124,7 +145,15 @@ class ProgressBar {
   }
 
   public void setProgress(int progress) {    
-    this.progress = progress;
+
+    if (progress >= MIN_PROGRESS && progress <= MAX_PROGRESS) {
+      this.progress = progress;
+    } else if (progress < MIN_PROGRESS) {
+      this.progress = MIN_PROGRESS;
+    } else if (progress > MAX_PROGRESS) {
+      this.progress = MAX_PROGRESS;
+    }
+
     return;
   }
 
