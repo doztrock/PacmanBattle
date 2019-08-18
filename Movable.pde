@@ -1,13 +1,18 @@
-enum ShapeType {
-  Ellipse, Rect
-};
-
 class Movable {
+
+  /**
+   * Constantes
+   */
+  public static final int Rect    = (1 << 0);
+  public static final int Ellipse = (1 << 1);
+  public static final int Image   = (1 << 2);
 
   /**
    * Forma
    */
-  private ShapeType shape;
+  private int shape;
+  private PImage image;
+  private String imageName;
 
   /**
    * Dimensiones
@@ -35,13 +40,16 @@ class Movable {
   private int indexElement;
   private RegistryElement registryElement;
 
-  Movable(ShapeType shape, int sizeH, int sizeW, PositionRegistry positionRegistry) {
+  Movable(int shape, int sizeH, int sizeW, PositionRegistry positionRegistry) {
 
-    this.shape = shape;
-    this.setHeight(sizeH);
-    this.setWidth(sizeW);
     this.fillRGB = new float[3];
     this.strokeRGB = new float[3];
+
+    this.shape = shape;
+    this.image = null;
+
+    this.setHeight(sizeH);
+    this.setWidth(sizeW);
 
     this.setX(0);
     this.setY(0);
@@ -70,6 +78,18 @@ class Movable {
 
     case Rect:
       rect(x, y, this.sizeW, this.sizeH);
+      break;
+
+    case Image:
+
+      if (this.image != null) {
+        noFill();
+        noStroke();
+        image(this.image, x, y, this.getWidth(), this.getHeight());
+      } else {
+        text("N/A", x, y);
+      }
+
       break;
     }
 
@@ -138,6 +158,14 @@ class Movable {
 
   public int getY() {
     return this.positionY;
+  }
+
+  public void setImageName(String imageName) {
+
+    this.imageName = imageName;
+    this.image = loadImage(this.imageName);
+
+    return;
   }
 
   public void move() {

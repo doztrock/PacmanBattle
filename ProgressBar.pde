@@ -33,13 +33,14 @@ class ProgressBar {
 
   ProgressBar(int x, int y, int sizeW, int sizeH) {
 
-    this.setX(x);
-    this.setY(y);
-    this.setWidth(sizeW);
-    this.setHeight(sizeH);    
-
     this.fillRGB = new float[3];
     this.strokeRGB = new float[3];
+
+    this.setX(x);
+    this.setY(y);
+
+    this.setWidth(sizeW);
+    this.setHeight(sizeH);    
 
     this.setProgress(MIN_PROGRESS);
 
