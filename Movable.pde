@@ -13,9 +13,9 @@ class Movable {
   private float strokeRGB[];
   private int positionX;
   private int positionY;
-  
-  PositionRegistry positionRegistry;
-  int index;
+
+  private int indexElement;
+  private RegistryElement registryElement;
 
   Movable(PositionRegistry positionRegistry) {
 
@@ -25,11 +25,11 @@ class Movable {
     this.fillRGB = new float[3];
     this.strokeRGB = new float[3];
 
-    this.positionX = 0;
-    this.positionY = 0;
-    
-    this.positionRegistry = positionRegistry;
-    this.index = positionRegistry.register(this);
+    this.setX(0);
+    this.setY(0);
+
+    this.indexElement = positionRegistry.register(this);
+    this.registryElement = positionRegistry.getRegistry().get(indexElement);
 
     return;
   }
@@ -42,8 +42,8 @@ class Movable {
     this.fillRGB = new float[3];
     this.strokeRGB = new float[3];
 
-    this.positionX = 0;
-    this.positionY = 0;
+    this.setX(0);
+    this.setY(0);
 
     return;
   }
@@ -137,19 +137,28 @@ class Movable {
   }
 
   public void move() {
-    this.draw(this.positionX, this.positionY);
+
+    this.draw(this.getX(), this.getY());
+
+    this.registryElement.setX1(this.getX());
+    this.registryElement.setX2(this.getX() + this.getWidth());
+    this.registryElement.setY1(this.getY());
+    this.registryElement.setY2(this.getY() + this.getHeight());
+
     return;
   }
 
   public void move(int x, int y) {
 
-    this.positionX = x;
-    this.positionY = y;
+    this.setX(x);
+    this.setY(y);
 
-    this.draw(this.positionX, this.positionY);
+    this.draw(this.getX(), this.getY());
 
-
-    this.positionRegistry.getRegistry().get(this.index).setPosition(this.getX(), this.getX(), this.getY(), this.getY());
+    this.registryElement.setX1(this.getX());
+    this.registryElement.setX2(this.getX() + this.getWidth());
+    this.registryElement.setY1(this.getY());
+    this.registryElement.setY2(this.getY() + this.getHeight());
 
     return;
   }

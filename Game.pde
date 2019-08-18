@@ -1,12 +1,14 @@
 PositionRegistry positionRegistry;
-Movable movable;
+Movable movable1;
+Movable movable2;
 
 void setup() {
 
   size(800, 600);
 
   positionRegistry =  new PositionRegistry();
-  movable = new Movable(positionRegistry);
+  movable1 = new Movable(positionRegistry);
+  movable2 = new Movable(positionRegistry);
 
   return;
 } 
@@ -14,10 +16,13 @@ void setup() {
 void draw() {
   background(0);
 
-  movable.setFill(255, 255, 255);
-  movable.move(mouseX, mouseY);
+  movable1.setFill(255, 255, 255);
+  movable1.move(mouseX, mouseY);
+  
+  movable2.setFill(255, 255, 255);
+  movable2.move(400, 200);
 
-  for(Element e : positionRegistry.getRegistry()){
+  for(RegistryElement e : positionRegistry.getRegistry()){
   
       println(e.getX1());
   
