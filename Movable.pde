@@ -4,37 +4,38 @@ enum ShapeType {
 
 class Movable {
 
+  /**
+   * Forma
+   */
   private ShapeType shape;
+
+  /**
+   * Dimensiones
+   */
   private int sizeH;
   private int sizeW;
+
+  /**
+   * Opciones de color
+   */
   private boolean useFill = false;
   private boolean useStroke = false;
   private float fillRGB[];
   private float strokeRGB[];
+
+  /**
+   * Coordenadas
+   */
   private int positionX;
   private int positionY;
 
+  /**
+   * Registro
+   */
   private int indexElement;
   private RegistryElement registryElement;
 
-  Movable(PositionRegistry positionRegistry) {
-
-    this.shape = ShapeType.Rect;
-    this.setHeight(50);
-    this.setWidth(70);
-    this.fillRGB = new float[3];
-    this.strokeRGB = new float[3];
-
-    this.setX(0);
-    this.setY(0);
-
-    this.indexElement = positionRegistry.register(this);
-    this.registryElement = positionRegistry.getRegistry().get(indexElement);
-
-    return;
-  }
-
-  Movable(ShapeType shape, int sizeH, int sizeW) {
+  Movable(ShapeType shape, int sizeH, int sizeW, PositionRegistry positionRegistry) {
 
     this.shape = shape;
     this.setHeight(sizeH);
@@ -44,6 +45,9 @@ class Movable {
 
     this.setX(0);
     this.setY(0);
+
+    this.indexElement = positionRegistry.register(this);
+    this.registryElement = positionRegistry.getRegistry().get(indexElement);
 
     return;
   }

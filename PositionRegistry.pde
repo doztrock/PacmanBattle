@@ -1,5 +1,8 @@
 class PositionRegistry {
 
+  /**
+   * Lista de elementos
+   */
   private ArrayList<RegistryElement> registry;
 
   PositionRegistry() {

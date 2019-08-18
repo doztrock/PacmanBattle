@@ -1,25 +1,25 @@
 class ProgressBar {
 
   /**
-   * Constantes de progreso
+   * Constantes
    */
   public static final int MAX_PROGRESS = 100;
   public static final int MIN_PROGRESS = 0;
 
   /**
-   * Posicion de la barra de progreso
+   * Coordenadas
    */
   private int positionX;
   private int positionY;
 
   /**
-   * Dimensiones de la barra de progreso
+   * Dimensiones
    */
   private int sizeW;
   private int sizeH;
 
   /**
-   * Opciones de color de la barra de progreso
+   * Opciones de color
    */
   private boolean useFill = false;
   private boolean useStroke = false;

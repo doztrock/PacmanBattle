@@ -1,19 +1,12 @@
 class RegistryElement {
 
+  /**
+   * Coordenadas
+   */
   private int X1;
   private int X2;
   private int Y1;
   private int Y2;
-
-  public void setPosition(int X1, int X2, int Y1, int Y2) {
-
-    this.setX1(X1);
-    this.setX2(X2);
-    this.setY1(Y1);
-    this.setY2(Y2);
-
-    return;
-  }
 
   public void setX1(int X1) {
     this.X1 = X1;
