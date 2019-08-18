@@ -7,7 +7,7 @@ void setup() {
 
   positionRegistry =  new PositionRegistry();
 
-  movable = new Movable(Movable.Ellipse, 50, 50, positionRegistry);
+  movable = new Movable(Movable.Rect, 50, 50, positionRegistry);
   movable.setFill(255, 0, 255);
   movable.setX(400);
   movable.setY(300);
@@ -30,24 +30,35 @@ void keyPressed() {
     switch(keyCode) {
 
     case UP:
-      movable.move(movable.getX(), movable.getY() - 10);
+      movable.move(Movable.Up);
       break;
 
     case DOWN:
-      movable.move(movable.getX(), movable.getY() + 10);
+      movable.move(Movable.Down);
       break;
 
     case LEFT:
-      movable.move(movable.getX() - 10, movable.getY() );
+      movable.move(Movable.Left);
       break;
 
     case RIGHT:
-      movable.move(movable.getX() + 10, movable.getY());
+      movable.move(Movable.Right);
       break;
     }
-
-    return;
   } else {
+
+    switch(key) {
+
+    case '+':
+      movable.setSpeedX(movable.getSpeedX() + 5);
+      movable.setSpeedY(movable.getSpeedY() + 5);
+      break;
+
+    case '-':
+      movable.setSpeedX(movable.getSpeedX() - 5);
+      movable.setSpeedY(movable.getSpeedY() - 5);
+      break;
+    }
   }
 
   return;

@@ -1,11 +1,19 @@
 class Movable {
 
   /**
-   * Constantes
+   * Constantes de forma
    */
   public static final int Rect    = (1 << 0);
   public static final int Ellipse = (1 << 1);
   public static final int Image   = (1 << 2);
+
+  /**
+   * Constantes de forma
+   */
+  public static final int Up    = (1 << 0);
+  public static final int Down  = (1 << 1);
+  public static final int Left  = (1 << 2);
+  public static final int Right = (1 << 3);
 
   /**
    * Forma
@@ -23,8 +31,8 @@ class Movable {
   /**
    * Opciones de color
    */
-  private boolean useFill = false;
-  private boolean useStroke = false;
+  private boolean useFill;
+  private boolean useStroke;
   private float fillRGB[];
   private float strokeRGB[];
 
@@ -35,6 +43,12 @@ class Movable {
   private int positionY;
 
   /**
+   * Velocidad
+   */
+  private int speedX;
+  private int speedY;
+
+  /**
    * Registro
    */
   private int indexElement;
@@ -42,6 +56,8 @@ class Movable {
 
   Movable(int shape, int sizeH, int sizeW, PositionRegistry positionRegistry) {
 
+    this.useFill = false;
+    this.useStroke = false;
     this.fillRGB = new float[3];
     this.strokeRGB = new float[3];
 
@@ -53,6 +69,9 @@ class Movable {
 
     this.setX(0);
     this.setY(0);
+
+    this.setSpeedX(5);
+    this.setSpeedY(5);
 
     this.indexElement = positionRegistry.register(this);
     this.registryElement = positionRegistry.getRegistry().get(indexElement);
@@ -160,6 +179,24 @@ class Movable {
     return this.positionY;
   }
 
+  public void setSpeedX(int speedX) {
+    this.speedX = speedX;
+    return;
+  }
+
+  public int getSpeedX() {
+    return this.speedX;
+  }
+
+  public void setSpeedY(int speedY) {
+    this.speedY = speedY;
+    return;
+  }
+
+  public int getSpeedY() {
+    return this.speedY;
+  }
+
   public void setImageName(String imageName) {
 
     this.imageName = imageName;
@@ -169,6 +206,37 @@ class Movable {
   }
 
   public void move() {
+
+    this.draw(this.getX(), this.getY());
+
+    this.registryElement.setX1(this.getX());
+    this.registryElement.setX2(this.getX() + this.getWidth());
+    this.registryElement.setY1(this.getY());
+    this.registryElement.setY2(this.getY() + this.getHeight());
+
+    return;
+  }
+
+  public void move(int direction) {
+
+    switch(direction) {
+
+    case Up:
+      this.setY(this.getY() - this.getSpeedY());
+      break;
+
+    case Down:
+      this.setY(this.getY() + this.getSpeedY());
+      break;
+
+    case Left:
+      this.setX(this.getX() - this.getSpeedX());
+      break;
+
+    case Right:
+      this.setX(this.getX() + this.getSpeedX());
+      break;
+    }
 
     this.draw(this.getX(), this.getY());
 
