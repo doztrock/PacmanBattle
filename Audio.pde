@@ -6,12 +6,12 @@ class Audio {
   private Minim minim;
   private AudioPlayer audioPlayer;
 
-  Audio(String filename) {
+  Audio(String filename, Object context) {
+
+    this.minim = new Minim(context);
 
     this.setFilename(filename);
-
-    this.minim= new Minim(this);
-    this.audioPlayer = this.minim.loadFile(this.getFilename());
+    this.audioPlayer = minim.loadFile(this.getFilename());
 
     return;
   }
