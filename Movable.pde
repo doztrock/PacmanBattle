@@ -4,8 +4,7 @@ class Movable {
    * Constantes de forma
    */
   public static final int Rect    = (1 << 0);
-  public static final int Ellipse = (1 << 1);
-  public static final int Image   = (1 << 2);
+  public static final int Image   = (1 << 1);
 
   /**
    * Constantes de forma
@@ -20,7 +19,6 @@ class Movable {
    */
   private int shape;
   private PImage image;
-  private String imageName;
 
   /**
    * Dimensiones
@@ -51,7 +49,6 @@ class Movable {
   /**
    * Registro
    */
-  private int indexElement;
   private RegistryElement registryElement;
 
   Movable(int shape, int sizeH, int sizeW, PositionRegistry positionRegistry) {
@@ -73,8 +70,7 @@ class Movable {
     this.setSpeedX(5);
     this.setSpeedY(5);
 
-    this.indexElement = positionRegistry.register(this);
-    this.registryElement = positionRegistry.getRegistry().get(indexElement);
+    this.registryElement = positionRegistry.register(this);
 
     return;
   }
@@ -90,10 +86,6 @@ class Movable {
     }
 
     switch(this.shape) {
-
-    case Ellipse:
-      ellipse(x, y, this.sizeW, this.sizeH);
-      break;
 
     case Rect:
       rect(x, y, this.sizeW, this.sizeH);
@@ -198,11 +190,12 @@ class Movable {
   }
 
   public void setImageName(String imageName) {
-
-    this.imageName = imageName;
-    this.image = loadImage(this.imageName);
-
+    this.image = loadImage(imageName);
     return;
+  }
+
+  public RegistryElement getRegistryElement() {
+    return this.registryElement;
   }
 
   public void move() {

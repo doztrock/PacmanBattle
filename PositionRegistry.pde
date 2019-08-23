@@ -9,7 +9,7 @@ class PositionRegistry {
     this.registry = new ArrayList<RegistryElement>();
   }
 
-  public int register(Movable object) {
+  public RegistryElement register(Movable object) {
 
     RegistryElement element = new RegistryElement();
 
@@ -20,7 +20,7 @@ class PositionRegistry {
 
     this.registry.add(element);
 
-    return (this.registry.size() - 1);
+    return this.registry.get(this.registry.size() - 1);
   }
 
   public ArrayList<RegistryElement> getRegistry() {
