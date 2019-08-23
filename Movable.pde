@@ -1,3 +1,12 @@
+/**
+ * Esta clase se encarga de manejar cualquier objeto con el que se pueda interactuar.
+ *
+ * Cada objeto contara con unas coordenadas, velocidad, forma, colores y un registro
+ * que se hace de manera interna sobre una lista en la que se guardaran las cuatro coordenadas
+ * del objeto, para asi determinar si quiere que este interactue o no con otros objectos del
+ * mismo tipo.
+ *
+ */
 class Movable {
 
   /**
@@ -7,7 +16,7 @@ class Movable {
   public static final int Image   = (1 << 1);
 
   /**
-   * Constantes de forma
+   * Constantes de movimiento
    */
   public static final int Up    = (1 << 0);
   public static final int Down  = (1 << 1);
@@ -23,8 +32,8 @@ class Movable {
   /**
    * Dimensiones
    */
-  private int sizeH;
   private int sizeW;
+  private int sizeH;  
 
   /**
    * Opciones de color
@@ -37,8 +46,8 @@ class Movable {
   /**
    * Coordenadas
    */
-  private int positionX;
-  private int positionY;
+  private int x;
+  private int y;
 
   /**
    * Velocidad
@@ -51,7 +60,7 @@ class Movable {
    */
   private RegistryElement registryElement;
 
-  Movable(int shape, int sizeH, int sizeW, PositionRegistry positionRegistry) {
+  Movable(int shape, int sizeW, int sizeH, PositionRegistry positionRegistry) {
 
     this.useFill = false;
     this.useStroke = false;
@@ -61,8 +70,8 @@ class Movable {
     this.shape = shape;
     this.image = null;
 
-    this.setHeight(sizeH);
     this.setWidth(sizeW);
+    this.setHeight(sizeH);    
 
     this.setX(0);
     this.setY(0);
@@ -107,32 +116,95 @@ class Movable {
     return;
   }
 
-  public void setSize(int sizeH, int sizeW) {
+  /**
+   * Funcion:     setSize
+   *
+   * Objetivo:    Asignar las dimensiones del objeto.
+   *
+   * Parametros:  sizeH -> Altura
+   *              sizeW -> Anchura
+   *  
+   * Retorno:     N/A
+   *
+   */
+  public void setSize(int sizeW, int sizeH) {
 
-    this.setHeight(sizeH);
     this.setWidth(sizeW);
+    this.setHeight(sizeH);
 
     return;
   }
 
-  public void setHeight(int sizeH) {    
-    this.sizeH = sizeH;
-    return;
-  }
-
-  public int getHeight() {
-    return this.sizeH;
-  }
-
+  /**
+   * Funcion:     setWidth
+   *
+   * Objetivo:    Asignar la anchura del objeto.
+   *
+   * Parametros:  sizeW -> Anchura
+   *   
+   * Retorno:     N/A
+   *
+   */
   public void setWidth(int sizeW) {
     this.sizeW = sizeW;
     return;
   }
 
+  /**
+   * Funcion:     getWidth
+   *
+   * Objetivo:    Obtener la anchura del objeto.
+   *
+   * Parametros:  N/A
+   * 
+   * Retorno:     Anchura del objeto
+   *
+   */
   public int getWidth() {
     return this.sizeW;
   }
 
+  /**
+   * Funcion:     setHeight
+   *
+   * Objetivo:    Asignar la altura del objeto.
+   *
+   * Parametros:  sizeH -> Altura
+   *  
+   * Retorno:     N/A
+   *
+   */
+  public void setHeight(int sizeH) {    
+    this.sizeH = sizeH;
+    return;
+  }
+
+  /**
+   * Funcion:     getHeight
+   *
+   * Objetivo:    Obtener la altura del objeto.
+   *
+   * Parametros:  N/A
+   * 
+   * Retorno:     Altura del objeto
+   *
+   */
+  public int getHeight() {
+    return this.sizeH;
+  }
+
+  /**
+   * Funcion:     setFill
+   *
+   * Objetivo:    Asignar color de llenado de un elemento.
+   *
+   * Parametros:  r -> Rojo
+   *              g -> Verde
+   *              b -> Azul
+   *
+   * Retorno:     N/A
+   *
+   */
   public void setFill(float r, float g, float b) {
 
     this.fillRGB[0] = r;
@@ -143,6 +215,18 @@ class Movable {
     return;
   }
 
+  /**
+   * Funcion:     setStroke
+   *
+   * Objetivo:    Asignar color de contorno de un elemento.
+   *
+   * Parametros:  r -> Rojo
+   *              g -> Verde
+   *              b -> Azul
+   *
+   * Retorno:     N/A
+   *
+   */
   public void setStroke(float r, float g, float b) {
 
     this.strokeRGB[0] = r;
@@ -153,44 +237,132 @@ class Movable {
     return;
   }
 
+  /**
+   * Funcion:     setX
+   *
+   * Objetivo:    Asignar el valor al atributo x, 
+   *              correspondiente a la posicion del elemento sobre el eje X.
+   *
+   * Parametros:  x -> Posicion en eje X
+   *  
+   * Retorno:     N/A
+   *
+   */
   public void setX(int x) {
-    this.positionX = x;
+    this.x = x;
     return;
   }
 
+  /**
+   * Funcion:     getX
+   *
+   * Objetivo:    Obtener el valor del atributo X, 
+   *              correspondiente a la posicion del objeto sobre el eje X.
+   *
+   * Parametros:  N/A
+   *  
+   * Retorno:     Posicion sobre el eje X
+   *
+   */
   public int getX() {
-    return this.positionX;
+    return this.x;
   }
 
+  /**
+   * Funcion:     setY
+   *
+   * Objetivo:    Asignar el valor al atributo Y, 
+   *              correspondiente a la posicion del objeto sobre el eje Y.
+   *
+   * Parametros:  y -> Posicion en eje Y
+   *  
+   * Retorno:     N/A
+   *
+   */
   public void setY(int y) {
-    this.positionY = y;
+    this.y = y;
     return;
   }
 
+  /**
+   * Funcion:     getY
+   *
+   * Objetivo:    Obtener el valor del atributo Y, 
+   *              correspondiente a la posicion del objeto sobre el eje Y.
+   *
+   * Parametros:  N/A
+   *  
+   * Retorno:     Posicion sobre el eje Y
+   *
+   */
   public int getY() {
-    return this.positionY;
+    return this.y;
   }
 
+  /**
+   * Funcion:     setSpeedX
+   *
+   * Objetivo:    Asignar el valor al atributo speedX, 
+   *              correspondiente a la velocidad del objeto sobre el eje X.
+   *
+   * Parametros:  speedX -> Velocidad en eje X
+   *  
+   * Retorno:     N/A
+   *
+   */
   public void setSpeedX(int speedX) {
     this.speedX = speedX;
     return;
   }
 
+  /**
+   * Funcion:     getSpeedX
+   *
+   * Objetivo:    Obtener el valor del atributo speedX, 
+   *              correspondiente a la velocidad del objeto sobre el eje X.
+   *
+   * Parametros:  N/A
+   *  
+   * Retorno:     Velocidad en el eje X
+   *
+   */
   public int getSpeedX() {
     return this.speedX;
   }
 
+  /**
+   * Funcion:     setSpeedY
+   *
+   * Objetivo:    Asignar el valor al atributo speedY, 
+   *              correspondiente a la velocidad del objeto sobre el eje Y.
+   *
+   * Parametros:  speedX -> Velocidad en eje Y
+   *  
+   * Retorno:     N/A
+   *
+   */
   public void setSpeedY(int speedY) {
     this.speedY = speedY;
     return;
   }
 
+  /**
+   * Funcion:     getSpeedY
+   *
+   * Objetivo:    Obtener el valor del atributo speedY, 
+   *              correspondiente a la velocidad del objeto sobre el eje Y.
+   *
+   * Parametros:  N/A
+   *  
+   * Retorno:     Velocidad en el eje Y
+   *
+   */
   public int getSpeedY() {
     return this.speedY;
   }
 
-  public void setImageName(String imageName) {
-    this.image = loadImage(imageName);
+  public void setImagePath(String imagePath) {
+    this.image = loadImage(imagePath);
     return;
   }
 
