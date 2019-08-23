@@ -18,8 +18,8 @@ class ProgressBar {
   /**
    * Coordenadas
    */
-  private int positionX;
-  private int positionY;
+  private int x;
+  private int y;
 
   /**
    * Dimensiones
@@ -137,7 +137,7 @@ class ProgressBar {
    *
    */
   public void setX(int x) {
-    this.positionX = x;
+    this.x = x;
     return;
   }
 
@@ -153,7 +153,7 @@ class ProgressBar {
    *
    */
   public int getX() {
-    return this.positionX;
+    return this.x;
   }
 
   /**
@@ -168,7 +168,7 @@ class ProgressBar {
    *
    */
   public void setY(int y) {
-    this.positionY = y;
+    this.y = y;
     return;
   }
 
@@ -184,7 +184,7 @@ class ProgressBar {
    *
    */
   public int getY() {
-    return this.positionY;
+    return this.y;
   }
 
   /**
