@@ -6,14 +6,17 @@
  * del objeto, para asi determinar si quiere que este interactue o no con otros objectos del
  * mismo tipo.
  *
+ * Cabe aclarar tambien que cada objeto de la clase Movable podra tambien manejar una velocidad
+ * en ambos ejes, tanto en eje X como en el eje Y, medido en pixeles por movimiento. 
+ *
  */
 class Movable {
 
   /**
    * Constantes de forma
    */
-  public static final int Rect    = (1 << 0);
-  public static final int Image   = (1 << 1);
+  public static final int Rect	= (1 << 0);
+  public static final int Image	= (1 << 1);
 
   /**
    * Constantes de movimiento
@@ -361,11 +364,31 @@ class Movable {
     return this.speedY;
   }
 
+  /**
+   * Funcion:     setImagePath
+   *
+   * Objetivo:    Asignar la ruta de la imagen que sera cargada en el objeto PImage.
+   *
+   * Parametros:  imagePath -> Ruta a la imagen
+   *
+   * Retorno:     N/A
+   *
+   */
   public void setImagePath(String imagePath) {
     this.image = loadImage(imagePath);
     return;
   }
 
+  /**
+   * Funcion:     getRegistryElement
+   *
+   * Objetivo:    Obtener el puntero al registro de elementos respectivo a este objeto.
+   *
+   * Parametros:  N/A
+   *
+   * Retorno:     Puntero al registro de elementos respectivo a este objeto.
+   *
+   */
   public RegistryElement getRegistryElement() {
     return this.registryElement;
   }
