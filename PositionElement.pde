@@ -1,4 +1,4 @@
-class RegistryElement {
+class PositionElement {
 
   /**
    * Coordenadas

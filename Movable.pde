@@ -59,11 +59,11 @@ class Movable {
   private int speedY;
 
   /**
-   * Registro
+   * Posicion
    */
-  private RegistryElement registryElement;
+  private PositionElement positionElement;
 
-  Movable(int shape, int sizeW, int sizeH, PositionRegistry positionRegistry) {
+  Movable(int shape, int sizeW, int sizeH) {
 
     this.useFill = false;
     this.useStroke = false;
@@ -82,7 +82,7 @@ class Movable {
     this.setSpeedX(5);
     this.setSpeedY(5);
 
-    this.registryElement = positionRegistry.register(this);
+    this.positionElement = new PositionElement();
 
     return;
   }
@@ -380,27 +380,27 @@ class Movable {
   }
 
   /**
-   * Funcion:     getRegistryElement
+   * Funcion:     getPositionElement
    *
-   * Objetivo:    Obtener el puntero al registro de elementos respectivo a este objeto.
+   * Objetivo:    Obtener el puntero al objeto de posicion respectivo a este objeto.
    *
    * Parametros:  N/A
    *
-   * Retorno:     Puntero al registro de elementos respectivo a este objeto.
+   * Retorno:     Puntero al objeto de posicion respectivo a este objeto.
    *
    */
-  public RegistryElement getRegistryElement() {
-    return this.registryElement;
+  public PositionElement getPositionElement() {
+    return this.positionElement;
   }
 
   public void move() {
 
     this.draw(this.getX(), this.getY());
 
-    this.registryElement.setX1(this.getX());
-    this.registryElement.setX2(this.getX() + this.getWidth());
-    this.registryElement.setY1(this.getY());
-    this.registryElement.setY2(this.getY() + this.getHeight());
+    this.positionElement.setX1(this.getX());
+    this.positionElement.setX2(this.getX() + this.getWidth());
+    this.positionElement.setY1(this.getY());
+    this.positionElement.setY2(this.getY() + this.getHeight());
 
     return;
   }
@@ -428,10 +428,10 @@ class Movable {
 
     this.draw(this.getX(), this.getY());
 
-    this.registryElement.setX1(this.getX());
-    this.registryElement.setX2(this.getX() + this.getWidth());
-    this.registryElement.setY1(this.getY());
-    this.registryElement.setY2(this.getY() + this.getHeight());
+    this.positionElement.setX1(this.getX());
+    this.positionElement.setX2(this.getX() + this.getWidth());
+    this.positionElement.setY1(this.getY());
+    this.positionElement.setY2(this.getY() + this.getHeight());
 
     return;
   }
@@ -443,10 +443,10 @@ class Movable {
 
     this.draw(this.getX(), this.getY());
 
-    this.registryElement.setX1(this.getX());
-    this.registryElement.setX2(this.getX() + this.getWidth());
-    this.registryElement.setY1(this.getY());
-    this.registryElement.setY2(this.getY() + this.getHeight());
+    this.positionElement.setX1(this.getX());
+    this.positionElement.setX2(this.getX() + this.getWidth());
+    this.positionElement.setY1(this.getY());
+    this.positionElement.setY2(this.getY() + this.getHeight());
 
     return;
   }
@@ -454,16 +454,16 @@ class Movable {
   public boolean beside(Movable movable) {
 
     /** Coordenadas de este objeto */
-    int X1 = this.getRegistryElement().getX1();
-    int X2 = this.getRegistryElement().getX2();
-    int Y1 = this.getRegistryElement().getY1();
-    int Y2 = this.getRegistryElement().getY2();
+    int X1 = this.getPositionElement().getX1();
+    int X2 = this.getPositionElement().getX2();
+    int Y1 = this.getPositionElement().getY1();
+    int Y2 = this.getPositionElement().getY2();
 
     /** Coordenadas del objeto externo */
-    int movableX1 = movable.getRegistryElement().getX1();
-    int movableX2 = movable.getRegistryElement().getX2();
-    int movableY1 = movable.getRegistryElement().getY1();
-    int movableY2 = movable.getRegistryElement().getY2();
+    int movableX1 = movable.getPositionElement().getX1();
+    int movableX2 = movable.getPositionElement().getX2();
+    int movableY1 = movable.getPositionElement().getY1();
+    int movableY2 = movable.getPositionElement().getY2();
 
     /** Arriba */
     if ((X2 >= movableX1 && X1 <= movableX2) || (Y2 >= movableY1 && Y1 <= movableY2)) {

@@ -1,4 +1,3 @@
-PositionRegistry positionRegistry;
 Movable movable;
 Movable point;
 
@@ -6,16 +5,14 @@ void setup() {
 
   size(800, 600);
 
-  positionRegistry =  new PositionRegistry();
-
-  movable = new Movable(Movable.Rect, 10, 10, positionRegistry);
+  movable = new Movable(Movable.Rect, 10, 10);
   movable.setFill(255, 0, 255);
   movable.setX(30);
   movable.setY(30);
   movable.setSpeedX(1);
   movable.setSpeedY(1);
 
-  point = new Movable(Movable.Rect, 50, 50, positionRegistry);
+  point = new Movable(Movable.Rect, 50, 50);
   point.setFill(0, 255, 0);
   point.setX(400);
   point.setY(300);
