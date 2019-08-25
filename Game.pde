@@ -1,6 +1,6 @@
 PositionRegistry positionRegistry;
 Movable movable;
-Audio audio;
+Movable point;
 
 void setup() {
 
@@ -8,12 +8,15 @@ void setup() {
 
   positionRegistry =  new PositionRegistry();
 
-  audio = new Audio("audio.mp3", this);
-
-  movable = new Movable(Movable.Rect, 50, 50, positionRegistry);
+  movable = new Movable(Movable.Rect, 10, 10, positionRegistry);
   movable.setFill(255, 0, 255);
-  movable.setX(400);
-  movable.setY(300);
+  movable.setX(30);
+  movable.setY(30);
+
+  point = new Movable(Movable.Rect, 50, 50, positionRegistry);
+  point.setFill(0, 255, 0);
+  point.setX(400);
+  point.setY(300);
 
   return;
 } 
@@ -21,10 +24,11 @@ void setup() {
 void draw() {
 
   background(0);
+  point.move();
   movable.move();
 
-  if (keyPressed) {
-    audio.play();
+  if (movable.beside(point)) {
+    point.setFill(255, 255, 255);
   }
 
   return;

@@ -450,4 +450,35 @@ class Movable {
 
     return;
   }
+
+  public boolean beside(Movable movable) {
+
+    /** Coordenadas de este objeto */
+    int X1 = this.getRegistryElement().getX1();
+    int X2 = this.getRegistryElement().getX2();
+    int Y1 = this.getRegistryElement().getY1();
+    int Y2 = this.getRegistryElement().getY2();
+
+    /** Coordenadas del objeto externo */
+    int movableX1 = movable.getRegistryElement().getX1();
+    int movableX2 = movable.getRegistryElement().getX2();
+    int movableY1 = movable.getRegistryElement().getY1();
+    int movableY2 = movable.getRegistryElement().getY2();
+
+    /** Arriba */
+    if (X2 > movableX1 && X1 < movableX2) {
+      if (Y2 > movableY1) {
+        return true;
+      }
+    }
+
+    /** Izquierda */
+    if (Y2 > movableY1 && Y1 < movableY2) {
+      if (X2 > movableX1) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 }
