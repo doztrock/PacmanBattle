@@ -24,15 +24,29 @@ void draw() {
 
   background(0);
   point.move();
-  movable.move();
-
-  if (!movable.beside(point)) {
-    point.setFill(0, 255, 0);
-  }
+  movable.move(mouseX, mouseY);
 
   if (movable.beside(point)) {
     point.setFill(255, 255, 255);
+  } else {
+    point.setFill(0, 255, 0);
   }
+
+  String mCadena = " X1: " + movable.getPositionElement().getX1() +
+    " X2: " + movable.getPositionElement().getX2() +
+    " Y1: " + movable.getPositionElement().getY1() +
+    " Y2: " + movable.getPositionElement().getY2();
+
+  String pCadena = " X1: " + point.getPositionElement().getX1() +
+    " X2: " + point.getPositionElement().getX2() +
+    " Y1: " + point.getPositionElement().getY1() +
+    " Y2: " + point.getPositionElement().getY2();
+
+  fill(255, 100, 100);
+  text(mCadena, 550, 550);
+
+  fill(255, 100, 100);
+  text(pCadena, 550, 575);
 
   return;
 }

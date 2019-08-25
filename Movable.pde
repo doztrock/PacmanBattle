@@ -465,9 +465,8 @@ class Movable {
     int movableY1 = movable.getPositionElement().getY1();
     int movableY2 = movable.getPositionElement().getY2();
 
-    /** Arriba */
-    if ((X2 >= movableX1 && X1 <= movableX2) || (Y2 >= movableY1 && Y1 <= movableY2)) {
-      if ((Y2 >= movableY1 && Y2 <= movableY2) || (Y2 >= movableY1 && Y2 <= movableY2)) {
+    if ((X2 >= movableX1 && X1 <= movableX2)) {
+      if (Y2 >= movableY1 && Y1 <= movableY2) {
         return true;
       }
     }
