@@ -466,15 +466,8 @@ class Movable {
     int movableY2 = movable.getRegistryElement().getY2();
 
     /** Arriba */
-    if (X2 > movableX1 && X1 < movableX2) {
-      if (Y2 > movableY1) {
-        return true;
-      }
-    }
-
-    /** Izquierda */
-    if (Y2 > movableY1 && Y1 < movableY2) {
-      if (X2 > movableX1) {
+    if ((X2 >= movableX1 && X1 <= movableX2) || (Y2 >= movableY1 && Y1 <= movableY2)) {
+      if ((Y2 >= movableY1 && Y2 <= movableY2) || (Y2 >= movableY1 && Y2 <= movableY2)) {
         return true;
       }
     }

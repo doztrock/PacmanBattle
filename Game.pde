@@ -12,6 +12,8 @@ void setup() {
   movable.setFill(255, 0, 255);
   movable.setX(30);
   movable.setY(30);
+  movable.setSpeedX(1);
+  movable.setSpeedY(1);
 
   point = new Movable(Movable.Rect, 50, 50, positionRegistry);
   point.setFill(0, 255, 0);
@@ -26,6 +28,10 @@ void draw() {
   background(0);
   point.move();
   movable.move();
+
+  if (!movable.beside(point)) {
+    point.setFill(0, 255, 0);
+  }
 
   if (movable.beside(point)) {
     point.setFill(255, 255, 255);
