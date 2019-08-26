@@ -2,8 +2,8 @@
  * Esta clase se encarga de manejar cualquier objeto con el que se pueda interactuar.
  *
  * Cada objeto contara con unas coordenadas, velocidad, forma, colores y un registro
- * que se hace de manera interna sobre una lista en la que se guardaran las cuatro coordenadas
- * del objeto, para asi determinar si quiere que este interactue o no con otros objectos del
+ * que se hace de manera interna sobre un objeto en el que se guardaran las cuatro coordenadas
+ * del elemento, para asi determinar si quiere que este interactue o no con otros elementos del
  * mismo tipo.
  *
  * Cabe aclarar tambien que cada objeto de la clase Movable podra tambien manejar una velocidad
@@ -386,13 +386,23 @@ class Movable {
    *
    * Parametros:  N/A
    *
-   * Retorno:     Puntero al objeto de posicion respectivo a este objeto.
+   * Retorno:     Puntero al objeto de posicion respectivo a este objeto
    *
    */
   public PositionElement getPositionElement() {
     return this.positionElement;
   }
 
+  /**
+   * Funcion:     move
+   *
+   * Objetivo:    Mover el objeto a las coordenadas respectivas, previamente asignadas.
+   *
+   * Parametros:  N/A
+   *
+   * Retorno:     N/A
+   *
+   */
   public void move() {
 
     this.draw(this.getX(), this.getY());
@@ -405,6 +415,16 @@ class Movable {
     return;
   }
 
+  /**
+   * Funcion:     move
+   *
+   * Objetivo:    Mover el objeto en la direccion respectiva.
+   *
+   * Parametros:  direction -> Direccion hacia donde se movera el objeto.
+   *
+   * Retorno:     N/A
+   *
+   */
   public void move(int direction) {
 
     switch(direction) {
@@ -436,6 +456,17 @@ class Movable {
     return;
   }
 
+  /**
+   * Funcion:     move
+   *
+   * Objetivo:    Mover el objeto a las coordenadas respectivas.
+   *
+   * Parametros:  x -> Posicion en eje X
+   *              y -> Posicion en eje Y
+   *
+   * Retorno:     N/A
+   *
+   */
   public void move(int x, int y) {
 
     this.setX(x);
@@ -451,6 +482,16 @@ class Movable {
     return;
   }
 
+  /**
+   * Funcion:     beside
+   *
+   * Objetivo:    Determinar si este objeto se ha acercado a otro.
+   *
+   * Parametros:  movable -> Instancia del objeto a evaluar
+   *
+   * Retorno:     TRUE si se ha acercado a otro objeto, FALSE en caso contrario
+   *
+   */
   public boolean beside(Movable movable) {
 
     /** Coordenadas de este objeto */
@@ -467,6 +508,27 @@ class Movable {
 
     if ((X2 >= movableX1 && X1 <= movableX2)) {
       if (Y2 >= movableY1 && Y1 <= movableY2) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * Funcion:     beside
+   *
+   * Objetivo:    Determinar si este objeto se ha acercado a alguno de los de la lista.
+   *
+   * Parametros:  movables -> Arreglo de instancias de objetos a evaluar
+   *
+   * Retorno:     TRUE si se ha acercado a algun objeto de la lista, FALSE en caso contrario
+   *
+   */
+  public boolean beside(Movable[] movables) {
+
+    for (Movable movable : movables) {
+      if (this.beside(movable)) {
         return true;
       }
     }
