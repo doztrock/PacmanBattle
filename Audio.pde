@@ -14,18 +14,30 @@ class Audio {
   }
 
   public void play() {
-    this.audioPlayer.play();
+
+    if (!this.audioPlayer.isPlaying()) {
+      this.audioPlayer.play();
+    }
+
     return;
   }
 
   public void pause() {
-    this.audioPlayer.pause();
+
+    if (this.audioPlayer.isPlaying()) {
+      this.audioPlayer.pause();
+    }
+
     return;
   }
 
   public void stop() {
-    this.audioPlayer.pause();
-    this.audioPlayer.rewind();
+
+    if (this.audioPlayer.isPlaying()) {
+      this.audioPlayer.pause();
+      this.audioPlayer.rewind();
+    }
+
     return;
   }
 }
