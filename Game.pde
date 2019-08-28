@@ -1,9 +1,13 @@
 Movable movable;
 Movable[] list;
+Audio audio;
 
 void setup() {
 
   size(800, 600);
+
+  /* Audio */
+  audio = new Audio("audio.mp3", this);
 
   /* Movable */
   movable = new Movable(Movable.Rect, 25, 25);
@@ -41,6 +45,7 @@ void draw() {
 
   if (movable.beside(list)) {
     movable.setFill(255, 0, 0);
+    audio.play();
   } else {
     movable.setFill(255, 0, 255);
   }

@@ -17,6 +17,7 @@ class Audio {
 
     if (!this.audioPlayer.isPlaying()) {
       this.audioPlayer.play();
+      this.audioPlayer.rewind();
     }
 
     return;
