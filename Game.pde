@@ -1,34 +1,14 @@
-Movable movable;
-Movable[] list;
-Audio audio;
+Audio audioIntro;
+Audio audioSiren;
 
 void setup() {
 
+  /* Pantalla */
   size(800, 600);
 
   /* Audio */
-  audio = new Audio("audio.mp3", this);
-
-  /* Movable */
-  movable = new Movable(Movable.Rect, 25, 25);
-  movable.setFill(255, 0, 255);
-  movable.setX(30);
-  movable.setY(30);
-  movable.setSpeedX(1);
-  movable.setSpeedY(1);
-
-  /* Lista */
-  list = new Movable[5];
-
-  for (int i = 0; i < 5; i++) {
-
-    list[i] = new Movable(Movable.Rect, 50, 50);
-
-    list[i].setFill(255, 255, 0);
-
-    list[i].setX((int)random(50, 800));
-    list[i].setY((int)random(50, 600));
-  }
+  audioIntro = new Audio("audio/pacman-intro.mp3", Audio.Normal, this);
+  audioSiren = new Audio("audio/pacman-siren.mp3", Audio.Loop, this);
 
   return;
 } 
@@ -37,17 +17,10 @@ void draw() {
 
   background(0);
 
-  movable.move(mouseX, mouseY);
+  audioIntro.play();
 
-  for (int i = 0; i < 5; i++) {
-    list[i].move();
-  }
-
-  if (movable.beside(list)) {
-    movable.setFill(255, 0, 0);
-    audio.play();
-  } else {
-    movable.setFill(255, 0, 255);
+  if (!audioIntro.running()) {
+    audioSiren.play();
   }
 
   return;

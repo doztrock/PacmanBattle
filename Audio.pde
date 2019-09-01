@@ -13,10 +13,26 @@ import ddf.minim.*;
 class Audio {
 
   /**
+   * Constantes de tipo
+   */
+  public static final int Normal	= (1 << 0);
+  public static final int Loop 	  = (1 << 1);
+
+  /**
    * Manejadores
    */
   private Minim minim;
   private AudioPlayer audioPlayer;
+
+  /**
+   * Tipo de audio
+   */
+  private int type;
+
+  /**
+   * Bandera
+   */
+  private boolean playing = false;
 
   /**
    * Constructor
@@ -25,10 +41,12 @@ class Audio {
    *              context  -> Puntero a la clase principal
    *
    */
-  Audio(String filename, Object context) {
+  Audio(String filename, int type, Object context) {
 
     this.minim = new Minim(context);
     this.audioPlayer = minim.loadFile(filename);
+
+    this.type = type;
 
     return;
   }
@@ -36,7 +54,7 @@ class Audio {
   /**
    * Funcion:     play
    *
-   * Objetivo:    Reproducir el audio.
+   * Objetivo:    Reproducir el audio dependiendo del tipo.
    *
    * Parametros:  N/A
    *  
@@ -45,12 +63,46 @@ class Audio {
    */
   public void play() {
 
-    if (!this.audioPlayer.isPlaying()) {
-      this.audioPlayer.play();
-      this.audioPlayer.rewind();
+    switch(this.type) {
+
+    case Normal:
+
+      if (!this.audioPlayer.isPlaying() && this.playing == false) {
+        this.audioPlayer.play();
+        this.playing = true;
+      }
+
+      break;
+
+    case Loop:
+
+      if (!this.audioPlayer.isPlaying()) {
+        this.audioPlayer.loop();
+      }
+
+      break;
     }
 
     return;
+  }
+
+  /**
+   * Funcion:     running
+   *
+   * Objetivo:    Determinar si el audio se esta ejecutando.
+   *
+   * Parametros:  N/A
+   *  
+   * Retorno:     TRUE si el audio se esta ejecutando, FALSE en caso contrario.
+   *
+   */
+  public boolean running() {
+
+    if (this.type == Loop) {
+      return true;
+    }
+
+    return this.audioPlayer.isPlaying();
   }
 
   /**
