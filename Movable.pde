@@ -63,6 +63,14 @@ class Movable {
    */
   private PositionElement positionElement;
 
+  /**
+   * Constructor
+   *
+   * Parametros:  shape -> Forma
+   *              sizeW -> Anchura
+   *              sizeH -> Altura
+   *
+   */
   Movable(int shape, int sizeW, int sizeH) {
 
     this.useFill = false;
@@ -87,6 +95,17 @@ class Movable {
     return;
   }
 
+  /**
+   * Funcion:     draw
+   *
+   * Objetivo:    Dibujar el objeto en la pantalla.
+   *
+   * Parametros:  x -> Posicion en eje X
+   *              y -> Posicion en eje Y
+   *  
+   * Retorno:     N/A
+   *
+   */
   private void draw(int x, int y) {
 
     if (this.useFill == true) {
