@@ -28,6 +28,16 @@ void loop() {
     gamingController1.setLastMovement(movementController1);
   }
 
+  /* Manejo de control #2 */
+  /*
+  char movementController2 = gamingController2.detectMovement();
+
+  if (gamingController2.getLastMovement() != movementController2) {
+    serialManager.write(movementController2);
+    gamingController2.setLastMovement(movementController2);
+  }
+  */
+
   delay(100);
   return;
 }

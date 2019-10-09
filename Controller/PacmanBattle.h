@@ -32,6 +32,8 @@
 #define RIGHT     '4'
 #define SHOOT     '5'
 #define SWITCH    '6'
-#define VIBRATE   '7'
+
+#define VIBRATE_CONTROL_1   '7'
+#define VIBRATE_CONTROL_2   '8'
 
 #endif
