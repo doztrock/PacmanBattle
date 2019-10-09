@@ -1,3 +1,12 @@
+/**
+ * Esta clase se encarga de la visualizacion de las barras de progreso.
+ *
+ * Para empezar contamos con que la barra de progreso puede tener un valor
+ * que se ha de medir en porcentajes desde 0% hasta 100%, debido a que el largo
+ * de la barra no debe suponer un problema al realizar la graficacion de la misma
+ * en la pantalla.
+ *
+ */
 class ProgressBar {
 
   /**
@@ -9,8 +18,8 @@ class ProgressBar {
   /**
    * Coordenadas
    */
-  private int positionX;
-  private int positionY;
+  private int x;
+  private int y;
 
   /**
    * Dimensiones
@@ -31,6 +40,15 @@ class ProgressBar {
    */
   private int progress;
 
+  /**
+   * Constructor
+   *
+   * Parametros:  x     -> Posicion en eje X
+   *              y     -> Posicion en eje Y
+   *              sizeW -> Anchura
+   *              sizeH -> Altura
+   *
+   */
   ProgressBar(int x, int y, int sizeW, int sizeH) {
 
     this.fillRGB = new float[3];
@@ -47,6 +65,19 @@ class ProgressBar {
     return;
   }
 
+  /**
+   * Funcion:     outerElement
+   *
+   * Objetivo:    Dibujar el elemento exterior de la barra de progreso.
+   *
+   * Parametros:  x     -> Posicion en eje X
+   *              y     -> Posicion en eje Y
+   *              sizeW -> Anchura
+   *              sizeH -> Altura
+   *  
+   * Retorno:     N/A
+   *
+   */
   private void outerElement(int x, int y, int sizeW, int sizeH) {
 
     if (this.useFill == true) {
@@ -64,6 +95,19 @@ class ProgressBar {
     return;
   }
 
+  /**
+   * Funcion:     innerElement
+   *
+   * Objetivo:    Dibujar el elemento interior de la barra de progreso.
+   *
+   * Parametros:  x     -> Posicion en eje X
+   *              y     -> Posicion en eje Y
+   *              sizeW -> Anchura
+   *              sizeH -> Altura
+   *  
+   * Retorno:     N/A
+   *
+   */
   private void innerElement(int x, int y, int sizeW, int sizeH) {
 
     if (this.useFill == true) {
@@ -81,24 +125,79 @@ class ProgressBar {
     return;
   }
 
+  /**
+   * Funcion:     setX
+   *
+   * Objetivo:    Asignar el valor al atributo X, 
+   *              correspondiente a la posicion de la barra de progreso sobre el eje X.
+   *
+   * Parametros:  x -> Posicion en eje X
+   *  
+   * Retorno:     N/A
+   *
+   */
   public void setX(int x) {
-    this.positionX = x;
+    this.x = x;
     return;
   }
 
+  /**
+   * Funcion:     getX
+   *
+   * Objetivo:    Obtener el valor del atributo X, 
+   *              correspondiente a la posicion de la barra de progreso sobre el eje X.
+   *
+   * Parametros:  N/A
+   *  
+   * Retorno:     Posicion sobre el eje X
+   *
+   */
   public int getX() {
-    return this.positionX;
+    return this.x;
   }
 
+  /**
+   * Funcion:     setY
+   *
+   * Objetivo:    Asignar el valor al atributo Y, 
+   *              correspondiente a la posicion de la barra de progreso sobre el eje Y.
+   *
+   * Parametros:  y -> Posicion en eje Y
+   *  
+   * Retorno:     N/A
+   *
+   */
   public void setY(int y) {
-    this.positionY = y;
+    this.y = y;
     return;
   }
 
+  /**
+   * Funcion:     getY
+   *
+   * Objetivo:    Obtener el valor del atributo Y, 
+   *              correspondiente a la posicion de la barra de progreso sobre el eje Y.
+   *
+   * Parametros:  N/A
+   *  
+   * Retorno:     Posicion sobre el eje Y
+   *
+   */
   public int getY() {
-    return this.positionY;
+    return this.y;
   }
 
+  /**
+   * Funcion:     setSize
+   *
+   * Objetivo:    Asignar las dimensiones de la barra de progreso.
+   *
+   * Parametros:  sizeW -> Anchura
+   *              sizeH -> Altura
+   *  
+   * Retorno:     N/A
+   *
+   */
   public void setSize(int sizeW, int sizeH) {
 
     this.setWidth(sizeW);
@@ -107,24 +206,76 @@ class ProgressBar {
     return;
   }
 
+  /**
+   * Funcion:     setWidth
+   *
+   * Objetivo:    Asignar la anchura de la barra de progreso.
+   *
+   * Parametros:  sizeW -> Anchura
+   *   
+   * Retorno:     N/A
+   *
+   */
   public void setWidth(int sizeW) {
     this.sizeW = sizeW;
     return;
   }
 
+  /**
+   * Funcion:     getWidth
+   *
+   * Objetivo:    Obtener la anchura de la barra de progreso.
+   *
+   * Parametros:  N/A
+   * 
+   * Retorno:     Anchura de la barra de progreso
+   *
+   */
   public int getWidth() {
     return this.sizeW;
   }
 
+  /**
+   * Funcion:     setHeight
+   *
+   * Objetivo:    Asignar la altura de la barra de progreso.
+   *
+   * Parametros:  sizeH -> Altura
+   *  
+   * Retorno:     N/A
+   *
+   */
   public void setHeight(int sizeH) {    
     this.sizeH = sizeH;
     return;
   }
 
+  /**
+   * Funcion:     getHeight
+   *
+   * Objetivo:    Obtener la altura de la barra de progreso.
+   *
+   * Parametros:  N/A
+   * 
+   * Retorno:     Altura de la barra de progreso
+   *
+   */
   public int getHeight() {
     return this.sizeH;
   }
 
+  /**
+   * Funcion:     setFill
+   *
+   * Objetivo:    Asignar color de llenado de un elemento.
+   *
+   * Parametros:  r -> Rojo
+   *              g -> Verde
+   *              b -> Azul
+   *
+   * Retorno:     N/A
+   *
+   */
   public void setFill(float r, float g, float b) {
 
     this.fillRGB[0] = r;
@@ -135,6 +286,18 @@ class ProgressBar {
     return;
   }
 
+  /**
+   * Funcion:     setStroke
+   *
+   * Objetivo:    Asignar color de contorno de un elemento.
+   *
+   * Parametros:  r -> Rojo
+   *              g -> Verde
+   *              b -> Azul
+   *
+   * Retorno:     N/A
+   *
+   */
   public void setStroke(float r, float g, float b) {
 
     this.strokeRGB[0] = r;
@@ -145,6 +308,16 @@ class ProgressBar {
     return;
   }
 
+  /**
+   * Funcion:     setProgress
+   *
+   * Objetivo:    Asignar el valor del progreso de la barra.
+   *
+   * Parametros:  progress -> Progreso de la barra
+   *  
+   * Retorno:     N/A
+   *
+   */
   public void setProgress(int progress) {    
 
     if (progress >= MIN_PROGRESS && progress <= MAX_PROGRESS) {
@@ -158,10 +331,30 @@ class ProgressBar {
     return;
   }
 
+  /**
+   * Funcion:     getProgress
+   *
+   * Objetivo:    Obtener el progreso de la barra.
+   *
+   * Parametros:  N/A
+   * 
+   * Retorno:     Progreso de la barra
+   *
+   */
   public int getProgress() {
     return this.progress;
   }
 
+  /**
+   * Funcion:     show
+   *
+   * Objetivo:    Dibujar la barra de progreso, con colores por defecto.
+   *
+   * Parametros:  N/A
+   *
+   * Retorno:     N/A
+   *
+   */
   public void show() {
 
     this.setFill(255, 255, 255);
@@ -175,6 +368,21 @@ class ProgressBar {
     return;
   }
 
+  /**
+   * Funcion:     show
+   *
+   * Objetivo:    Dibujar la barra de progreso.
+   *
+   * Parametros:  or  ->  Rojo (Elemento externo)
+   *              og  ->  Verde (Elemento externo)
+   *              ob  ->  Azul (Elemento externo)
+   *              ir  ->  Rojo (Elemento interno)
+   *              ig  ->  Verde (Elemento interno)
+   *              ib  ->  Azul (Elemento interno)
+   *
+   * Retorno:     N/A
+   *
+   */
   public void show(float or, float og, float ob, float ir, float ig, float ib) {
 
     this.setFill(or, og, ob);
