@@ -41,7 +41,7 @@ class Audio {
    *              context  -> Puntero a la clase principal
    *
    */
-  Audio(String filename, int type, Object context) {
+  Audio(String filename, int type, PApplet context) {
 
     this.minim = new Minim(context);
     this.audioPlayer = minim.loadFile(filename);

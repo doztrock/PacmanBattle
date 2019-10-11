@@ -40,6 +40,15 @@ char GamingController::detectMovement(void) {
 }
 
 void GamingController::vibrate(void) {
+
+  /* Iniciamos vibracion */
+  analogWrite(this->tx, 100);
+  delay(500);
+
+  /* Detenemos vibracion */
+  analogWrite(this->tx, 0);
+
+  return;
 }
 
 void GamingController::setLastMovement(char lastMovement) {

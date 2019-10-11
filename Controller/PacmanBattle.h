@@ -33,7 +33,26 @@
 #define SHOOT     '5'
 #define SWITCH    '6'
 
-#define VIBRATE_CONTROL_1   '7'
-#define VIBRATE_CONTROL_2   '8'
+// Instrucciones individuales
+#define LEFT_CONTROL_1    '7'
+#define LEFT_CONTROL_2    '8'
+
+#define UP_CONTROL_1      '9'
+#define UP_CONTROL_2      'A'
+
+#define DOWN_CONTROL_1    'B'
+#define DOWN_CONTROL_2    'C'
+
+#define RIGHT_CONTROL_1   'D'
+#define RIGHT_CONTROL_2   'E'
+
+#define SHOOT_CONTROL_1   'F'
+#define SHOOT_CONTROL_2   'G'
+
+#define SWITCH_CONTROL_1  'H'
+#define SWITCH_CONTROL_2  'I'
+
+#define VIBRATE_CONTROL_1 'J'
+#define VIBRATE_CONTROL_2 'K'
 
 #endif
