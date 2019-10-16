@@ -1,33 +1,39 @@
-SerialManager serialManager;
+/* Imagen de fondo */
+PImage backgroundImage = null;
+
+/* Pacman */
+Movable pacman = null;
+
+/* Fantasmas */
+Movable inky = null;
+Movable blinky = null;
+Movable pinky = null;
+Movable clyde = null;
 
 void setup() {
-
-  serialManager = new SerialManager("/dev/ttyACM0", 9600, this);
 
   /* Pantalla */
   size(800, 600);
 
+  /* Asignamos el fondo */
+  backgroundImage = loadImage("data/image/background/image.jpg");
+
+  /* Instanciamos => Pacman */
+  pacman = new Movable(Movable.Image, 32, 32);
+  pacman.setImagePath("data/image/pacman/close.png");
+  pacman.setSpeedX(3);
+  pacman.setSpeedY(3);
+  pacman.setX(400);
+  pacman.setY(300);
+
   return;
 } 
 
-
-  boolean written = false;
-
 void draw() {
 
-  background(0);
+  background(backgroundImage);
 
-  // TODO: lastWrite for arduino
-  char value = serialManager.read();  
-
-  print(value);
-
-  if (!written) {
-    serialManager.write('J');
-    written = true;
-  }
-
-  //println(serialManager.read());
+  pacman.move(Movable.Down);
 
   return;
 }
