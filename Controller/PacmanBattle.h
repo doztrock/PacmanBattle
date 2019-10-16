@@ -1,37 +1,59 @@
+/**
+ ** PacmanBattle.h
+ **
+ ** Contenido:  Constantes utilizadas durante la ejecucion del programa,
+ **             niveles de los voltajes, pines.
+ **
+ **/
+
 #ifndef PACMANBATTLE_H
 #define PACMANBATTLE_H 1
 
-// Baudios
+
+/* Velocidad de transmision */
 #define BAUD_RATE 9600
 
-// PINES PARA CONTROL 1
+
+/* Pines: Control #1 */
 #define RX_PIN_CONTROL_1  A0
 #define TX_PIN_CONTROL_1  10
 
-// PINES PARA CONTROL 2
-#define RX_PIN_CONTROL_2  A1
+
+/* Pines: Control #2 */
+#define RX_PIN_CONTROL_2  A2
 #define TX_PIN_CONTROL_2  9
 
-// Niveles de los botones
-#define BUTTON_LEFT_HIGH  484
-#define BUTTON_LEFT_LOW   476
 
-#define BUTTON_UP_HIGH    373
-#define BUTTON_UP_LOW     358
+/** Niveles */
 
-#define BUTTON_DOWN_HIGH  361
-#define BUTTON_DOWN_LOW   355
+// LEFT
+#define BUTTON_LEFT_HIGH  185
+#define BUTTON_LEFT_LOW   165
 
-#define BUTTON_RIGHT_HIGH 297
-#define BUTTON_RIGHT_LOW  294
+// UP
+#define BUTTON_UP_HIGH    127
+#define BUTTON_UP_LOW     110
 
+// DOWN
+#define BUTTON_DOWN_HIGH  85
+#define BUTTON_DOWN_LOW   70
+
+// RIGHT
+#define BUTTON_RIGHT_HIGH 65
+#define BUTTON_RIGHT_LOW  67
+
+// SHOOT
 #define BUTTON_SHOOT_HIGH 181
 #define BUTTON_SHOOT_LOW  170
 
+// SWITCH
 #define BUTTON_SWITCH_HIGH 206
 #define BUTTON_SWITCH_LOW  201
 
-// Instrucciones compartidas
+
+/** Instrucciones */
+
+// PRE-LECTURA
 #define NOTHING   '0'
 #define LEFT      '1'
 #define UP        '2'
@@ -40,7 +62,7 @@
 #define SHOOT     '5'
 #define SWITCH    '6'
 
-// Instrucciones individuales
+// LECTURA
 #define LEFT_CONTROL_1    '7'
 #define LEFT_CONTROL_2    '8'
 
@@ -59,7 +81,9 @@
 #define SWITCH_CONTROL_1  'H'
 #define SWITCH_CONTROL_2  'I'
 
+// ESCRITURA
 #define VIBRATE_CONTROL_1 'J'
 #define VIBRATE_CONTROL_2 'K'
+
 
 #endif
