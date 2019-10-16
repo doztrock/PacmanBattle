@@ -25,6 +25,6 @@ char SerialManager::read(void) {
 }
 
 void SerialManager::write(char character) {
-  this->serial->write(character);
+  this->serial->println(character);
   return;
 }

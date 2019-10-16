@@ -19,7 +19,7 @@ void GamingController::init(void) {
 
 char GamingController::detectMovement(void) {
 
-  int value = analogRead(this->rx);
+  int value = map(analogRead(this->rx), 0, 1023, 0, 255);
 
   if (value <= BUTTON_LEFT_HIGH && value >= BUTTON_LEFT_LOW) {
     return LEFT;
@@ -31,10 +31,6 @@ char GamingController::detectMovement(void) {
 
   if (value <= BUTTON_DOWN_HIGH && value >= BUTTON_DOWN_LOW) {
     return DOWN;
-  }
-
-  if (value <= BUTTON_RIGHT_HIGH && value >= BUTTON_RIGHT_LOW) {
-    return RIGHT;
   }
 
   return NOTHING;
