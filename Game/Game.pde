@@ -11,7 +11,7 @@ Movable inky = null;
 Movable pinky = null;
 
 /* Fantasma actual */
-Movable currentGhost = null;
+int currentGhost;
 
 /* Listado de fantasmas */
 Movable[] ghosts = null;
@@ -82,9 +82,9 @@ void setup() {
   ghosts[2] = inky;
   ghosts[3] = pinky;
 
-  /* Seleccion: Fantasma al azar */
-  currentGhost = ghosts[round(random(0, 3))];
-  currentGhost.setStroke(255, 255, 255, 5);
+  /* Seleccion: Fantasma actual */
+  currentGhost = round(random(0, 3));
+  ghosts[currentGhost].setStroke(255, 255, 255, 5);
 
   return;
 } 
@@ -97,11 +97,15 @@ void draw() {
   /* Aparicion: Pacman */
   pacman.move();
 
-  /* Aparicion: Fantasmas */
-  blinky.move();
-  clyde.move();
-  inky.move();
-  pinky.move();
+  /* Aparicion: Fantasmas extras */
+  for (int indexGhost = 0; indexGhost < ghosts.length; indexGhost++) {
+    if (indexGhost != currentGhost) {
+      ghosts[indexGhost].move();
+    }
+  }
+
+  /* Aparicion: Fantasma actual */
+  ghosts[currentGhost].move();
 
   /* Lectura: Administrador de serial */
   char readingSerialManager = serialManager.read();
@@ -122,7 +126,7 @@ void draw() {
     break;
 
   case PacmanBattle.UP_CONTROL_2:
-    currentGhost.move(Movable.Up);
+    ghosts[currentGhost].move(Movable.Up);
     break;
 
   case PacmanBattle.DOWN_CONTROL_1:
@@ -130,7 +134,7 @@ void draw() {
     break;
 
   case PacmanBattle.DOWN_CONTROL_2:
-    currentGhost.move(Movable.Down);
+    ghosts[currentGhost].move(Movable.Down);
     break;
 
   case PacmanBattle.RIGHT_CONTROL_1:
@@ -138,7 +142,7 @@ void draw() {
     break;
 
   case PacmanBattle.RIGHT_CONTROL_2:
-    currentGhost.move(Movable.Right);
+    ghosts[currentGhost].move(Movable.Right);
     break;
 
   default:
@@ -156,8 +160,8 @@ void switchGhost(Movable[] list) {
   }
 
   // Cambio de fantasma
-  Movable randomGhost = list[round(random(0, 3))];
-  randomGhost.setStroke(255, 255, 255, 5);
+  currentGhost = round(random(0, 3));
+  ghosts[currentGhost].setStroke(255, 255, 255, 5);
 
   return;
 }
