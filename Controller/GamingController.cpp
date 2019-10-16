@@ -37,6 +37,7 @@ char GamingController::detectMovement(void) {
     return RIGHT;
   }
 
+  return NOTHING;
 }
 
 void GamingController::vibrate(void) {
@@ -49,12 +50,4 @@ void GamingController::vibrate(void) {
   analogWrite(this->tx, 0);
 
   return;
-}
-
-void GamingController::setLastMovement(char lastMovement) {
-  this->lastMovement = lastMovement;
-}
-
-char GamingController::getLastMovement(void) {
-  return this->lastMovement;
 }

@@ -13,19 +13,26 @@
 #define TX_PIN_CONTROL_2  9
 
 // Niveles de los botones
-#define BUTTON_LEFT_HIGH  508
-#define BUTTON_LEFT_LOW   506
+#define BUTTON_LEFT_HIGH  484
+#define BUTTON_LEFT_LOW   476
 
-#define BUTTON_UP_HIGH    381
-#define BUTTON_UP_LOW     373
+#define BUTTON_UP_HIGH    373
+#define BUTTON_UP_LOW     358
 
-#define BUTTON_DOWN_HIGH  282
-#define BUTTON_DOWN_LOW   278
+#define BUTTON_DOWN_HIGH  361
+#define BUTTON_DOWN_LOW   355
 
-#define BUTTON_RIGHT_HIGH 192
-#define BUTTON_RIGHT_LOW  188
+#define BUTTON_RIGHT_HIGH 297
+#define BUTTON_RIGHT_LOW  294
+
+#define BUTTON_SHOOT_HIGH 181
+#define BUTTON_SHOOT_LOW  170
+
+#define BUTTON_SWITCH_HIGH 206
+#define BUTTON_SWITCH_LOW  201
 
 // Instrucciones compartidas
+#define NOTHING   '0'
 #define LEFT      '1'
 #define UP        '2'
 #define DOWN      '3'
