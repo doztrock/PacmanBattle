@@ -76,7 +76,7 @@ class Movable {
     this.useFill = false;
     this.useStroke = false;
     this.fillRGB = new float[3];
-    this.strokeRGB = new float[3];
+    this.strokeRGB = new float[4];
 
     this.shape = shape;
     this.image = null;
@@ -113,6 +113,7 @@ class Movable {
     }
 
     if (this.useStroke == true) {
+      strokeWeight(this.strokeRGB[3]);
       stroke(this.strokeRGB[0], this.strokeRGB[1], this.strokeRGB[2]);
     }
 
@@ -245,15 +246,17 @@ class Movable {
    * Parametros:  r -> Rojo
    *              g -> Verde
    *              b -> Azul
+   *              weight -> Grosor de linea
    *
    * Retorno:     N/A
    *
    */
-  public void setStroke(float r, float g, float b) {
+  public void setStroke(float r, float g, float b, float weight) {
 
     this.strokeRGB[0] = r;
     this.strokeRGB[1] = g;
     this.strokeRGB[2] = b;
+    this.strokeRGB[3] = weight; 
     this.useStroke = true;
 
     return;

@@ -12,8 +12,7 @@ class SerialManager {
   public char read() {
 
     if (this.serial.available() > 0) {
-      int lectura = this.serial.read();
-      return (char) lectura;
+      return (char) this.serial.read();
     }
 
     return 0;

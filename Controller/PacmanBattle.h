@@ -27,8 +27,8 @@
 /** Niveles */
 
 // LEFT
-#define BUTTON_LEFT_HIGH  185
-#define BUTTON_LEFT_LOW   165
+#define BUTTON_LEFT_HIGH  187
+#define BUTTON_LEFT_LOW   163
 
 // UP
 #define BUTTON_UP_HIGH    127
