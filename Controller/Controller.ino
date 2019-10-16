@@ -3,33 +3,42 @@
 #include "GamingController.h"
 #include "PacmanBattle.h"
 
+/* Administrador de serial */
 SerialManager serialManager(&Serial, BAUD_RATE);
 
+/* Control #1 */
 GamingController gamingController1(RX_PIN_CONTROL_1, TX_PIN_CONTROL_1);
-//GamingController gamingController2(RX_PIN_CONTROL_2, TX_PIN_CONTROL_2);
+
+/* Control #2 */
+GamingController gamingController2(RX_PIN_CONTROL_2, TX_PIN_CONTROL_2);
 
 void setup() {
 
+  /* Inicializacion: Administrador de serial */
   serialManager.init();
 
+  /* Inicializacion: Control #1 */
   gamingController1.init();
-  //gamingController2.init();
+
+  /* Inicializacion: Control #2 */
+  gamingController2.init();
 
   return;
 }
 
 void loop() {
 
-  /* Lectura de serial */
-  char value = serialManager.read();
+  /* Deteccion: Administrador de serial */
+  switch (serialManager.read()) {
 
-  switch (value) {
-
+    // Vibracion: Control #1
     case VIBRATE_CONTROL_1:
       gamingController1.vibrate();
       break;
 
+    // Vibracion: Control #2
     case VIBRATE_CONTROL_2:
+      gamingController2.vibrate();
       break;
 
   }
