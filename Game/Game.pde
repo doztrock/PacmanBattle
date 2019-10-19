@@ -1,36 +1,30 @@
-/* Fondo de pantalla */
-PImage backgroundImage = null;
+/* Declaracion: Fondo */
+PImage maze = null;
 
-/* Pacman */
+/* Declaracion: Pacman */
 Movable pacman = null;
 
-/* Fantasmas */
+/* Declaracion: Personajes */
 Movable blinky = null;
 Movable clyde = null;
 Movable inky = null;
 Movable pinky = null;
 
-/* Fantasma actual */
-int currentGhost;
+/* Declaracion: Listado de personajes */
+Movable[] ghost = null;
 
-/* Listado de fantasmas */
-Movable[] ghosts = null;
-
-/* Administrador de serial */
-SerialManager serialManager = null;
+/* Declaracion: Personaje actual */
+int current;
 
 void setup() {
 
   /* Inicializacion: Pantalla */
   size(800, 600);
 
-  /* Asignacion: Fondo de pantalla */
-  backgroundImage = loadImage("data/image/background/image.jpg");
+  /* Inicializacion: Fondo */
+  maze = loadImage("data/image/background/maze.png");
 
-  /* Inicializacion: Administrador de serial */
-  serialManager = new SerialManager(PacmanBattle.PORT, PacmanBattle.BAUD_RATE, this);
-
-  /* Instanciacion: Pacman */
+  /* Inicializacion: Pacman */
   pacman = new Movable(Movable.Image, 32, 32);
   pacman.setImagePath("data/image/pacman/close.png");
   pacman.setSpeedX(3);
@@ -38,7 +32,7 @@ void setup() {
   pacman.setX(400);
   pacman.setY(300);
 
-  /* Instanciacion: Blinky */
+  /* Inicializacion: Blinky */
   blinky = new Movable(Movable.Rect, 32, 32);  
   blinky.setFill(155, 89, 182);
   blinky.setStroke(0, 0, 0, 1);
@@ -47,7 +41,7 @@ void setup() {
   blinky.setX(500);
   blinky.setY(500);
 
-  /* Instanciacion: Clyde */
+  /* Inicializacion: Clyde */
   clyde = new Movable(Movable.Rect, 32, 32);
   clyde.setFill(46, 204, 113);  
   clyde.setStroke(0, 0, 0, 1);  
@@ -56,7 +50,7 @@ void setup() {
   clyde.setX(250);
   clyde.setY(40);
 
-  /* Instanciacion: Inky */
+  /* Inicializacion: Inky */
   inky = new Movable(Movable.Rect, 32, 32);  
   inky.setFill(230, 126, 34);
   inky.setStroke(0, 0, 0, 1);
@@ -65,7 +59,7 @@ void setup() {
   inky.setX(450);
   inky.setY(140);
 
-  /* Instanciacion: Pinky */
+  /* Inicializacion: Pinky */
   pinky = new Movable(Movable.Rect, 32, 32);  
   pinky.setFill(26, 188, 156);
   pinky.setStroke(0, 0, 0, 1);
@@ -74,94 +68,53 @@ void setup() {
   pinky.setX(40);
   pinky.setY(500);
 
-  /* Almacenamiento: Listado de fantasmas */
-  ghosts = new Movable[4];
+  /* Inicializacion: Listado de personajes */
+  ghost = new Movable[4];
 
-  ghosts[0] = blinky;
-  ghosts[1] = clyde;
-  ghosts[2] = inky;
-  ghosts[3] = pinky;
+  /* Almacenamiento: Listado de personajes */
+  ghost[0] = blinky;
+  ghost[1] = clyde;
+  ghost[2] = inky;
+  ghost[3] = pinky;
 
-  /* Seleccion: Fantasma actual */
-  currentGhost = round(random(0, 3));
-  ghosts[currentGhost].setStroke(255, 255, 255, 5);
+  /* Asignacion: Personaje actual */
+  current = round(random(0, 3));
+  ghost[current].setStroke(255, 255, 255, 5);
 
   return;
 } 
 
 void draw() {
 
-  /* Dibujo: Fondo */
-  background(backgroundImage);
+  /* Aparicion: Fondo */
+  background(maze);
 
   /* Aparicion: Pacman */
   pacman.move();
 
-  /* Aparicion: Fantasmas extras */
-  for (int indexGhost = 0; indexGhost < ghosts.length; indexGhost++) {
-    if (indexGhost != currentGhost) {
-      ghosts[indexGhost].move();
+  /* Aparicion: Personajes */
+  for (int index = 0; index < ghost.length; index++) {
+    if (index != current) {
+      ghost[index].move();
     }
   }
 
-  /* Aparicion: Fantasma actual */
-  ghosts[currentGhost].move();
-
-  /* Lectura: Administrador de serial */
-  char readingSerialManager = serialManager.read();
-
-  switch(readingSerialManager) {
-
-  case PacmanBattle.LEFT_CONTROL_1:
-    pacman.move(Movable.Left);
-    break;
-
-  case PacmanBattle.LEFT_CONTROL_2:
-    //currentGhost.move(Movable.Left);
-    switchGhost(ghosts);
-    break;
-
-  case PacmanBattle.UP_CONTROL_1:
-    pacman.move(Movable.Up);
-    break;
-
-  case PacmanBattle.UP_CONTROL_2:
-    ghosts[currentGhost].move(Movable.Up);
-    break;
-
-  case PacmanBattle.DOWN_CONTROL_1:
-    pacman.move(Movable.Down);
-    break;
-
-  case PacmanBattle.DOWN_CONTROL_2:
-    ghosts[currentGhost].move(Movable.Down);
-    break;
-
-  case PacmanBattle.RIGHT_CONTROL_1:
-    pacman.move(Movable.Right);
-    break;
-
-  case PacmanBattle.RIGHT_CONTROL_2:
-    ghosts[currentGhost].move(Movable.Right);
-    break;
-
-  default:
-    break;
-  }
+  /* Aparicion: Personaje actual */
+  ghost[current].move();
 
   return;
 }
 
 void switchGhost(Movable[] list) {
 
-  // Restauracion de color
+  /* Reasignacion: Color de personajes */
   for (Movable ghost : list) {
     ghost.setStroke(0, 0, 0, 1);
   }
 
-  // Cambio de fantasma
-  currentGhost = round(random(0, 3));
-  ghosts[currentGhost].setStroke(255, 255, 255, 5);
+  /* Reasignacion: Personaje actual */
+  current = round(random(0, 3));
+  ghost[current].setStroke(255, 255, 255, 5);
 
   return;
 }
