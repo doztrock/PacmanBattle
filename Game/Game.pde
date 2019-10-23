@@ -80,8 +80,8 @@ void setup() {
 
     // ZONAS
 
-    new Movable(Movable.Rect, 147, 134).setFill(56, 173, 169).setStroke(255, 255, 255, 0).setX(326).setY(237), 
-    new Movable(Movable.Rect, 77, 64).setFill(120, 224, 143).setStroke(255, 255, 255, 0).setX(707).setY(93) 
+    new Movable(Movable.Rect, 147, 134).setFill(19, 15, 64).setStroke(255, 255, 255, 0).setX(326).setY(237), 
+    new Movable(Movable.Rect, 77, 64).setFill(240, 147, 43).setStroke(255, 255, 255, 0).setX(707).setY(93) 
 
   };
 
@@ -99,16 +99,16 @@ void setup() {
   character = new Movable[]{
 
     // BLINKY
-    new Movable(Movable.Rect, 32, 32).setFill(155, 89, 182).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(350).setY(255), 
+    new Movable(Movable.Rect, 32, 32).setFill(186, 220, 88).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(350).setY(255), 
 
     // CLYDE
-    new Movable(Movable.Rect, 32, 32).setFill(46, 204, 113).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(350).setY(320), 
+    new Movable(Movable.Rect, 32, 32).setFill(224, 86, 253).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(350).setY(320), 
 
     // INKY
-    new Movable(Movable.Rect, 32, 32).setFill(230, 126, 34).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(450).setY(255), 
+    new Movable(Movable.Rect, 32, 32).setFill(126, 214, 223).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(420).setY(255), 
 
     // PINKY
-    new Movable(Movable.Rect, 32, 32).setFill(26, 188, 156).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(450).setY(320)
+    new Movable(Movable.Rect, 32, 32).setFill(255, 121, 121).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(420).setY(320)
 
   };
 
