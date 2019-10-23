@@ -4,6 +4,9 @@ PImage template = null;
 /* Declaracion: Laberinto */
 Movable[] maze;
 
+/* Declaracion: Fuente */
+PFont font = null;
+
 /* Declaracion: Barra => Jugador 1 */
 ProgressBar progressBarOne = null;
 
@@ -76,8 +79,12 @@ void setup() {
 
   };
 
+  /* Inicializacion: Fuente */
+  font = createFont("font/font.ttf", 22);
+  textFont(font);
+
   /* Inicializacion: Barra => Jugador 1 */
-  progressBarOne =  new ProgressBar(5, 30, 250, 25);
+  progressBarOne =  new ProgressBar(55, 30, 250, 25);
 
   /* Inicializacion: Barra => Jugador 2 */
   progressBarTwo =  new ProgressBar(545, 30, 250, 25);
@@ -96,10 +103,16 @@ void draw() {
   }
 
   /* Aparicion: Barra => Jugador 1 */
+  fill(255);
+  text("P1", 5, 54);
   progressBarOne.show(53, 59, 72, 232, 65, 24);
 
   /* Aparicion: Barra => Jugador 2 */
+  fill(255);
+  text("P2", 495, 54);
   progressBarTwo.show(53, 59, 72, 0, 151, 230);
+
+
 
   return;
 }
