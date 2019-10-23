@@ -4,6 +4,12 @@ PImage template = null;
 /* Declaracion: Laberinto */
 Movable[] maze;
 
+/* Declaracion: Barra => Jugador 1 */
+ProgressBar progressBarOne = null;
+
+/* Declaracion: Barra => Jugador 2 */
+ProgressBar progressBarTwo = null;
+
 void setup() {
 
   /* Inicializacion: Pantalla */
@@ -70,6 +76,12 @@ void setup() {
 
   };
 
+  /* Inicializacion: Barra => Jugador 1 */
+  progressBarOne =  new ProgressBar(5, 30, 250, 25);
+
+  /* Inicializacion: Barra => Jugador 2 */
+  progressBarTwo =  new ProgressBar(545, 30, 250, 25);
+
   return;
 }
 
@@ -82,6 +94,12 @@ void draw() {
   for (Movable wall : maze) {
     wall.move();
   }
+
+  /* Aparicion: Barra => Jugador 1 */
+  progressBarOne.show(53, 59, 72, 232, 65, 24);
+
+  /* Aparicion: Barra => Jugador 2 */
+  progressBarTwo.show(53, 59, 72, 0, 151, 230);
 
   return;
 }

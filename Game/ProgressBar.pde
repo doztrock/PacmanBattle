@@ -276,7 +276,7 @@ class ProgressBar {
    * Retorno:     N/A
    *
    */
-  public void setFill(float r, float g, float b) {
+  private void setFill(float r, float g, float b) {
 
     this.fillRGB[0] = r;
     this.fillRGB[1] = g;
@@ -298,7 +298,7 @@ class ProgressBar {
    * Retorno:     N/A
    *
    */
-  public void setStroke(float r, float g, float b) {
+  private void setStroke(float r, float g, float b) {
 
     this.strokeRGB[0] = r;
     this.strokeRGB[1] = g;
