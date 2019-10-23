@@ -225,17 +225,17 @@ class Movable {
    *              g -> Verde
    *              b -> Azul
    *
-   * Retorno:     N/A
+   * Retorno:     Puntero al objeto
    *
    */
-  public void setFill(float r, float g, float b) {
+  public Movable setFill(float r, float g, float b) {
 
     this.fillRGB[0] = r;
     this.fillRGB[1] = g;
     this.fillRGB[2] = b;
     this.useFill = true;
 
-    return;
+    return this;
   }
 
   /**
@@ -248,10 +248,10 @@ class Movable {
    *              b -> Azul
    *              weight -> Grosor de linea
    *
-   * Retorno:     N/A
+   * Retorno:     Puntero al objeto
    *
    */
-  public void setStroke(float r, float g, float b, float weight) {
+  public Movable setStroke(float r, float g, float b, float weight) {
 
     this.strokeRGB[0] = r;
     this.strokeRGB[1] = g;
@@ -259,7 +259,7 @@ class Movable {
     this.strokeRGB[3] = weight; 
     this.useStroke = true;
 
-    return;
+    return this;
   }
 
   /**
@@ -270,12 +270,12 @@ class Movable {
    *
    * Parametros:  x -> Posicion en eje X
    *  
-   * Retorno:     N/A
+   * Retorno:     Puntero al objeto
    *
    */
-  public void setX(int x) {
+  public Movable setX(int x) {
     this.x = x;
-    return;
+    return this;
   }
 
   /**
@@ -301,12 +301,12 @@ class Movable {
    *
    * Parametros:  y -> Posicion en eje Y
    *  
-   * Retorno:     N/A
+   * Retorno:     Puntero al objeto
    *
    */
-  public void setY(int y) {
+  public Movable setY(int y) {
     this.y = y;
-    return;
+    return this;
   }
 
   /**
