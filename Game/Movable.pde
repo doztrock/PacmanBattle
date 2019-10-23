@@ -332,12 +332,12 @@ class Movable {
    *
    * Parametros:  speedX -> Velocidad en eje X
    *  
-   * Retorno:     N/A
+   * Retorno:     Puntero al objeto
    *
    */
-  public void setSpeedX(int speedX) {
+  public Movable setSpeedX(int speedX) {
     this.speedX = speedX;
-    return;
+    return this;
   }
 
   /**
@@ -363,12 +363,12 @@ class Movable {
    *
    * Parametros:  speedX -> Velocidad en eje Y
    *  
-   * Retorno:     N/A
+   * Retorno:     Puntero al objeto
    *
    */
-  public void setSpeedY(int speedY) {
+  public Movable setSpeedY(int speedY) {
     this.speedY = speedY;
-    return;
+    return this;
   }
 
   /**

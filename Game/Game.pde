@@ -13,6 +13,12 @@ ProgressBar progressBarOne = null;
 /* Declaracion: Barra => Jugador 2 */
 ProgressBar progressBarTwo = null;
 
+/* Declaracion: Personajes */
+Movable[] character;
+
+/* Declaracion: Personaje actual */
+int currentCharacter;
+
 void setup() {
 
   /* Inicializacion: Pantalla */
@@ -89,6 +95,27 @@ void setup() {
   /* Inicializacion: Barra => Jugador 2 */
   progressBarTwo =  new ProgressBar(545, 30, 250, 25);
 
+  /* Inicializacion: Personajes */
+  character = new Movable[]{
+
+    // BLINKY
+    new Movable(Movable.Rect, 32, 32).setFill(155, 89, 182).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(326).setY(237), 
+
+    // CLYDE
+    new Movable(Movable.Rect, 32, 32).setFill(46, 204, 113).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(326).setY(270), 
+
+    // INKY
+    new Movable(Movable.Rect, 32, 32).setFill(230, 126, 34).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(450).setY(140), 
+
+    // PINKY
+    new Movable(Movable.Rect, 32, 32).setFill(26, 188, 156).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(40).setY(500)
+
+  };
+
+  /* Inicializacion: Personaje actual */
+  currentCharacter = round(random(0, 3));
+  character[currentCharacter].setStroke(255, 255, 255, 3);
+
   return;
 }
 
@@ -112,7 +139,34 @@ void draw() {
   text("P2", 495, 54);
   progressBarTwo.show(53, 59, 72, 0, 151, 230);
 
+  /* Aparicion: Personajes */
+  int counter = 0;
 
+  for (Movable ghost : character) {
+
+    if (counter != currentCharacter) {    
+      ghost.move();
+    }
+
+    counter++;
+  }
+
+  /* Aparicion: Personaje actual */
+  character[currentCharacter].move();
+
+  return;
+}
+
+void switchGhost() {
+
+  /* Reasignacion: Color de personajes */
+  for (Movable ghost : character) {
+    ghost.setStroke(0, 0, 0, 1);
+  }
+
+  /* Reasignacion: Personaje actual */
+  currentCharacter = round(random(0, 3));
+  character[currentCharacter].setStroke(255, 255, 255, 5);
 
   return;
 }
