@@ -99,16 +99,16 @@ void setup() {
   character = new Movable[]{
 
     // BLINKY
-    new Movable(Movable.Rect, 32, 32).setFill(155, 89, 182).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(326).setY(237), 
+    new Movable(Movable.Rect, 32, 32).setFill(155, 89, 182).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(350).setY(255), 
 
     // CLYDE
-    new Movable(Movable.Rect, 32, 32).setFill(46, 204, 113).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(326).setY(270), 
+    new Movable(Movable.Rect, 32, 32).setFill(46, 204, 113).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(350).setY(320), 
 
     // INKY
-    new Movable(Movable.Rect, 32, 32).setFill(230, 126, 34).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(450).setY(140), 
+    new Movable(Movable.Rect, 32, 32).setFill(230, 126, 34).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(450).setY(255), 
 
     // PINKY
-    new Movable(Movable.Rect, 32, 32).setFill(26, 188, 156).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(40).setY(500)
+    new Movable(Movable.Rect, 32, 32).setFill(26, 188, 156).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(450).setY(320)
 
   };
 
