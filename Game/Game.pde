@@ -41,7 +41,32 @@ void setup() {
     new Movable(Movable.Rect, 167, 10).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(473).setY(442), 
 
     new Movable(Movable.Rect, 164, 10).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(239).setY(514), 
-    new Movable(Movable.Rect, 165, 10).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(551).setY(514)
+    new Movable(Movable.Rect, 165, 10).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(551).setY(514), 
+
+    // VERTICALES
+    new Movable(Movable.Rect, 11, 143).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(628).setY(94), 
+
+    new Movable(Movable.Rect, 11, 81).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(707).setY(157), 
+    new Movable(Movable.Rect, 11, 80).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(83).setY(157), 
+
+    new Movable(Movable.Rect, 11, 152).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(315).setY(228), 
+    new Movable(Movable.Rect, 11, 143).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(473).setY(228), 
+    new Movable(Movable.Rect, 11, 153).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(551).setY(228), 
+
+    new Movable(Movable.Rect, 11, 225).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(707).setY(299), 
+
+    new Movable(Movable.Rect, 11, 152).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(83).setY(371), 
+    new Movable(Movable.Rect, 11, 80).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(396).setY(371), 
+
+    new Movable(Movable.Rect, 11, 151).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(160).setY(444), 
+
+    new Movable(Movable.Rect, 11, 80).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(315).setY(443), 
+    new Movable(Movable.Rect, 11, 80).setFill(52, 152, 219).setStroke(255, 255, 255, 0).setX(473).setY(443), 
+
+    // ZONAS
+
+    new Movable(Movable.Rect, 147, 134).setFill(255, 255, 255).setStroke(255, 255, 255, 0).setX(326).setY(237), 
+    new Movable(Movable.Rect, 77, 64).setFill(255, 255, 255).setStroke(255, 255, 255, 0).setX(707).setY(93) 
 
   };
 
