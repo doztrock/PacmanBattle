@@ -4,6 +4,12 @@ PImage template = null;
 /* Declaracion: Laberinto */
 Movable[] maze;
 
+/* Declaracion: Zona de personajes */
+Movable zoneCharacter;
+
+/* Declaracion: Zona de protagonista */
+Movable zoneMainCharacter;
+
 /* Declaracion: Fuente */
 PFont font = null;
 
@@ -18,6 +24,9 @@ Movable[] character;
 
 /* Declaracion: Personaje actual */
 int currentCharacter;
+
+// TEST
+int x, y;
 
 void setup() {
 
@@ -59,6 +68,7 @@ void setup() {
     new Movable(Movable.Rect, 165, 10).setFill(246, 185, 59).setStroke(255, 255, 255, 0).setX(551).setY(514), 
 
     // VERTICALES
+
     new Movable(Movable.Rect, 11, 143).setFill(246, 185, 59).setStroke(255, 255, 255, 0).setX(628).setY(94), 
 
     new Movable(Movable.Rect, 11, 81).setFill(246, 185, 59).setStroke(255, 255, 255, 0).setX(707).setY(157), 
@@ -76,14 +86,15 @@ void setup() {
     new Movable(Movable.Rect, 11, 151).setFill(246, 185, 59).setStroke(255, 255, 255, 0).setX(160).setY(444), 
 
     new Movable(Movable.Rect, 11, 80).setFill(246, 185, 59).setStroke(255, 255, 255, 0).setX(315).setY(443), 
-    new Movable(Movable.Rect, 11, 80).setFill(246, 185, 59).setStroke(255, 255, 255, 0).setX(473).setY(443), 
-
-    // ZONAS
-
-    new Movable(Movable.Rect, 147, 134).setFill(19, 15, 64).setStroke(255, 255, 255, 0).setX(326).setY(237), 
-    new Movable(Movable.Rect, 77, 64).setFill(240, 147, 43).setStroke(255, 255, 255, 0).setX(707).setY(93) 
+    new Movable(Movable.Rect, 11, 80).setFill(246, 185, 59).setStroke(255, 255, 255, 0).setX(473).setY(443) 
 
   };
+
+  /* Inicializacion: Zona de personajes */
+  zoneCharacter = new Movable(Movable.Rect, 147, 134).setFill(19, 15, 64).setStroke(255, 255, 255, 1).setX(326).setY(237);
+
+  /* Inicializacion: Zona de protagonista */
+  zoneMainCharacter = new Movable(Movable.Rect, 77, 64).setFill(76, 209, 55).setStroke(255, 255, 255, 1).setX(707).setY(93);
 
   /* Inicializacion: Fuente */
   font = createFont("font/font.ttf", 22);
@@ -129,6 +140,12 @@ void draw() {
     wall.move();
   }
 
+  /* Aparicion: Zona de personajes */
+  zoneCharacter.move();
+
+  /* Aparicion: Zona de protagonista */
+  zoneMainCharacter.move();
+
   /* Aparicion: Barra => Jugador 1 */
   fill(255);
   text("P1", 5, 54);
@@ -153,6 +170,63 @@ void draw() {
 
   /* Aparicion: Personaje actual */
   character[currentCharacter].move();
+
+  /* Movimiento de personajes */
+  if (character[currentCharacter].beside(maze) && (x > 0 && y > 0)) {
+    character[currentCharacter].setX(x);
+    character[currentCharacter].setY(y);
+  }
+
+  if (keyPressed) {
+    switch(key) {
+    case 'w':
+
+      character[currentCharacter].move(Movable.Up);
+
+      if (!character[currentCharacter].beside(maze)) {
+        x = character[currentCharacter].getX();
+        y = character[currentCharacter].getY();
+      }
+
+      break;
+
+    case 's':
+
+      character[currentCharacter].move(Movable.Down);
+
+      if (!character[currentCharacter].beside(maze)) {
+        x = character[currentCharacter].getX();
+        y = character[currentCharacter].getY();
+      }
+
+      break;
+
+    case 'a':
+
+      character[currentCharacter].move(Movable.Left);
+
+      if (!character[currentCharacter].beside(maze)) {
+        x = character[currentCharacter].getX();
+        y = character[currentCharacter].getY();
+      }
+
+      break;
+
+    case 'd':
+
+      character[currentCharacter].move(Movable.Right);
+
+      if (!character[currentCharacter].beside(maze)) {
+        x = character[currentCharacter].getX();
+        y = character[currentCharacter].getY();
+      }
+
+      break;
+
+    default:
+      break;
+    }
+  }
 
   return;
 }
