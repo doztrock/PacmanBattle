@@ -22,11 +22,18 @@ ProgressBar progressBarTwo = null;
 /* Declaracion: Personajes */
 Movable[] character;
 
+/* Declaracion: Direcciones */
+int[] direction;
+
+/* Declaracion: Direcciones de personajes */
+int[] directionCharacter;
+
+/* Declaracion: Posiciones seguras de personajes */
+int[] safeXCharacter;
+int[] safeYCharacter;
+
 /* Declaracion: Personaje actual */
 int currentCharacter;
-
-// TEST
-int x, y;
 
 void setup() {
 
@@ -123,9 +130,35 @@ void setup() {
 
   };
 
+  /* Inicializacion: Direcciones */
+  direction = new int[]{
+    Movable.Up, 
+    Movable.Down, 
+    Movable.Left, 
+    Movable.Right
+  };
+
+  /* Inicializacion: Direcciones de personajes */
+  directionCharacter = new int[]{
+    direction[round(random(0, 3))], 
+    direction[round(random(0, 3))], 
+    direction[round(random(0, 3))], 
+    direction[round(random(0, 3))]
+  };
+
+  /* Inicializacion: Posiciones seguras de personajes */
+  safeXCharacter = new int[]{
+    0, 0, 0, 0
+  };
+
+  safeYCharacter = new int[]{
+    0, 0, 0, 0
+  };
+
   /* Inicializacion: Personaje actual */
   currentCharacter = round(random(0, 3));
   character[currentCharacter].setStroke(255, 255, 255, 3);
+  directionCharacter[currentCharacter] = Movable.None;
 
   return;
 }
@@ -157,75 +190,82 @@ void draw() {
   progressBarTwo.show(53, 59, 72, 0, 151, 230);
 
   /* Aparicion: Personajes */
-  int counter = 0;
+  int index = 0;
 
   for (Movable ghost : character) {
 
-    if (counter != currentCharacter) {    
-      ghost.move();
+    if (index != currentCharacter) {    
+      ghost.move(directionCharacter[index]);
     }
 
-    counter++;
+    index++;
   }
 
   /* Aparicion: Personaje actual */
-  character[currentCharacter].move();
+  character[currentCharacter].move(directionCharacter[currentCharacter]);
 
-  /* Movimiento de personajes */
-  if (character[currentCharacter].beside(maze) && (x > 0 && y > 0)) {
-    character[currentCharacter].setX(x);
-    character[currentCharacter].setY(y);
+  if (character[currentCharacter].beside(maze) && (safeXCharacter[currentCharacter] > 0 && safeYCharacter[currentCharacter] > 0)) {
+    character[currentCharacter].setX(safeXCharacter[currentCharacter]);
+    character[currentCharacter].setY(safeYCharacter[currentCharacter]);
+    directionCharacter[currentCharacter] = Movable.None;
   }
 
-  if (keyPressed) {
-    switch(key) {
-    case 'w':
+  return;
+}
 
-      character[currentCharacter].move(Movable.Up);
+void keyPressed() {
 
-      if (!character[currentCharacter].beside(maze)) {
-        x = character[currentCharacter].getX();
-        y = character[currentCharacter].getY();
-      }
+  switch(key) {
+  case 'w':
 
-      break;
+    directionCharacter[currentCharacter] = Movable.Up;
 
-    case 's':
-
-      character[currentCharacter].move(Movable.Down);
-
-      if (!character[currentCharacter].beside(maze)) {
-        x = character[currentCharacter].getX();
-        y = character[currentCharacter].getY();
-      }
-
-      break;
-
-    case 'a':
-
-      character[currentCharacter].move(Movable.Left);
-
-      if (!character[currentCharacter].beside(maze)) {
-        x = character[currentCharacter].getX();
-        y = character[currentCharacter].getY();
-      }
-
-      break;
-
-    case 'd':
-
-      character[currentCharacter].move(Movable.Right);
-
-      if (!character[currentCharacter].beside(maze)) {
-        x = character[currentCharacter].getX();
-        y = character[currentCharacter].getY();
-      }
-
-      break;
-
-    default:
-      break;
+    if (!character[currentCharacter].beside(maze)) {
+      safeXCharacter[currentCharacter] = character[currentCharacter].getX();
+      safeYCharacter[currentCharacter] = character[currentCharacter].getY();
     }
+
+    break;
+
+  case 's':
+
+    directionCharacter[currentCharacter] = Movable.Down;
+
+    if (!character[currentCharacter].beside(maze)) {
+      safeXCharacter[currentCharacter] = character[currentCharacter].getX();
+      safeYCharacter[currentCharacter] = character[currentCharacter].getY();
+    }
+
+    break;
+
+  case 'a':
+
+    directionCharacter[currentCharacter] = Movable.Left;
+
+    if (!character[currentCharacter].beside(maze)) {
+      safeXCharacter[currentCharacter] = character[currentCharacter].getX();
+      safeYCharacter[currentCharacter] = character[currentCharacter].getY();
+    }
+
+    break;
+
+  case 'd':
+
+    directionCharacter[currentCharacter] = Movable.Right;
+
+    if (!character[currentCharacter].beside(maze)) {
+      safeXCharacter[currentCharacter] = character[currentCharacter].getX();
+      safeYCharacter[currentCharacter] = character[currentCharacter].getY();
+    }
+
+    break;
+
+  case 'q':
+    switchGhost();
+    break;
+
+  default:
+    break;
   }
 
   return;
@@ -240,7 +280,7 @@ void switchGhost() {
 
   /* Reasignacion: Personaje actual */
   currentCharacter = round(random(0, 3));
-  character[currentCharacter].setStroke(255, 255, 255, 5);
+  character[currentCharacter].setStroke(255, 255, 255, 3);
 
   return;
 }

@@ -25,6 +25,7 @@ class Movable {
   public static final int Down  = (1 << 1);
   public static final int Left  = (1 << 2);
   public static final int Right = (1 << 3);
+  public static final int None = (1 << 4);
 
   /**
    * Forma
