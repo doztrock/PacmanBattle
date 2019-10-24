@@ -195,7 +195,23 @@ void draw() {
   for (Movable ghost : character) {
 
     if (index != currentCharacter) {    
+
       ghost.move(directionCharacter[index]);
+
+      if (ghost.beside(maze) && (safeXCharacter[index] > 0 && safeYCharacter[index] > 0)) {
+        ghost.setX(safeXCharacter[index]);
+        ghost.setY(safeYCharacter[index]);
+        directionCharacter[index] = direction[round(random(0, 3))];
+      }
+
+      if (!ghost.beside(maze)) {
+        safeXCharacter[index] = ghost.getX();
+        safeYCharacter[index] = ghost.getY();
+      }
+
+      if (directionCharacter[index] == Movable.None) {
+        directionCharacter[index] = direction[round(random(0, 3))];
+      }
     }
 
     index++;
