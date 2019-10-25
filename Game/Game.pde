@@ -234,6 +234,11 @@ void draw() {
     directionCharacter[currentCharacter] = Movable.None;
   }
 
+  if (!character[currentCharacter].beside(maze)) {
+    safeXCharacter[currentCharacter] = character[currentCharacter].getX();
+    safeYCharacter[currentCharacter] = character[currentCharacter].getY();
+  }
+
   /* Reproduccion: Audio (intro & loop) */
   intro.play();
 
@@ -248,47 +253,19 @@ void keyPressed() {
 
   switch(key) {
   case 'w':
-
     directionCharacter[currentCharacter] = Movable.Up;
-
-    if (!character[currentCharacter].beside(maze)) {
-      safeXCharacter[currentCharacter] = character[currentCharacter].getX();
-      safeYCharacter[currentCharacter] = character[currentCharacter].getY();
-    }
-
     break;
 
   case 's':
-
     directionCharacter[currentCharacter] = Movable.Down;
-
-    if (!character[currentCharacter].beside(maze)) {
-      safeXCharacter[currentCharacter] = character[currentCharacter].getX();
-      safeYCharacter[currentCharacter] = character[currentCharacter].getY();
-    }
-
     break;
 
   case 'a':
-
     directionCharacter[currentCharacter] = Movable.Left;
-
-    if (!character[currentCharacter].beside(maze)) {
-      safeXCharacter[currentCharacter] = character[currentCharacter].getX();
-      safeYCharacter[currentCharacter] = character[currentCharacter].getY();
-    }
-
     break;
 
   case 'd':
-
     directionCharacter[currentCharacter] = Movable.Right;
-
-    if (!character[currentCharacter].beside(maze)) {
-      safeXCharacter[currentCharacter] = character[currentCharacter].getX();
-      safeYCharacter[currentCharacter] = character[currentCharacter].getY();
-    }
-
     break;
 
   case 'q':
