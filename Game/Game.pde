@@ -128,7 +128,7 @@ void setup() {
   progressBarTwo =  new ProgressBar(545, 30, 250, 25);
 
   /* Inicializacion: Protagonista */
-  mainCharacter = new Movable(Movable.Rect, 35, 35).setFill(255, 211, 42).setStroke(0, 0, 0, 0).setSpeedX(4).setSpeedY(5).setX(100).setY(100);
+  mainCharacter = new Movable(Movable.Rect, 35, 35).setFill(255, 211, 42).setStroke(232, 65, 24, 3).setSpeedX(4).setSpeedY(5).setX(100).setY(100);
 
   /* Inicializacion: Personajes */
   character = new Movable[]{
@@ -181,7 +181,7 @@ void setup() {
 
   /* Inicializacion: Personaje actual */
   currentCharacter = round(random(0, (character.length - 1)));
-  character[currentCharacter].setStroke(255, 255, 255, 3);
+  character[currentCharacter].setStroke(0, 151, 230, 3);
   directionCharacter[currentCharacter] = Movable.None;
 
   /* Inicializacion: Audios */
@@ -345,7 +345,7 @@ void switchGhost() {
 
   /* Reasignacion: Personaje actual */
   currentCharacter = randomNumber;
-  character[currentCharacter].setStroke(255, 255, 255, 3);
+  character[currentCharacter].setStroke(0, 151, 230, 3);
   directionCharacter[currentCharacter] = Movable.None;
 
   return;
