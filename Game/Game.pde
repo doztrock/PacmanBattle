@@ -144,10 +144,10 @@ void setup() {
 
   /* Inicializacion: Direcciones de personajes */
   directionCharacter = new int[]{
-    direction[round(random(0, 3))], 
-    direction[round(random(0, 3))], 
-    direction[round(random(0, 3))], 
-    direction[round(random(0, 3))]
+    direction[round(random(0, (direction.length - 1)))], 
+    direction[round(random(0, (direction.length - 1)))], 
+    direction[round(random(0, (direction.length - 1)))], 
+    direction[round(random(0, (direction.length - 1)))]
   };
 
   /* Inicializacion: Posiciones seguras de personajes */
@@ -160,7 +160,7 @@ void setup() {
   };
 
   /* Inicializacion: Personaje actual */
-  currentCharacter = round(random(0, 3));
+  currentCharacter = round(random(0, (character.length - 1)));
   character[currentCharacter].setStroke(255, 255, 255, 3);
   directionCharacter[currentCharacter] = Movable.None;
 
@@ -209,7 +209,7 @@ void draw() {
       if (ghost.beside(maze) && (safeXCharacter[index] > 0 && safeYCharacter[index] > 0)) {
         ghost.setX(safeXCharacter[index]);
         ghost.setY(safeYCharacter[index]);
-        directionCharacter[index] = direction[round(random(0, 3))];
+        directionCharacter[index] = direction[round(random(0, (direction.length - 1)))];
       }
 
       if (!ghost.beside(maze)) {
@@ -218,7 +218,7 @@ void draw() {
       }
 
       if (directionCharacter[index] == Movable.None) {
-        directionCharacter[index] = direction[round(random(0, 3))];
+        directionCharacter[index] = direction[round(random(0, (direction.length - 1)))];
       }
     }
 
@@ -309,8 +309,15 @@ void switchGhost() {
     ghost.setStroke(0, 0, 0, 1);
   }
 
+  /* Generacion: Numero aleatorio */
+  int randomNumber;
+
+  do {
+    randomNumber = round(random(0, (character.length - 1)));
+  } while (randomNumber == currentCharacter);
+
   /* Reasignacion: Personaje actual */
-  currentCharacter = round(random(0, 3));
+  currentCharacter = randomNumber;
   character[currentCharacter].setStroke(255, 255, 255, 3);
 
   return;
