@@ -19,14 +19,24 @@ ProgressBar progressBarOne;
 /* Declaracion: Barra => Jugador 2 */
 ProgressBar progressBarTwo;
 
+/* Declaracion: Protagonista */
+Movable mainCharacter;
+
 /* Declaracion: Personajes */
 Movable[] character;
 
 /* Declaracion: Direcciones */
 int[] direction;
 
+/* Declaracion: Direccion de protagonista */
+int directionMainCharacter;
+
 /* Declaracion: Direcciones de personajes */
 int[] directionCharacter;
+
+/* Declaracion: Posicion segura de protagonista */
+int safeXMainCharacter;
+int safeYMainCharacter;
 
 /* Declaracion: Posiciones seguras de personajes */
 int[] safeXCharacter;
@@ -117,6 +127,9 @@ void setup() {
   /* Inicializacion: Barra => Jugador 2 */
   progressBarTwo =  new ProgressBar(545, 30, 250, 25);
 
+  /* Inicializacion: Protagonista */
+  mainCharacter = new Movable(Movable.Rect, 35, 35).setFill(255, 211, 42).setStroke(0, 0, 0, 0).setSpeedX(4).setSpeedY(5).setX(100).setY(100);
+
   /* Inicializacion: Personajes */
   character = new Movable[]{
 
@@ -142,6 +155,9 @@ void setup() {
     Movable.Right
   };
 
+  /* Inicializacion: Direccion de protagonista */
+  directionMainCharacter = Movable.None;
+
   /* Inicializacion: Direcciones de personajes */
   directionCharacter = new int[]{
     direction[round(random(0, (direction.length - 1)))], 
@@ -149,6 +165,10 @@ void setup() {
     direction[round(random(0, (direction.length - 1)))], 
     direction[round(random(0, (direction.length - 1)))]
   };
+
+  /* Inicializacion: Posicion segura de protagonista */
+  safeXMainCharacter = 0;
+  safeYMainCharacter = 0;
 
   /* Inicializacion: Posiciones seguras de personajes */
   safeXCharacter = new int[]{
@@ -196,6 +216,20 @@ void draw() {
   fill(255);
   text("P2", 495, 54);
   progressBarTwo.show(53, 59, 72, 0, 151, 230);
+
+  /* Aparicion: Protagonista */
+  mainCharacter.move(directionMainCharacter);
+
+  if (mainCharacter.beside(maze) && (safeXMainCharacter > 0 && safeYMainCharacter > 0)) {
+    mainCharacter.setX(safeXMainCharacter);
+    mainCharacter.setY(safeYMainCharacter);
+    directionMainCharacter = Movable.None;
+  }
+
+  if (!mainCharacter.beside(maze)) {
+    safeXMainCharacter = mainCharacter.getX();
+    safeYMainCharacter = mainCharacter.getY();
+  }
 
   /* Aparicion: Personajes */
   int index = 0;
@@ -252,6 +286,22 @@ void draw() {
 void keyPressed() {
 
   switch(key) {
+  case 'i':
+    directionMainCharacter = Movable.Up;
+    break;
+
+  case 'k':
+    directionMainCharacter = Movable.Down;
+    break;
+
+  case 'j':
+    directionMainCharacter = Movable.Left;
+    break;
+
+  case 'l':
+    directionMainCharacter = Movable.Right;
+    break;
+
   case 'w':
     directionCharacter[currentCharacter] = Movable.Up;
     break;
@@ -296,6 +346,7 @@ void switchGhost() {
   /* Reasignacion: Personaje actual */
   currentCharacter = randomNumber;
   character[currentCharacter].setStroke(255, 255, 255, 3);
+  directionCharacter[currentCharacter] = Movable.None;
 
   return;
 }
