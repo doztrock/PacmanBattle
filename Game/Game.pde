@@ -1,5 +1,5 @@
 /* Declaracion: Plantilla */
-PImage template = null;
+PImage template;
 
 /* Declaracion: Laberinto */
 Movable[] maze;
@@ -11,13 +11,13 @@ Movable zoneCharacter;
 Movable zoneMainCharacter;
 
 /* Declaracion: Fuente */
-PFont font = null;
+PFont font;
 
 /* Declaracion: Barra => Jugador 1 */
-ProgressBar progressBarOne = null;
+ProgressBar progressBarOne;
 
 /* Declaracion: Barra => Jugador 2 */
-ProgressBar progressBarTwo = null;
+ProgressBar progressBarTwo;
 
 /* Declaracion: Personajes */
 Movable[] character;
@@ -34,6 +34,10 @@ int[] safeYCharacter;
 
 /* Declaracion: Personaje actual */
 int currentCharacter;
+
+/* Declaracion: Audios */
+Audio intro;
+Audio loop;
 
 void setup() {
 
@@ -160,6 +164,10 @@ void setup() {
   character[currentCharacter].setStroke(255, 255, 255, 3);
   directionCharacter[currentCharacter] = Movable.None;
 
+  /* Inicializacion: Audios */
+  intro = new Audio("audio/intro.mp3", Audio.Normal, this);
+  loop = new Audio("audio/loop.mp3", Audio.Loop, this);
+
   return;
 }
 
@@ -224,6 +232,13 @@ void draw() {
     character[currentCharacter].setX(safeXCharacter[currentCharacter]);
     character[currentCharacter].setY(safeYCharacter[currentCharacter]);
     directionCharacter[currentCharacter] = Movable.None;
+  }
+
+  /* Reproduccion: Audio (intro & loop) */
+  intro.play();
+
+  if (!intro.running()) {
+    loop.play();
   }
 
   return;
