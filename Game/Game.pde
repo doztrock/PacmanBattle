@@ -45,6 +45,9 @@ int[] safeYCharacter;
 /* Declaracion: Personaje actual */
 int currentCharacter;
 
+/* Declaracion: Moras */
+ArrayList<Movable> strawberry;
+
 /* Declaracion: Audios */
 Audio intro;
 Audio loop;
@@ -184,6 +187,10 @@ void setup() {
   character[currentCharacter].setStroke(0, 151, 230, 3);
   directionCharacter[currentCharacter] = Movable.None;
 
+  /* Inicializacion: Moras */
+  strawberry = new ArrayList<Movable>();
+  loadStrawberry();
+
   /* Inicializacion: Audios */
   intro = new Audio("audio/intro.mp3", Audio.Normal, this);
   loop = new Audio("audio/loop.mp3", Audio.Loop, this);
@@ -206,6 +213,11 @@ void draw() {
 
   /* Aparicion: Zona de protagonista */
   zoneMainCharacter.move();
+
+  /* Aparicion: Moras */
+  for (Movable fruit : strawberry) {
+    fruit.move();
+  }
 
   /* Aparicion: Barra => Jugador 1 */
   fill(255);
@@ -283,6 +295,11 @@ void draw() {
   return;
 }
 
+void mouseClicked() {
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(4).setSpeedY(4).setX(mouseX).setY(mouseY));
+  println("strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(4).setSpeedY(4).setX(", mouseX, ").setY(", mouseY, "))");
+}
+
 void keyPressed() {
 
   switch(key) {
@@ -347,6 +364,110 @@ void switchGhost() {
   currentCharacter = randomNumber;
   character[currentCharacter].setStroke(0, 151, 230, 3);
   directionCharacter[currentCharacter] = Movable.None;
+
+  return;
+}
+
+void loadStrawberry() {
+
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 44 ).setY( 124 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 46 ).setY( 176 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 47 ).setY( 222 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 47 ).setY( 274 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 46 ).setY( 324 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 45 ).setY( 361 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 45 ).setY( 412 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 47 ).setY( 452 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 49 ).setY( 509 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 50 ).setY( 557 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 109 ).setY( 562 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 130 ).setY( 521 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 127 ).setY( 475 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 125 ).setY( 426 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 152 ).setY( 398 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 207 ).setY( 407 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 263 ).setY( 408 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 317 ).setY( 409 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 350 ).setY( 411 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 358 ).setY( 467 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 276 ).setY( 461 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 204 ).setY( 477 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 207 ).setY( 514 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 209 ).setY( 556 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 268 ).setY( 559 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 316 ).setY( 560 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 365 ).setY( 556 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 409 ).setY( 556 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 466 ).setY( 554 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 516 ).setY( 554 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 577 ).setY( 552 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 632 ).setY( 554 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 676 ).setY( 555 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 722 ).setY( 553 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 761 ).setY( 552 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 760 ).setY( 500 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 752 ).setY( 454 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 751 ).setY( 409 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 743 ).setY( 364 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 746 ).setY( 325 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 748 ).setY( 278 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 747 ).setY( 233 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 747 ).setY( 180 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 712 ).setY( 264 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 667 ).setY( 262 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 597 ).setY( 266 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 598 ).setY( 198 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 675 ).setY( 202 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 666 ).setY( 141 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 543 ).setY( 192 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 509 ).setY( 202 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 513 ).setY( 241 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 518 ).setY( 299 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 515 ).setY( 347 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 517 ).setY( 392 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 465 ).setY( 401 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 430 ).setY( 404 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 434 ).setY( 473 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 397 ).setY( 474 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 442 ).setY( 514 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 517 ).setY( 507 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 518 ).setY( 471 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 575 ).setY( 476 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 637 ).setY( 473 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 678 ).setY( 470 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 675 ).setY( 418 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 635 ).setY( 402 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 582 ).setY( 407 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 581 ).setY( 345 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 637 ).setY( 339 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 683 ).setY( 340 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 456 ).setY( 192 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 399 ).setY( 191 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 351 ).setY( 191 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 309 ).setY( 188 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 273 ).setY( 188 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 226 ).setY( 190 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 189 ).setY( 189 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 119 ).setY( 192 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 199 ).setY( 153 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 92 ).setY( 125 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 144 ).setY( 125 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 197 ).setY( 127 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 245 ).setY( 126 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 305 ).setY( 124 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 366 ).setY( 124 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 419 ).setY( 123 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 469 ).setY( 124 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 514 ).setY( 124 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 568 ).setY( 124 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 98 ).setY( 268 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 105 ).setY( 339 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 160 ).setY( 265 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 163 ).setY( 340 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 218 ).setY( 268 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 222 ).setY( 343 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 280 ).setY( 271 ));
+  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(0).setSpeedY(0).setX( 287 ).setY( 342 ));
 
   return;
 }
