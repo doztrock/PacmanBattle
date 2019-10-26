@@ -295,11 +295,6 @@ void draw() {
   return;
 }
 
-void mouseClicked() {
-  strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(4).setSpeedY(4).setX(mouseX).setY(mouseY));
-  println("strawberry.add(new Movable(Movable.Rect, 10, 10).setFill(232, 67, 147).setStroke(0, 0, 0, 1).setSpeedX(4).setSpeedY(4).setX(", mouseX, ").setY(", mouseY, "))");
-}
-
 void keyPressed() {
 
   switch(key) {
