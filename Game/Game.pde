@@ -54,6 +54,12 @@ ArrayList<Movable> shootMainCharacter;
 /* Declaracion: Disparos de personajes */
 ArrayList<Movable> shootCharacter;
 
+/* Declaracion: Puntaje de protagonista */
+int scoreMainCharacter;
+
+/* Declaracion: Puntaje de personajes */
+int scoreCharacter;
+
 /* Declaracion: Audios */
 Audio intro;
 Audio loop;
@@ -133,10 +139,10 @@ void setup() {
   textFont(font);
 
   /* Inicializacion: Barra => Jugador 1 */
-  progressBarOne =  new ProgressBar(55, 30, 250, 25);
+  progressBarOne =  new ProgressBar(55, 51, 250, 25);
 
   /* Inicializacion: Barra => Jugador 2 */
-  progressBarTwo =  new ProgressBar(545, 30, 250, 25);
+  progressBarTwo =  new ProgressBar(545, 51, 250, 25);
 
   /* Inicializacion: Protagonista */
   mainCharacter = new Movable(Movable.Rect, 35, 35).setFill(255, 211, 42).setStroke(232, 65, 24, 3).setSpeedX(4).setSpeedY(5).setX(729).setY(105);
@@ -205,6 +211,12 @@ void setup() {
   /* Declaracion: Disparos de personajes */
   shootCharacter = new ArrayList<Movable>();
 
+  /* Inicializacion: Puntaje de protagonista */
+  scoreMainCharacter = 0;
+
+  /* Inicializacion: Puntaje de personajes */
+  scoreCharacter = 0;
+
   /* Inicializacion: Audios */
   intro = new Audio("audio/intro.mp3", Audio.Once, this);
   loop = new Audio("audio/loop.mp3", Audio.Loop, this);
@@ -252,7 +264,8 @@ void draw() {
 
   /* Aparicion: Barra => Jugador 1 */
   fill(255);
-  text("P1", 5, 54);
+  text(str(scoreMainCharacter), 55, 45);
+  text("P1", 5, 75);
   progressBarOne.show(53, 59, 72, 232, 65, 24);
 
   /* Evento: Llenado de barra de progreso => Jugador 1 */
@@ -262,7 +275,8 @@ void draw() {
 
   /* Aparicion: Barra => Jugador 2 */
   fill(255);
-  text("P2", 495, 54);
+  text(str(scoreCharacter), 545, 45);
+  text("P2", 495, 75);
   progressBarTwo.show(53, 59, 72, 0, 151, 230);
 
   /* Evento: Llenado de barra de progreso => Jugador 2 */
