@@ -232,13 +232,15 @@ void draw() {
   /* Aparicion: Protagonista */
   mainCharacter.move(directionMainCharacter);
 
-  if (mainCharacter.beside(maze) && (safeXMainCharacter > 0 && safeYMainCharacter > 0)) {
+  /* Deteccion: Choque (Protagonista <=> Laberinto || Zona de personajes) */
+  if ((mainCharacter.beside(maze) || mainCharacter.beside(zoneCharacter)) && (safeXMainCharacter > 0 && safeYMainCharacter > 0)) {
     mainCharacter.setX(safeXMainCharacter);
     mainCharacter.setY(safeYMainCharacter);
     directionMainCharacter = Movable.None;
   }
 
-  if (!mainCharacter.beside(maze)) {
+  /* Deteccion: Choque (Protagonista <=> Laberinto || Zona de personajes) */
+  if (!mainCharacter.beside(maze) || !mainCharacter.beside(zoneCharacter)) {
     safeXMainCharacter = mainCharacter.getX();
     safeYMainCharacter = mainCharacter.getY();
   }
@@ -252,13 +254,15 @@ void draw() {
 
       ghost.move(directionCharacter[index]);
 
-      if (ghost.beside(maze) && (safeXCharacter[index] > 0 && safeYCharacter[index] > 0)) {
+      /* Deteccion: Choque (Personaje <=> Laberinto || Zona de protagonista) */
+      if ((ghost.beside(maze) || ghost.beside(zoneMainCharacter)) && (safeXCharacter[index] > 0 && safeYCharacter[index] > 0)) {
         ghost.setX(safeXCharacter[index]);
         ghost.setY(safeYCharacter[index]);
         directionCharacter[index] = direction[round(random(0, (direction.length - 1)))];
       }
 
-      if (!ghost.beside(maze)) {
+      /* Deteccion: NoChoque (Personaje <=> Laberinto || Zona de protagonista) */
+      if (!ghost.beside(maze) || !ghost.beside(zoneMainCharacter)) {
         safeXCharacter[index] = ghost.getX();
         safeYCharacter[index] = ghost.getY();
       }
@@ -274,13 +278,15 @@ void draw() {
   /* Aparicion: Personaje actual */
   character[currentCharacter].move(directionCharacter[currentCharacter]);
 
-  if (character[currentCharacter].beside(maze) && (safeXCharacter[currentCharacter] > 0 && safeYCharacter[currentCharacter] > 0)) {
+  /* Deteccion: Choque (Personaje actual <=> Laberinto || Zona de protagonista) */
+  if ((character[currentCharacter].beside(maze) || character[currentCharacter].beside(zoneMainCharacter)) && (safeXCharacter[currentCharacter] > 0 && safeYCharacter[currentCharacter] > 0)) {
     character[currentCharacter].setX(safeXCharacter[currentCharacter]);
     character[currentCharacter].setY(safeYCharacter[currentCharacter]);
     directionCharacter[currentCharacter] = Movable.None;
   }
 
-  if (!character[currentCharacter].beside(maze)) {
+  /* Deteccion: NoChoque (Personaje actual <=> Laberinto || Zona de protagonista) */
+  if (!character[currentCharacter].beside(maze) || !character[currentCharacter].beside(zoneMainCharacter)) {
     safeXCharacter[currentCharacter] = character[currentCharacter].getX();
     safeYCharacter[currentCharacter] = character[currentCharacter].getY();
   }
