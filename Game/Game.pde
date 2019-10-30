@@ -51,6 +51,8 @@ ArrayList<Movable> strawberry;
 /* Declaracion: Audios */
 Audio intro;
 Audio loop;
+Audio mainPop;
+Audio characterPop;
 
 void setup() {
 
@@ -192,8 +194,10 @@ void setup() {
   loadStrawberry();
 
   /* Inicializacion: Audios */
-  intro = new Audio("audio/intro.mp3", Audio.Normal, this);
+  intro = new Audio("audio/intro.mp3", Audio.Once, this);
   loop = new Audio("audio/loop.mp3", Audio.Loop, this);
+  mainPop = new Audio("audio/mainPop.mp3", Audio.Multiple, this);
+  characterPop = new Audio("audio/characterPop.mp3", Audio.Multiple, this);
 
   return;
 }
@@ -216,7 +220,22 @@ void draw() {
 
   /* Aparicion: Moras */
   for (Movable fruit : strawberry) {
+
     fruit.move();
+
+    /* Deteccion: Choque (Mora <=> Protagonista) */
+    if (fruit.beside(mainCharacter) && progressBarOne.getProgress() < ProgressBar.MAX_PROGRESS) {
+      fruit.setX(-fruit.getX()).setY(-fruit.getY());
+      progressBarOne.setProgress(progressBarOne.getProgress() + 4);
+      mainPop.play();
+    }
+
+    /* Deteccion: Choque (Mora <=> Personaje actual) */
+    if (fruit.beside(character[currentCharacter]) && progressBarTwo.getProgress() < ProgressBar.MAX_PROGRESS) {
+      fruit.setX(-fruit.getX()).setY(-fruit.getY());
+      progressBarTwo.setProgress(progressBarTwo.getProgress() + 4);
+      characterPop.play();
+    }
   }
 
   /* Aparicion: Barra => Jugador 1 */
@@ -224,10 +243,20 @@ void draw() {
   text("P1", 5, 54);
   progressBarOne.show(53, 59, 72, 232, 65, 24);
 
+  /* Evento: Llenado de barra de progreso => Jugador 1 */
+  if (progressBarOne.getProgress() == ProgressBar.MAX_PROGRESS) {
+    progressBarOne.show(53, 59, 72, 11, 232, 129);
+  }
+
   /* Aparicion: Barra => Jugador 2 */
   fill(255);
   text("P2", 495, 54);
   progressBarTwo.show(53, 59, 72, 0, 151, 230);
+
+  /* Evento: Llenado de barra de progreso => Jugador 2 */
+  if (progressBarTwo.getProgress() == ProgressBar.MAX_PROGRESS) {
+    progressBarTwo.show(53, 59, 72, 11, 232, 129);
+  }
 
   /* Aparicion: Protagonista */
   mainCharacter.move(directionMainCharacter);
