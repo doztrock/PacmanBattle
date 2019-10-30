@@ -48,6 +48,12 @@ int currentCharacter;
 /* Declaracion: Moras */
 ArrayList<Movable> strawberry;
 
+/* Declaracion: Disparos de protagonista */
+ArrayList<Movable> shootMainCharacter;
+
+/* Declaracion: Disparos de personajes */
+ArrayList<Movable> shootCharacter;
+
 /* Declaracion: Audios */
 Audio intro;
 Audio loop;
@@ -193,6 +199,12 @@ void setup() {
   strawberry = new ArrayList<Movable>();
   loadStrawberry();
 
+  /* Declaracion: Disparos de protagonista */
+  shootMainCharacter = new ArrayList<Movable>();
+
+  /* Declaracion: Disparos de personajes */
+  shootCharacter = new ArrayList<Movable>();
+
   /* Inicializacion: Audios */
   intro = new Audio("audio/intro.mp3", Audio.Once, this);
   loop = new Audio("audio/loop.mp3", Audio.Loop, this);
@@ -320,6 +332,16 @@ void draw() {
     safeYCharacter[currentCharacter] = character[currentCharacter].getY();
   }
 
+  /* Aparicion: Disparos de protagonista */
+  for (Movable mainShoot : shootMainCharacter) {
+    mainShoot.move(mainShoot.getDirection());
+  }
+
+  /* Aparicion: Disparos de personajes */
+  for (Movable characterShoot : shootCharacter) {
+    characterShoot.move(characterShoot.getDirection());
+  }
+
   /* Reproduccion: Audio (intro & loop) */
   intro.play();
 
@@ -369,6 +391,14 @@ void keyPressed() {
     switchGhost();
     break;
 
+  case 'p':
+    shootFromMainCharacter();
+    break;
+
+  case 'e':
+    shootFromCharacter();
+    break;
+
   default:
     break;
   }
@@ -394,6 +424,30 @@ void switchGhost() {
   currentCharacter = randomNumber;
   character[currentCharacter].setStroke(0, 151, 230, 3);
   directionCharacter[currentCharacter] = Movable.None;
+
+  return;
+}
+
+void shootFromMainCharacter() {
+
+  int shootX = (mainCharacter.getX() + (mainCharacter.getWidth() / 2)) - 3;
+  int shootY = (mainCharacter.getY() + (mainCharacter.getHeight() / 2)) - 3;
+
+  if (directionMainCharacter != Movable.None) {
+    shootMainCharacter.add(new Movable(Movable.Rect, 6, 6).setFill(255, 255, 255).setStroke(0, 0, 0, 0).setSpeedX(7).setSpeedY(7).setX(shootX).setY(shootY).setDirection(directionMainCharacter));
+  }
+
+  return;
+}
+
+void shootFromCharacter() {
+
+  int shootX = (character[currentCharacter].getX() + (character[currentCharacter].getWidth() / 2)) - 3;
+  int shootY = (character[currentCharacter].getY() + (character[currentCharacter].getHeight() / 2)) - 3;
+
+  if (directionCharacter[currentCharacter] != Movable.None) {
+    shootCharacter.add(new Movable(Movable.Rect, 6, 6).setFill(255, 255, 255).setStroke(0, 0, 0, 0).setSpeedX(7).setSpeedY(7).setX(shootX).setY(shootY).setDirection(directionCharacter[currentCharacter]));
+  }
 
   return;
 }

@@ -65,6 +65,11 @@ class Movable {
   private PositionElement positionElement;
 
   /**
+   * Direccion
+   */
+  private int direction;
+
+  /**
    * Constructor
    *
    * Parametros:  shape -> Forma
@@ -414,6 +419,37 @@ class Movable {
    */
   public PositionElement getPositionElement() {
     return this.positionElement;
+  }
+
+  /**
+   * Funcion:     setDirection
+   *
+   * Objetivo:    Asignar el valor al atributo direction, 
+   *              correspondiente a la direccion del objeto.
+   *
+   * Parametros:  direction -> Direccion del objeto
+   *  
+   * Retorno:     Puntero al objeto
+   *
+   */
+  public Movable setDirection(int direction) {
+    this.direction = direction;
+    return this;
+  }
+
+  /**
+   * Funcion:     getDirection
+   *
+   * Objetivo:    Obtener el valor del atributo direction, 
+   *              correspondiente a la direccion del objeto.
+   *
+   * Parametros:  N/A
+   *  
+   * Retorno:     Direccion del objeto
+   *
+   */
+  public int getDirection() {
+    return this.direction;
   }
 
   /**
