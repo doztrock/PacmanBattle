@@ -334,12 +334,28 @@ void draw() {
 
   /* Aparicion: Disparos de protagonista */
   for (Movable mainShoot : shootMainCharacter) {
+
     mainShoot.move(mainShoot.getDirection());
+
+    /* Deteccion: Choque (Disparo <=> Laberinto || Zona de personajes) */
+    if (mainShoot.beside(maze) || mainShoot.beside(zoneCharacter)) {
+      mainShoot.setX(-mainShoot.getX());
+      mainShoot.setY(-mainShoot.getY());
+      mainShoot.setDirection(Movable.None);
+    }
   }
 
   /* Aparicion: Disparos de personajes */
   for (Movable characterShoot : shootCharacter) {
+
     characterShoot.move(characterShoot.getDirection());
+
+    /* Deteccion: Choque (Disparo <=> Laberinto || Zona de protagonista) */
+    if (characterShoot.beside(maze) || characterShoot.beside(zoneMainCharacter)) {
+      characterShoot.setX(-characterShoot.getX());
+      characterShoot.setY(-characterShoot.getY());
+      characterShoot.setDirection(Movable.None);
+    }
   }
 
   /* Reproduccion: Audio (intro & loop) */
