@@ -131,7 +131,7 @@ void setup() {
   progressBarTwo =  new ProgressBar(545, 30, 250, 25);
 
   /* Inicializacion: Protagonista */
-  mainCharacter = new Movable(Movable.Rect, 35, 35).setFill(255, 211, 42).setStroke(232, 65, 24, 3).setSpeedX(4).setSpeedY(5).setX(100).setY(100);
+  mainCharacter = new Movable(Movable.Rect, 35, 35).setFill(255, 211, 42).setStroke(232, 65, 24, 3).setSpeedX(4).setSpeedY(5).setX(729).setY(105);
 
   /* Inicializacion: Personajes */
   character = new Movable[]{
