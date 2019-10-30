@@ -15,8 +15,9 @@ class Audio {
   /**
    * Constantes de tipo
    */
-  public static final int Normal	= (1 << 0);
-  public static final int Loop 	  = (1 << 1);
+  public static final int Once	    = (1 << 0);
+  public static final int Multiple  = (1 << 1);
+  public static final int Loop 	    = (1 << 2);
 
   /**
    * Manejadores
@@ -65,11 +66,22 @@ class Audio {
 
     switch(this.type) {
 
-    case Normal:
+    case Once:
 
       if (!this.audioPlayer.isPlaying() && this.playing == false) {
         this.audioPlayer.play();
         this.playing = true;
+      }
+
+      break;
+
+    case Multiple:
+
+      this.audioPlayer.pause();
+      this.audioPlayer.rewind();
+
+      if (this.audioPlayer.isPlaying() == false) {
+        this.audioPlayer.play();
       }
 
       break;
@@ -99,11 +111,12 @@ class Audio {
   public boolean running() {
 
     if (this.type == Loop) {
-      return true;
+      return this.audioPlayer.isLooping();
     }
 
     return this.audioPlayer.isPlaying();
   }
+
 
   /**
    * Funcion:     pause
