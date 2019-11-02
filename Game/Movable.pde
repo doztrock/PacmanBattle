@@ -70,6 +70,11 @@ class Movable {
   private int direction;
 
   /**
+   * ID
+   */
+  private int ID;
+
+  /**
    * Constructor
    *
    * Parametros:  shape -> Forma
@@ -450,6 +455,37 @@ class Movable {
    */
   public int getDirection() {
     return this.direction;
+  }
+
+  /**
+   * Funcion:     setID
+   *
+   * Objetivo:    Asignar el valor al atributo ID, 
+   *              correspondiente al identificador del objeto.
+   *
+   * Parametros:  ID -> Identificador del objeto
+   *  
+   * Retorno:     Puntero al objeto
+   *
+   */
+  public Movable setID(int ID) {
+    this.ID = ID;
+    return this;
+  }
+
+  /**
+   * Funcion:     getID
+   *
+   * Objetivo:    Obtener el valor del atributo ID, 
+   *              correspondiente al identificador del objeto.
+   *
+   * Parametros:  N/A
+   *  
+   * Retorno:     Identificador del objeto
+   *
+   */
+  public int getID() {
+    return this.ID;
   }
 
   /**
