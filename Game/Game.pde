@@ -1,70 +1,152 @@
-/* Declaracion: Plantilla */
+/**
+ * ELEMENTOS DE JUEGO
+ */
+
+/**
+ * Declaracion: Plantilla 
+ */
 PImage template;
 
-/* Declaracion: Laberinto */
-Movable[] maze;
-
-/* Declaracion: Zona de personajes */
-Movable zoneCharacter;
-
-/* Declaracion: Zona de protagonista */
-Movable zoneMainCharacter;
-
-/* Declaracion: Fuente */
+/**
+ * Declaracion: Fuente 
+ */
 PFont font;
 
-/* Declaracion: Barra => Jugador 1 */
-ProgressBar progressBarOne;
+/**
+ * Declaracion: Laberinto 
+ */
+Movable[] maze;
 
-/* Declaracion: Barra => Jugador 2 */
-ProgressBar progressBarTwo;
-
-/* Declaracion: Protagonista */
-Movable mainCharacter;
-
-/* Declaracion: Personajes */
-Movable[] character;
-
-/* Declaracion: Direcciones */
+/**
+ * Declaracion: Direcciones soportadas 
+ */
 int[] direction;
 
-/* Declaracion: Direccion de protagonista */
+
+/**
+ * BARRAS DE PROGRESO
+ */
+
+/**
+ * Declaracion: Barra => Jugador 1
+ */
+ProgressBar progressBarOne;
+
+/**
+ * Declaracion: Barra => Jugador 2
+ */
+ProgressBar progressBarTwo;
+
+
+/**
+ * AUDIOS
+ */
+
+/**
+ * Declaracion: Audio de introduccion
+ */
+Audio intro;
+
+/**
+ * Declaracion: Audio de juego
+ */
+Audio loop;
+
+/**
+ * Declaracion: Audio de mordisco (Protagonista) 
+ */
+Audio mainPop;
+
+/**
+ * Declaracion: Audio de mordisco (Personaje)
+ */
+Audio characterPop;
+
+
+/**
+ * PROTAGONISTA
+ */
+
+/**
+ * Declaracion: Protagonista 
+ */
+Movable mainCharacter;
+
+/**
+ * Declaracion: Direccion de protagonista 
+ */
 int directionMainCharacter;
 
-/* Declaracion: Direcciones de personajes */
-int[] directionCharacter;
+/**
+ * Declaracion: Zona de protagonista 
+ */
+Movable zoneMainCharacter;
 
-/* Declaracion: Posicion segura de protagonista */
+/**
+ * Declaracion: Posicion segura de protagonista 
+ */
 int safeXMainCharacter;
 int safeYMainCharacter;
+
+/**
+ * Declaracion: Disparos de protagonista 
+ */
+ArrayList<Movable> shootMainCharacter;
+
+/**
+ * Declaracion: Puntaje de protagonista 
+ */
+int scoreMainCharacter;
+
+
+/**
+ * PERSONAJES
+ */
+
+/**
+ * Declaracion: Personajes
+ */
+Movable[] character;
+
+/**
+ * Declaracion: Direcciones de personajes 
+ */
+int[] directionCharacter;
+
+/**
+ * Declaracion: Zona de personajes 
+ */
+Movable zoneCharacter;
 
 /* Declaracion: Posiciones seguras de personajes */
 int[] safeXCharacter;
 int[] safeYCharacter;
 
-/* Declaracion: Personaje actual */
-int currentCharacter;
-
-/* Declaracion: Moras */
-ArrayList<Movable> strawberry;
-
-/* Declaracion: Disparos de protagonista */
-ArrayList<Movable> shootMainCharacter;
-
-/* Declaracion: Disparos de personajes */
+/**
+ * Declaracion: Disparos de personajes 
+ */
 ArrayList<Movable> shootCharacter;
 
-/* Declaracion: Puntaje de protagonista */
-int scoreMainCharacter;
-
-/* Declaracion: Puntaje de personajes */
+/**
+ * Declaracion: Puntaje de personajes 
+ */
 int scoreCharacter;
 
-/* Declaracion: Audios */
-Audio intro;
-Audio loop;
-Audio mainPop;
-Audio characterPop;
+/**
+ * Declaracion: Personaje actual 
+ */
+int currentCharacter;
+
+
+/**
+ * PERSONAJES
+ */
+
+/**
+ * Declaracion: Moras 
+ */
+ArrayList<Movable> strawberry;
+
 
 void setup() {
 
