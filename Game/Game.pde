@@ -139,7 +139,7 @@ int currentCharacter;
 
 
 /**
- * PERSONAJES
+ * MORAS
  */
 
 /**
@@ -150,13 +150,29 @@ ArrayList<Movable> strawberry;
 
 void setup() {
 
-  /* Inicializacion: Pantalla */
+  /**
+   * ELEMENTOS DE JUEGO
+   */
+
+  /**
+   * Inicializacion: Pantalla 
+   */
   size(800, 600);
 
-  /* Inicializacion: Plantilla */
+  /**
+   * Inicializacion: Plantilla
+   */
   template = loadImage("data/image/background/maze.png");
 
-  /* Inicializacion: Laberinto */
+  /** 
+   * Inicializacion: Fuente 
+   */
+  font = createFont("font/font.ttf", 22);
+  textFont(font);
+
+  /** 
+   * Inicializacion: Laberinto 
+   */
   maze = new Movable[]{
 
     // CONTORNO
@@ -210,43 +226,9 @@ void setup() {
 
   };
 
-  /* Inicializacion: Zona de personajes */
-  zoneCharacter = new Movable(Movable.Rect, 147, 134).setFill(19, 15, 64).setStroke(255, 255, 255, 1).setX(326).setY(237);
-
-  /* Inicializacion: Zona de protagonista */
-  zoneMainCharacter = new Movable(Movable.Rect, 77, 64).setFill(76, 209, 55).setStroke(255, 255, 255, 1).setX(707).setY(93);
-
-  /* Inicializacion: Fuente */
-  font = createFont("font/font.ttf", 22);
-  textFont(font);
-
-  /* Inicializacion: Barra => Jugador 1 */
-  progressBarOne =  new ProgressBar(55, 51, 250, 25);
-
-  /* Inicializacion: Barra => Jugador 2 */
-  progressBarTwo =  new ProgressBar(545, 51, 250, 25);
-
-  /* Inicializacion: Protagonista */
-  mainCharacter = new Movable(Movable.Rect, 35, 35).setFill(255, 211, 42).setStroke(232, 65, 24, 3).setSpeedX(4).setSpeedY(5).setX(729).setY(105);
-
-  /* Inicializacion: Personajes */
-  character = new Movable[]{
-
-    // BLINKY
-    new Movable(Movable.Rect, 32, 32).setFill(186, 220, 88).setStroke(0, 0, 0, 1).setSpeedX(5).setSpeedY(5).setX(350).setY(255), 
-
-    // CLYDE
-    new Movable(Movable.Rect, 32, 32).setFill(224, 86, 253).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(350).setY(320), 
-
-    // INKY
-    new Movable(Movable.Rect, 32, 32).setFill(126, 214, 223).setStroke(0, 0, 0, 1).setSpeedX(4).setSpeedY(4).setX(420).setY(255), 
-
-    // PINKY
-    new Movable(Movable.Rect, 32, 32).setFill(255, 121, 121).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(420).setY(320)
-
-  };
-
-  /* Inicializacion: Direcciones */
+  /**
+   * Inicializacion: Direcciones soportadas 
+   */
   direction = new int[]{
     Movable.Up, 
     Movable.Down, 
@@ -254,10 +236,109 @@ void setup() {
     Movable.Right
   };
 
-  /* Inicializacion: Direccion de protagonista */
+
+  /**
+   * BARRAS DE PROGRESO
+   */
+
+  /**
+   * Inicializacion: Barra => Jugador 1 
+   */
+  progressBarOne =  new ProgressBar(55, 51, 250, 25);
+
+  /**
+   * Inicializacion: Barra => Jugador 2
+   */
+  progressBarTwo =  new ProgressBar(545, 51, 250, 25);
+
+
+  /**
+   * AUDIOS
+   */
+
+  /**
+   * Inicializacion: Audio de introduccion
+   */
+  intro = new Audio("audio/intro.mp3", Audio.Once, this);
+
+  /**
+   * Inicializacion: Audio de juego
+   */
+  loop = new Audio("audio/loop.mp3", Audio.Loop, this);
+
+  /**
+   * Inicializacion: Audio de mordisco (Protagonista)
+   */
+  mainPop = new Audio("audio/mainPop.mp3", Audio.Multiple, this);
+
+  /**
+   * Inicializacion: Audio de mordisco (Personaje)
+   */
+  characterPop = new Audio("audio/characterPop.mp3", Audio.Multiple, this);
+
+
+  /**
+   * PROTAGONISTA
+   */
+
+  /**
+   * Inicializacion: Protagonista 
+   */
+  mainCharacter = new Movable(Movable.Rect, 35, 35).setFill(255, 211, 42).setStroke(232, 65, 24, 3).setSpeedX(4).setSpeedY(5).setX(729).setY(105);
+
+  /**
+   * Declaracion: Direccion de protagonista 
+   */
   directionMainCharacter = Movable.None;
 
-  /* Inicializacion: Direcciones de personajes */
+  /**
+   * Declaracion: Zona de protagonista 
+   */
+  zoneMainCharacter = new Movable(Movable.Rect, 77, 64).setFill(76, 209, 55).setStroke(255, 255, 255, 1).setX(707).setY(93);
+
+  /**
+   * Inicializacion: Posicion segura de protagonista 
+   */
+  safeXMainCharacter = 0;
+  safeYMainCharacter = 0;
+
+  /**
+   * Inicializacion: Disparos de protagonista 
+   */
+  shootMainCharacter = new ArrayList<Movable>();
+
+  /**
+   * Inicializacion: Puntaje de protagonista 
+   */
+  scoreMainCharacter = 0;
+
+
+  /**
+   * PERSONAJES
+   */
+
+  /**
+   * Inicializacion: Personajes 
+   */
+  character = new Movable[]{
+
+    // BLINKY
+    new Movable(Movable.Rect, 32, 32).setID(0).setFill(186, 220, 88).setStroke(0, 0, 0, 1).setSpeedX(5).setSpeedY(5).setX(350).setY(255), 
+
+    // CLYDE
+    new Movable(Movable.Rect, 32, 32).setID(1).setFill(224, 86, 253).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(350).setY(320), 
+
+    // INKY
+    new Movable(Movable.Rect, 32, 32).setID(2).setFill(126, 214, 223).setStroke(0, 0, 0, 1).setSpeedX(4).setSpeedY(4).setX(420).setY(255), 
+
+    // PINKY
+    new Movable(Movable.Rect, 32, 32).setID(3).setFill(255, 121, 121).setStroke(0, 0, 0, 1).setSpeedX(3).setSpeedY(3).setX(420).setY(320)
+
+  };
+
+  /**
+   * Inicializacion: Direcciones de personajes 
+   */
   directionCharacter = new int[]{
     direction[round(random(0, (direction.length - 1)))], 
     direction[round(random(0, (direction.length - 1)))], 
@@ -265,11 +346,14 @@ void setup() {
     direction[round(random(0, (direction.length - 1)))]
   };
 
-  /* Inicializacion: Posicion segura de protagonista */
-  safeXMainCharacter = 0;
-  safeYMainCharacter = 0;
+  /**
+   * Inicializacion: Zona de personajes 
+   */
+  zoneCharacter = new Movable(Movable.Rect, 147, 134).setFill(19, 15, 64).setStroke(255, 255, 255, 1).setX(326).setY(237);
 
-  /* Inicializacion: Posiciones seguras de personajes */
+  /**
+   * Inicializacion: Posiciones seguras de personajes 
+   */
   safeXCharacter = new int[]{
     0, 0, 0, 0
   };
@@ -278,32 +362,33 @@ void setup() {
     0, 0, 0, 0
   };
 
-  /* Inicializacion: Personaje actual */
+  /**
+   * Inicializacion: Disparos de personajes 
+   */
+  shootCharacter = new ArrayList<Movable>();
+
+  /**
+   * Inicializacion: Puntaje de personajes 
+   */
+  scoreCharacter = 0;
+
+  /**
+   * Inicializacion: Personaje actual 
+   */
   currentCharacter = round(random(0, (character.length - 1)));
   character[currentCharacter].setStroke(0, 151, 230, 3);
   directionCharacter[currentCharacter] = Movable.None;
 
-  /* Inicializacion: Moras */
+
+  /**
+   * MORAS
+  */
+
+  /**
+   * Inicializacion: Moras 
+   */
   strawberry = new ArrayList<Movable>();
   loadStrawberry();
-
-  /* Declaracion: Disparos de protagonista */
-  shootMainCharacter = new ArrayList<Movable>();
-
-  /* Declaracion: Disparos de personajes */
-  shootCharacter = new ArrayList<Movable>();
-
-  /* Inicializacion: Puntaje de protagonista */
-  scoreMainCharacter = 0;
-
-  /* Inicializacion: Puntaje de personajes */
-  scoreCharacter = 0;
-
-  /* Inicializacion: Audios */
-  intro = new Audio("audio/intro.mp3", Audio.Once, this);
-  loop = new Audio("audio/loop.mp3", Audio.Loop, this);
-  mainPop = new Audio("audio/mainPop.mp3", Audio.Multiple, this);
-  characterPop = new Audio("audio/characterPop.mp3", Audio.Multiple, this);
 
   return;
 }
