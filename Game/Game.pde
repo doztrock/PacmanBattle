@@ -2,6 +2,31 @@
  * ELEMENTOS DE JUEGO
  */
 
+/** 
+ * Declaracion: Menu de inicio 
+ */
+Movable[] startMenu;
+
+/** 
+ * Declaracion: Opcion actual de menu de inicio
+ */
+int currentStartMenuOption;
+
+/** 
+ * Declaracion: Duracion del juego actual
+ */
+int gameCurrentDuration;
+
+/** 
+ * Declaracion: Duracion del juego
+ */
+int gameDuration;
+
+/** 
+ * Declaracion: Bandera => Juego iniciado
+ */
+boolean gameStarted;
+
 /**
  * Declaracion: Plantilla 
  */
@@ -158,6 +183,42 @@ void setup() {
    * Inicializacion: Pantalla 
    */
   size(800, 600);
+
+  /** 
+   * Inicializacion: Menu de inicio 
+   */
+  startMenu = new Movable[]{
+
+    // OPCION: 1 MINUTO
+    new Movable(Movable.Rect, 100, 50).setID(0).setFill(0, 168, 255).setStroke(255, 255, 255, 0).setX(200).setY(200), 
+
+    // OPCION: 3 MINUTOS
+    new Movable(Movable.Rect, 100, 50).setID(1).setFill(0, 168, 255).setStroke(255, 255, 255, 0).setX(350).setY(200), 
+
+    // OPCION: 5 MINUTOS
+    new Movable(Movable.Rect, 100, 50).setID(2).setFill(0, 168, 255).setStroke(255, 255, 255, 0).setX(500).setY(200)
+
+  };
+
+  /** 
+   * Inicializacion: Opcion actual de menu de inicio
+   */
+  currentStartMenuOption = 0;
+
+  /** 
+   * Inicializacion: Duracion del juego actual
+   */
+  gameCurrentDuration = 0;
+
+  /** 
+   * Inicializacion: Duracion del juego
+   */
+  gameDuration = 0;
+
+  /** 
+   * Inicializacion: Bandera => Juego iniciado
+   */
+  gameStarted = false;
 
   /**
    * Inicializacion: Plantilla
@@ -398,6 +459,50 @@ void draw() {
   /**
    * ELEMENTOS DE JUEGO
    */
+
+  /**
+   * Aparicion: Menu de inicio
+   */
+  if(gameStarted == false){
+
+    background(0);
+
+    fill(255);
+    text("Seleccione duracion del juego", 83, 150);
+
+    for(Movable option : startMenu){
+
+      if(option.getID() == currentStartMenuOption){
+        option.setStroke(255, 255, 255, 5);
+        option.move();
+      }else{
+        option.setStroke(255, 255, 255, 0);
+        option.move();
+      }
+
+      switch(option.getID()){
+      
+        case 0:
+          fill(255);
+          text("1M", 228, 236);
+          break;
+        
+        case 1:
+          fill(255);
+          text("3M", 378, 236);
+          break;
+        
+        case 2:
+          fill(255);
+          text("5M", 528, 236);
+          break;
+      
+      }
+
+    }
+
+    return;
+  }
 
   /**
    * Aparicion: Plantilla 
@@ -663,53 +768,84 @@ void draw() {
 
 void keyPressed() {
 
+  if(gameStarted == false){
+
+    if(key == CODED){
+
+      switch(keyCode){
+
+        case LEFT:
+
+          if(currentStartMenuOption >= 0){
+            currentStartMenuOption--;
+          }
+
+          break;
+
+        case RIGHT:
+
+          if(currentStartMenuOption <= 2){
+            currentStartMenuOption++;
+          }
+
+          break;
+
+      }
+
+    }
+
+    return;
+  }
+
   switch(key) {
-  case 'i':
-    directionMainCharacter = Movable.Up;
-    break;
 
-  case 'k':
-    directionMainCharacter = Movable.Down;
-    break;
+    case 'i':
+      directionMainCharacter = Movable.Up;
+      break;
 
-  case 'j':
-    directionMainCharacter = Movable.Left;
-    break;
+    case 'k':
+      directionMainCharacter = Movable.Down;
+      break;
 
-  case 'l':
-    directionMainCharacter = Movable.Right;
-    break;
+    case 'j':
+      directionMainCharacter = Movable.Left;
+      break;
 
-  case 'w':
-    directionCharacter[currentCharacter] = Movable.Up;
-    break;
+    case 'l':
+      directionMainCharacter = Movable.Right;
+      break;
 
-  case 's':
-    directionCharacter[currentCharacter] = Movable.Down;
-    break;
+    case 'w':
+      directionCharacter[currentCharacter] = Movable.Up;
+      break;
 
-  case 'a':
-    directionCharacter[currentCharacter] = Movable.Left;
-    break;
+    case 's':
+      directionCharacter[currentCharacter] = Movable.Down;
+      break;
 
-  case 'd':
-    directionCharacter[currentCharacter] = Movable.Right;
-    break;
+    case 'a':
+      directionCharacter[currentCharacter] = Movable.Left;
+      break;
 
-  case 'q':
-    switchGhost();
-    break;
+    case 'd':
+      directionCharacter[currentCharacter] = Movable.Right;
+      break;
 
-  case 'p':
-    shootFromMainCharacter();
-    break;
+    case 'q':
+      switchGhost();
+      break;
 
-  case 'e':
-    shootFromCharacter();
-    break;
+    case 'p':
+      shootFromMainCharacter();
+      break;
 
-  default:
-    break;
+    case 'e':
+      shootFromCharacter();
+      break;
+
+    default:
+      break;
+
   }
 
   return;
