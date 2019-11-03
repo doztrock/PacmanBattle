@@ -27,6 +27,11 @@ int gameDuration;
  */
 boolean gameStarted;
 
+/** 
+ * Declaracion: Bandera => Juego finalizado
+ */
+boolean gameFinalized;
+
 /**
  * Declaracion: Plantilla 
  */
@@ -224,6 +229,11 @@ void setup() {
    * Inicializacion: Bandera => Juego iniciado
    */
   gameStarted = false;
+  
+  /** 
+   * Inicializacion: Bandera => Juego finalizado
+   */
+  gameFinalized = false;
 
   /**
    * Inicializacion: Plantilla
@@ -469,6 +479,29 @@ void draw() {
   /**
    * ELEMENTOS DE JUEGO
    */
+
+  /**
+   * Aparicion: Final
+   */
+  if(gameFinalized == true){
+    
+    loop.stop();
+    
+    background(0);
+
+    fill(255);
+    text("FINAL DEL JUEGO", 235, 150);
+
+    if(scoreMainCharacter > scoreCharacter){
+      fill(255);
+      text("JUGADOR 1 GANA", 235, 250);
+    }else{
+      fill(255);
+      text("JUGADOR 2 GANA", 235, 250);
+    }
+    
+    return;
+  }
 
   /**
    * Aparicion: Menu de inicio
@@ -790,6 +823,9 @@ void draw() {
    */
   gameCurrentDuration = gameDuration - (millis() / 1000);
 
+  if(gameCurrentDuration == 0){
+    gameFinalized = true;
+  }
 
   return;
 }
