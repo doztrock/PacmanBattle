@@ -87,6 +87,11 @@ Audio mainPop;
  */
 Audio characterPop;
 
+/**
+ * Declaracion: Audio de seleccion en menu principal
+ */
+Audio beep;
+
 
 /**
  * PROTAGONISTA
@@ -336,6 +341,11 @@ void setup() {
    * Inicializacion: Audio de mordisco (Personaje)
    */
   characterPop = new Audio("audio/characterPop.mp3", Audio.Multiple, this);
+
+  /**
+   * Declaracion: Audio de seleccion en menu principal
+   */
+  beep = new Audio("audio/beep.mp3", Audio.Multiple, this);
 
 
   /**
@@ -778,6 +788,7 @@ void keyPressed() {
 
           if(currentStartMenuOption > 0){
             currentStartMenuOption--;
+            beep.play();
           }
 
           break;
@@ -786,6 +797,7 @@ void keyPressed() {
 
           if(currentStartMenuOption < 2){
             currentStartMenuOption++;
+            beep.play();
           }
 
           break;
