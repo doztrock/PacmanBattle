@@ -557,6 +557,17 @@ void draw() {
 
 
   /**
+   * RELOJ
+   */
+   
+  /**
+   * Aparicion: Reloj 
+   */
+  fill(255);
+  text(convertDuration(gameCurrentDuration), 350, 30);
+   
+
+  /**
    * AUDIOS
    */
 
@@ -773,6 +784,13 @@ void draw() {
 
   }
 
+
+  /** 
+   * DURACION 
+   */
+  gameCurrentDuration = gameDuration - (millis() / 1000);
+
+
   return;
 }
 
@@ -817,8 +835,8 @@ void keyPressed() {
               break;
           
             // OPCION: 5 MINUTOS
-            case 3:
-              gameDuration = 180;
+            case 2:
+              gameDuration = 300;
               break;
           
           }
@@ -908,6 +926,14 @@ void switchGhost() {
   directionCharacter[currentCharacter] = Movable.None;
 
   return;
+}
+
+String convertDuration(int duration){
+
+  int minutes = (duration / 60);
+  int seconds = (duration % 60);
+
+  return (minutes < 10 ? "0" + str(minutes) : str(minutes)) + ":" + (seconds < 10 ? "0" + str(seconds) : str(seconds));
 }
 
 void shootFromMainCharacter() {
