@@ -776,7 +776,7 @@ void keyPressed() {
 
         case LEFT:
 
-          if(currentStartMenuOption >= 0){
+          if(currentStartMenuOption > 0){
             currentStartMenuOption--;
           }
 
@@ -784,9 +784,34 @@ void keyPressed() {
 
         case RIGHT:
 
-          if(currentStartMenuOption <= 2){
+          if(currentStartMenuOption < 2){
             currentStartMenuOption++;
           }
+
+          break;
+
+        case ALT:
+        
+          switch(currentStartMenuOption){
+          
+            // OPCION: 1 MINUTO
+            case 0:
+              gameDuration = 60;
+              break;
+          
+            // OPCION: 3 MINUTOS
+            case 1:
+              gameDuration = 180;
+              break;
+          
+            // OPCION: 5 MINUTOS
+            case 3:
+              gameDuration = 180;
+              break;
+          
+          }
+          
+          gameStarted = true;
 
           break;
 
