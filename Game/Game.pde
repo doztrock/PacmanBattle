@@ -395,61 +395,115 @@ void setup() {
 
 void draw() {
 
-  /* Aparicion: Plantilla */
+  /**
+   * ELEMENTOS DE JUEGO
+   */
+
+  /**
+   * Aparicion: Plantilla 
+   */
   background(template);
 
-  /* Aparicion: Laberinto */
+  /**
+   * Aparicion: Laberinto 
+   */
   for (Movable wall : maze) {
     wall.move();
   }
 
-  /* Aparicion: Zona de personajes */
-  zoneCharacter.move();
 
-  /* Aparicion: Zona de protagonista */
-  zoneMainCharacter.move();
+  /**
+   * BARRAS DE PROGRESO
+   */
 
-  /* Aparicion: Moras */
-  for (Movable fruit : strawberry) {
-
-    fruit.move();
-
-    /* Deteccion: Choque (Mora <=> Protagonista) */
-    if (fruit.beside(mainCharacter) && progressBarOne.getProgress() < ProgressBar.MAX_PROGRESS) {
-      fruit.setX(-fruit.getX()).setY(-fruit.getY());
-      progressBarOne.setProgress(progressBarOne.getProgress() + 4);
-      mainPop.play();
-    }
-
-    /* Deteccion: Choque (Mora <=> Personaje actual) */
-    if (fruit.beside(character[currentCharacter]) && progressBarTwo.getProgress() < ProgressBar.MAX_PROGRESS) {
-      fruit.setX(-fruit.getX()).setY(-fruit.getY());
-      progressBarTwo.setProgress(progressBarTwo.getProgress() + 4);
-      characterPop.play();
-    }
-  }
-
-  /* Aparicion: Barra => Jugador 1 */
+  /**
+   * Aparicion: Barra => Jugador 1 
+   */
   fill(255);
   text(str(scoreMainCharacter), 55, 45);
   text("P1", 5, 75);
   progressBarOne.show(53, 59, 72, 232, 65, 24);
 
-  /* Evento: Llenado de barra de progreso => Jugador 1 */
   if (progressBarOne.getProgress() == ProgressBar.MAX_PROGRESS) {
     progressBarOne.show(53, 59, 72, 11, 232, 129);
   }
 
-  /* Aparicion: Barra => Jugador 2 */
+  /**
+   * Aparicion: Barra => Jugador 2 
+   */
   fill(255);
   text(str(scoreCharacter), 545, 45);
   text("P2", 495, 75);
   progressBarTwo.show(53, 59, 72, 0, 151, 230);
 
-  /* Evento: Llenado de barra de progreso => Jugador 2 */
   if (progressBarTwo.getProgress() == ProgressBar.MAX_PROGRESS) {
     progressBarTwo.show(53, 59, 72, 11, 232, 129);
   }
+
+
+  /**
+   * AUDIOS
+   */
+
+  /** 
+   * Reproduccion: Audio de introduccion
+   */
+  intro.play();
+
+  /** 
+   * Reproduccion: Audio de juego
+   */
+  if (!intro.running())   {
+    loop.play();
+  }
+
+
+  /** 
+   * ZONAS 
+   */
+
+  /**
+   * Aparicion: Zona de personajes 
+   */
+  zoneCharacter.move();
+
+  /**
+   * Aparicion: Zona de protagonista 
+   s*/
+  zoneMainCharacter.move();
+
+
+  /** 
+   * MORAS 
+   */
+
+  /**
+   * Aparicion: Moras 
+   */
+  for (Movable fruit : strawberry) {
+
+    fruit.move();
+
+    // Deteccion: Choque (Mora <=> Protagonista)
+    if (fruit.beside(mainCharacter) && progressBarOne.getProgress() < ProgressBar.MAX_PROGRESS) {
+
+      fruit.setX(-fruit.getX()).setY(-fruit.getY());
+      progressBarOne.setProgress(progressBarOne.getProgress() + 4);
+      mainPop.play();
+
+    }
+
+    // Deteccion: Choque (Mora <=> Personaje actual)
+    if (fruit.beside(character[currentCharacter]) && progressBarTwo.getProgress() < ProgressBar.MAX_PROGRESS) {
+      
+      fruit.setX(-fruit.getX()).setY(-fruit.getY());
+      progressBarTwo.setProgress(progressBarTwo.getProgress() + 4);
+      characterPop.play();
+
+    }
+
+  }
+
 
   /* Aparicion: Protagonista */
   mainCharacter.move(directionMainCharacter);
