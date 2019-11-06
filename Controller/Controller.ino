@@ -3,14 +3,30 @@
 #include "GamingController.h"
 #include "PacmanBattle.h"
 
-/* Administrador de serial */
+/**
+ * SERIAL 
+ */
+
+/**
+ * Declaracion: Manager
+ */
 SerialManager serialManager(&Serial, BAUD_RATE);
 
-/* Control #1 */
+
+/**
+ * CONTROLES
+ */
+
+/** 
+ * Declaracion: Control #1
+ */
 GamingController gamingController1(RX_PIN_CONTROL_1, TX_PIN_CONTROL_1);
 
-/* Control #2 */
+/** 
+ * Declaracion: Control #2
+ */
 GamingController gamingController2(RX_PIN_CONTROL_2, TX_PIN_CONTROL_2);
+
 
 void setup() {
 

@@ -1,8 +1,7 @@
 /**
  ** PacmanBattle.h
  **
- ** Contenido:  Constantes utilizadas durante la ejecucion del programa,
- **             niveles de los voltajes, pines.
+ ** Contenido:  Constantes utilizadas durante la ejecucion del programa.
  **
  **/
 
@@ -34,6 +33,11 @@
  */
 #define RX_PIN_CONTROL_2  A2
 #define TX_PIN_CONTROL_2  9
+
+/** 
+ * Definicion: Delay
+ */
+#define DELAY             150
 
 
 /**
