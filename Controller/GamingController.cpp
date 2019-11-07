@@ -28,7 +28,7 @@ void GamingController::init(void) {
 
 char GamingController::detectMovement(void) {
 
-  int value = analogRead(this->rx);
+  uint8_t value = analogRead(this->rx);
 
   if (value <= this->level.LEFT_HIGH && value >= this->level.LEFT_LOW) {
     return LEFT;
