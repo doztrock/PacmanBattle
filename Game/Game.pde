@@ -1,4 +1,13 @@
 /**
+ * SERIAL
+ */
+
+/** 
+ * Declaracion: Manager 
+ */
+SerialManager serialManager;
+
+/**
  * ELEMENTOS DE JUEGO
  */
 
@@ -185,6 +194,16 @@ ArrayList<Movable> strawberry;
 
 void setup() {
 
+  /**
+   * SERIAL
+   */
+  
+  /** 
+   * Declaracion: Manager 
+   */
+  serialManager = new SerialManager(PacmanBattle.PORT, PacmanBattle.BAUD_RATE, this);
+  
+  
   /**
    * ELEMENTOS DE JUEGO
    */
@@ -476,6 +495,8 @@ void setup() {
 
 void draw() {
 
+  serialHandler();
+  
   /**
    * ELEMENTOS DE JUEGO
    */
@@ -830,15 +851,13 @@ void draw() {
   return;
 }
 
-void keyPressed() {
+void serialHandler() {
 
   if(gameStarted == false){
 
-    if(key == CODED){
+      switch(serialManager.read()){
 
-      switch(keyCode){
-
-        case LEFT:
+        case PacmanBattle.LEFT_CONTROL_1:
 
           if(currentStartMenuOption > 0){
             currentStartMenuOption--;
@@ -847,7 +866,7 @@ void keyPressed() {
 
           break;
 
-        case RIGHT:
+        case PacmanBattle.RIGHT_CONTROL_1:
 
           if(currentStartMenuOption < 2){
             currentStartMenuOption++;
@@ -856,7 +875,7 @@ void keyPressed() {
 
           break;
 
-        case ALT:
+        case PacmanBattle.UP_CONTROL_1:
         
           switch(currentStartMenuOption){
           
@@ -883,29 +902,27 @@ void keyPressed() {
 
       }
 
-    }
-
     return;
   }
 
-  switch(key) {
+  switch(serialManager.read()) {
 
-    case 'i':
+    case PacmanBattle.UP_CONTROL_1:
       directionMainCharacter = Movable.Up;
       break;
 
-    case 'k':
+    case PacmanBattle.DOWN_CONTROL_1:
       directionMainCharacter = Movable.Down;
       break;
 
-    case 'j':
+    case PacmanBattle.LEFT_CONTROL_1:
       directionMainCharacter = Movable.Left;
       break;
 
-    case 'l':
+    case PacmanBattle.RIGHT_CONTROL_1:
       directionMainCharacter = Movable.Right;
       break;
-
+/*
     case 'w':
       directionCharacter[currentCharacter] = Movable.Up;
       break;
@@ -933,7 +950,7 @@ void keyPressed() {
     case 'e':
       shootFromCharacter();
       break;
-
+*/
     default:
       break;
 

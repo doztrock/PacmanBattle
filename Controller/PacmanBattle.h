@@ -43,7 +43,7 @@
 /** 
  * Definicion: Delay
  */
-#define DELAY             150
+#define DELAY             100
 
 
 /**

@@ -132,23 +132,19 @@ void loop() {
   switch (movementController1) {
 
     case LEFT:
-      serialManager.write('L');
+      serialManager.write(LEFT_CONTROL_1);
       break;
 
     case UP:
-      serialManager.write('U');
+      serialManager.write(UP_CONTROL_1);
       break;
 
     case DOWN:
-      serialManager.write('D');
+      serialManager.write(DOWN_CONTROL_1);
       break;
 
     case RIGHT:
-      serialManager.write('R');
-      break;
-
-    case NOTHING:
-      serialManager.write('N');
+      serialManager.write(RIGHT_CONTROL_1);
       break;
 
   }
