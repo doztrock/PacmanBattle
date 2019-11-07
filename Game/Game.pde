@@ -106,6 +106,16 @@ Audio characterPop;
  */
 Audio beep;
 
+/**
+ * Declaracion: Audio de disparo (Protagonista)
+ */
+Audio mainShoot;
+
+/**
+ * Declaracion: Audio de disparo (Personaje)
+ */
+Audio characterShoot;
+
 
 /**
  * PROTAGONISTA
@@ -374,9 +384,19 @@ void setup() {
   characterPop = new Audio("audio/characterPop.mp3", Audio.Multiple, this);
 
   /**
-   * Declaracion: Audio de seleccion en menu principal
+   * Inicializacion: Audio de seleccion en menu principal
    */
   beep = new Audio("audio/beep.mp3", Audio.Multiple, this);
+
+  /**
+   * Inicializacion: Audio de disparo (Protagonista)
+   */
+  mainShoot = new Audio("audio/mainShoot.mp3", Audio.Multiple, this);
+
+  /**
+   * Inicializacion: Audio de disparo (Personaje)
+   */
+  characterShoot = new Audio("audio/characterShoot.mp3", Audio.Multiple, this);
 
 
   /**
@@ -1115,6 +1135,7 @@ void shootFromMainCharacter() {
 
   if (directionMainCharacter != Movable.None) {
     shootMainCharacter.add(new Movable(Movable.Rect, 6, 6).setFill(255, 255, 255).setStroke(0, 0, 0, 0).setSpeedX(7).setSpeedY(7).setX(shootX).setY(shootY).setDirection(directionMainCharacter));
+    mainShoot.play();
   }
 
   return;
@@ -1127,6 +1148,7 @@ void shootFromCharacter() {
 
   if (directionCharacter[currentCharacter] != Movable.None) {
     shootCharacter.add(new Movable(Movable.Rect, 6, 6).setFill(255, 255, 255).setStroke(0, 0, 0, 0).setSpeedX(7).setSpeedY(7).setX(shootX).setY(shootY).setDirection(directionCharacter[currentCharacter]));
+    characterShoot.play();
   }
 
   return;
