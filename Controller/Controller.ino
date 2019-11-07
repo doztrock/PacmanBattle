@@ -39,7 +39,9 @@ GamingController gamingController1(RX_PIN_CONTROL_1, TX_PIN_CONTROL_1);
 /** 
  * Declaracion: Control #2
  */
+/*
 GamingController gamingController2(RX_PIN_CONTROL_2, TX_PIN_CONTROL_2);
+*/
 
 
 void setup() {
@@ -53,14 +55,16 @@ void setup() {
    * Inicializacion: Niveles de control #1 
    */
   levelController1 = {
-    .LEFT_HIGH = 970 + OFFSET_HIGH,
-    .LEFT_LOW = 960 + OFFSET_LOW,
-    .UP_HIGH = 920 + OFFSET_HIGH,
-    .UP_LOW = 875 + OFFSET_LOW,
-    .DOWN_HIGH = 835 + OFFSET_HIGH,
-    .DOWN_LOW = 825 + OFFSET_LOW,
-    .RIGHT_HIGH = 735 + OFFSET_HIGH,
-    .RIGHT_LOW = 715 + OFFSET_LOW
+    .LEFT_HIGH = 215 + OFFSET_HIGH,
+    .LEFT_LOW = 200 + OFFSET_LOW,
+    .UP_HIGH = 165 + OFFSET_HIGH,
+    .UP_LOW = 150 + OFFSET_LOW,
+    .DOWN_HIGH = 75 + OFFSET_HIGH,
+    .DOWN_LOW = 60 + OFFSET_LOW,
+    .RIGHT_HIGH = 225 + OFFSET_HIGH,
+    .RIGHT_LOW = 210 + OFFSET_LOW,
+    .SHOOT_HIGH = 45 + OFFSET_HIGH,
+    .SHOOT_LOW = 30 + OFFSET_LOW
   };
 
   /**
@@ -72,22 +76,30 @@ void setup() {
   /**
    * Inicializacion: Niveles de control #2
    */
+  /*
   levelController1 = {
-    .LEFT_HIGH = 905 + OFFSET_HIGH,
-    .LEFT_LOW = 850 + OFFSET_LOW,
-    .UP_HIGH = 845 + OFFSET_HIGH,
-    .UP_LOW = 800 + OFFSET_LOW,
-    .DOWN_HIGH = 735 + OFFSET_HIGH,
-    .DOWN_LOW = 710 + OFFSET_LOW,
-    .RIGHT_HIGH = 685 + OFFSET_HIGH,
-    .RIGHT_LOW = 650 + OFFSET_LOW
+    .LEFT_HIGH = 135  + OFFSET_HIGH,
+    .LEFT_LOW = 115 + OFFSET_LOW,
+    .UP_HIGH = 70 + OFFSET_HIGH,
+    .UP_LOW = 50 + OFFSET_LOW,
+    .DOWN_HIGH =  + OFFSET_HIGH,
+    .DOWN_LOW =  + OFFSET_LOW,
+    .RIGHT_HIGH =  + OFFSET_HIGH,
+    .RIGHT_LOW =  + OFFSET_LOW,
+    .SHOOT_HIGH =  + OFFSET_HIGH,
+    .SHOOT_LOW =  + OFFSET_LOW,
+    .SWITCH_HIGH =  + OFFSET_HIGH,
+    .SWITCH_LOW =  + OFFSET_LOW,
   };
+  */
 
   /**
    * Inicializacion: Control #2 
    */
+  /*
   gamingController2.init();
   gamingController2.assign(levelController2);
+  */
 
   return;
 }
@@ -120,48 +132,58 @@ void loop() {
   switch (movementController1) {
 
     case LEFT:
-      serialManager.write(LEFT_CONTROL_1);
+      serialManager.write('L');
       break;
 
     case UP:
-      serialManager.write(UP_CONTROL_1);
+      serialManager.write('U');
       break;
 
     case DOWN:
-      serialManager.write(DOWN_CONTROL_1);
+      serialManager.write('D');
       break;
 
     case RIGHT:
-      serialManager.write(RIGHT_CONTROL_1);
+      serialManager.write('R');
+      break;
+
+    case NOTHING:
+      serialManager.write('N');
       break;
 
   }
   
 
   /**
-   * Deteccion: Control #1 
+   * Deteccion: Control #2
    */
-  char movementController2 = gamingController2.detectMovement();
+  /*
+  char movementController2 = gamingController2.detectMovement(serialManager);
 
   switch (movementController2) {
 
     case LEFT:
-      serialManager.write(LEFT_CONTROL_2);
+      serialManager.write('L');
       break;
 
     case UP:
-      serialManager.write(UP_CONTROL_2);
+      serialManager.write('U');
       break;
 
     case DOWN:
-      serialManager.write(DOWN_CONTROL_2);
+      serialManager.write('D');
       break;
 
     case RIGHT:
-      serialManager.write(RIGHT_CONTROL_2);
+      serialManager.write('R');
+      break;
+
+    case NOTHING:
+      serialManager.write('N');
       break;
 
   }
+  */
 
   delay(DELAY);
   return;
