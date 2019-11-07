@@ -4,6 +4,8 @@
 #include "Arduino.h"
 #include "HardwareSerial.h"
 
+#include <stdint.h>
+
 class SerialManager {
   private:
     HardwareSerial *serial;
@@ -13,6 +15,7 @@ class SerialManager {
     void init(void);
     char read(void);
     void write(char);
+    void write(uint8_t);
 };
 
 #endif

@@ -28,3 +28,8 @@ void SerialManager::write(char character) {
   this->serial->println(character);
   return;
 }
+
+void SerialManager::write(uint8_t number) {  
+  this->serial->println(String(number));
+  return;
+}
