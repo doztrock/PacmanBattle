@@ -71,7 +71,7 @@ void setup() {
    * Inicializacion: Control #1 
    */
   gamingController1.init();
-  gamingController2.assign(levelController1);
+  gamingController1.assign(levelController1);
 
   /**
    * Inicializacion: Niveles de control #2
@@ -116,11 +116,11 @@ void loop() {
     case VIBRATE_CONTROL_1:
       gamingController1.vibrate();
       break;
-
+/*
     case VIBRATE_CONTROL_2:
       gamingController2.vibrate();
       break;
-
+*/
   }
 
 
