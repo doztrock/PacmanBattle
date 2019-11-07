@@ -1,7 +1,6 @@
-#include "HardwareSerial.h"
+#include "PacmanBattle.h"
 #include "SerialManager.h"
 #include "GamingController.h"
-#include "PacmanBattle.h"
 
 /**
  * SERIAL 
@@ -11,6 +10,21 @@
  * Declaracion: Manager
  */
 SerialManager serialManager(&Serial, BAUD_RATE);
+
+
+/**
+ * NIVELES
+ */
+
+/** 
+ * Declaracion: Niveles de control #1
+ */
+Level levelController1;
+
+/** 
+ * Declaracion: Niveles de control #2
+ */
+Level levelController2;
 
 
 /**
@@ -30,14 +44,50 @@ GamingController gamingController2(RX_PIN_CONTROL_2, TX_PIN_CONTROL_2);
 
 void setup() {
 
-  /* Inicializacion: Administrador de serial */
+  /**
+   * Inicializacion: Administrador de serial 
+   */
   serialManager.init();
 
-  /* Inicializacion: Control #1 */
-  gamingController1.init();
+  /**
+   * Inicializacion: Niveles de control #1 
+   */
+  levelController1 = {
+    .LEFT_HIGH = 970 + OFFSET_HIGH,
+    .LEFT_LOW = 960 + OFFSET_LOW,
+    .UP_HIGH = 920 + OFFSET_HIGH,
+    .UP_LOW = 875 + OFFSET_LOW,
+    .DOWN_HIGH = 835 + OFFSET_HIGH,
+    .DOWN_LOW = 825 + OFFSET_LOW,
+    .RIGHT_HIGH = 735 + OFFSET_HIGH,
+    .RIGHT_LOW = 715 + OFFSET_LOW
+  };
 
-  /* Inicializacion: Control #2 */
+  /**
+   * Inicializacion: Control #1 
+   */
+  gamingController1.init();
+  gamingController2.assign(levelController1);
+
+  /**
+   * Inicializacion: Niveles de control #2
+   */
+  levelController1 = {
+    .LEFT_HIGH = 905 + OFFSET_HIGH,
+    .LEFT_LOW = 850 + OFFSET_LOW,
+    .UP_HIGH = 845 + OFFSET_HIGH,
+    .UP_LOW = 800 + OFFSET_LOW,
+    .DOWN_HIGH = 735 + OFFSET_HIGH,
+    .DOWN_LOW = 710 + OFFSET_LOW,
+    .RIGHT_HIGH = 685 + OFFSET_HIGH,
+    .RIGHT_LOW = 650 + OFFSET_LOW
+  };
+
+  /**
+   * Inicializacion: Control #2 
+   */
   gamingController2.init();
+  gamingController2.assign(levelController2);
 
   return;
 }

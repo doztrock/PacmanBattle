@@ -34,6 +34,12 @@
 #define RX_PIN_CONTROL_2  A2
 #define TX_PIN_CONTROL_2  9
 
+/**
+ * Definicion: Offset
+ */
+#define OFFSET_HIGH       0
+#define OFFSET_LOW        0
+
 /** 
  * Definicion: Delay
  */
