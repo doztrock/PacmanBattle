@@ -31,7 +31,7 @@
 /** 
  * Definicion: RX/TX Control #2
  */
-#define RX_PIN_CONTROL_2  A2
+#define RX_PIN_CONTROL_2  A1
 #define TX_PIN_CONTROL_2  9
 
 /**
