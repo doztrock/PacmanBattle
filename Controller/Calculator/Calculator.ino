@@ -50,10 +50,11 @@ void loop() {
       counter_control_2++;
     }
 
-    Serial.println(counter);
+    Serial.print(".");
 
   } else {
 
+    Serial.println("");
     Serial.print("MAX CONTROL 1:");
     Serial.println(getMaxValue(value_control_1, counter_control_1));
     Serial.print("MIN CONTROL 1:");
