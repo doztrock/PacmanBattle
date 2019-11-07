@@ -494,9 +494,7 @@ void setup() {
 }
 
 void draw() {
-
-  serialHandler();
-  
+ 
   /**
    * ELEMENTOS DE JUEGO
    */
@@ -851,13 +849,14 @@ void draw() {
   return;
 }
 
-void serialHandler() {
+void serialEvent(Serial _) {
 
   if(gameStarted == false){
 
       switch(serialManager.read()){
 
         case PacmanBattle.LEFT_CONTROL_1:
+        case PacmanBattle.LEFT_CONTROL_2:
 
           if(currentStartMenuOption > 0){
             currentStartMenuOption--;
@@ -867,6 +866,7 @@ void serialHandler() {
           break;
 
         case PacmanBattle.RIGHT_CONTROL_1:
+        case PacmanBattle.RIGHT_CONTROL_2:
 
           if(currentStartMenuOption < 2){
             currentStartMenuOption++;
@@ -922,36 +922,33 @@ void serialHandler() {
     case PacmanBattle.RIGHT_CONTROL_1:
       directionMainCharacter = Movable.Right;
       break;
-/*
-    case 'w':
+
+    case PacmanBattle.UP_CONTROL_2:
       directionCharacter[currentCharacter] = Movable.Up;
       break;
 
-    case 's':
+    case PacmanBattle.DOWN_CONTROL_2:
       directionCharacter[currentCharacter] = Movable.Down;
       break;
 
-    case 'a':
+    case PacmanBattle.LEFT_CONTROL_2:
       directionCharacter[currentCharacter] = Movable.Left;
       break;
 
-    case 'd':
+    case PacmanBattle.RIGHT_CONTROL_2:
       directionCharacter[currentCharacter] = Movable.Right;
       break;
 
-    case 'q':
+    case PacmanBattle.SWITCH_CONTROL_2:
       switchGhost();
       break;
 
-    case 'p':
+    case PacmanBattle.SHOOT_CONTROL_1:
       shootFromMainCharacter();
       break;
 
-    case 'e':
+    case PacmanBattle.SHOOT_CONTROL_2:
       shootFromCharacter();
-      break;
-*/
-    default:
       break;
 
   }
