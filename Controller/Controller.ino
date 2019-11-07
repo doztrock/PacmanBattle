@@ -94,7 +94,9 @@ void setup() {
 
 void loop() {
 
-  /* Lectura: Administrador de serial */
+  /**
+   * Lectura: Administrador de serial 
+   */
   char readingSerialManager = serialManager.read();
 
   switch (readingSerialManager) {
@@ -109,11 +111,13 @@ void loop() {
 
   }
 
-  /* Deteccion: Control #1 */
-  /*
-    char movementController1 = gamingController1.detectMovement();
 
-    switch (movementController1) {
+  /**
+   * Deteccion: Control #1 
+   */
+  char movementController1 = gamingController1.detectMovement();
+
+  switch (movementController1) {
 
     case LEFT:
       serialManager.write(LEFT_CONTROL_1);
@@ -131,10 +135,12 @@ void loop() {
       serialManager.write(RIGHT_CONTROL_1);
       break;
 
-    }
-  */
+  }
+  
 
-  /* Deteccion: Control #2 */
+  /**
+   * Deteccion: Control #1 
+   */
   char movementController2 = gamingController2.detectMovement();
 
   switch (movementController2) {
@@ -157,6 +163,6 @@ void loop() {
 
   }
 
-  delay(150);
+  delay(DELAY);
   return;
 }
