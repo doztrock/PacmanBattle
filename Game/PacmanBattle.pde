@@ -1,7 +1,12 @@
 class PacmanBattle {
 
+  /* Plataforma */
+  public static final int ARDUINO   = (1 << 0);
+  public static final int PC        = (1 << 1); 
+  public static final int PLATFORM  = PC;
+
   /* Velocidad de transmision */
-  public static final String PORT = "/dev/ttyACM0";
+  public static final String PORT   = "/dev/ttyACM0";
   public static final int BAUD_RATE = 9600;
 
   /** Instrucciones: Lectura */
@@ -26,4 +31,5 @@ class PacmanBattle {
   /** Instrucciones: Escritura */
   public static final char VIBRATE_CONTROL_1 = 'J';
   public static final char VIBRATE_CONTROL_2 = 'K';
+
 }

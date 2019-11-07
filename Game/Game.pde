@@ -201,7 +201,9 @@ void setup() {
   /** 
    * Declaracion: Manager 
    */
-  serialManager = new SerialManager(PacmanBattle.PORT, PacmanBattle.BAUD_RATE, this);
+  if(PacmanBattle.PLATFORM == PacmanBattle.ARDUINO){
+    serialManager = new SerialManager(PacmanBattle.PORT, PacmanBattle.BAUD_RATE, this);
+  }
   
   
   /**
@@ -851,6 +853,10 @@ void draw() {
 
 void serialEvent(Serial _) {
 
+  if(PacmanBattle.PLATFORM != PacmanBattle.ARDUINO){
+    return;
+  }
+
   if(gameStarted == false){
 
       switch(serialManager.read()){
@@ -949,6 +955,122 @@ void serialEvent(Serial _) {
 
     case PacmanBattle.SHOOT_CONTROL_2:
       shootFromCharacter();
+      break;
+
+  }
+
+  return;
+}
+
+void keyPressed() {
+
+  if(PacmanBattle.PLATFORM != PacmanBattle.PC){
+    return;
+  }
+
+  if(gameStarted == false){
+
+    if(key == CODED){
+
+      switch(keyCode){
+
+        case LEFT:
+
+          if(currentStartMenuOption > 0){
+            currentStartMenuOption--;
+            beep.play();
+          }
+
+          break;
+
+        case RIGHT:
+
+          if(currentStartMenuOption < 2){
+            currentStartMenuOption++;
+            beep.play();
+          }
+
+          break;
+
+        case ALT:
+        
+          switch(currentStartMenuOption){
+          
+            // OPCION: 1 MINUTO
+            case 0:
+              gameDuration = 60;
+              break;
+          
+            // OPCION: 3 MINUTOS
+            case 1:
+              gameDuration = 180;
+              break;
+          
+            // OPCION: 5 MINUTOS
+            case 2:
+              gameDuration = 300;
+              break;
+          
+          }
+          
+          gameStarted = true;
+
+          break;
+
+      }
+
+    }
+
+    return;
+  }
+
+  switch(key) {
+
+    case 'i':
+      directionMainCharacter = Movable.Up;
+      break;
+
+    case 'k':
+      directionMainCharacter = Movable.Down;
+      break;
+
+    case 'j':
+      directionMainCharacter = Movable.Left;
+      break;
+
+    case 'l':
+      directionMainCharacter = Movable.Right;
+      break;
+
+    case 'w':
+      directionCharacter[currentCharacter] = Movable.Up;
+      break;
+
+    case 's':
+      directionCharacter[currentCharacter] = Movable.Down;
+      break;
+
+    case 'a':
+      directionCharacter[currentCharacter] = Movable.Left;
+      break;
+
+    case 'd':
+      directionCharacter[currentCharacter] = Movable.Right;
+      break;
+
+    case 'q':
+      switchGhost();
+      break;
+
+    case 'p':
+      shootFromMainCharacter();
+      break;
+
+    case 'e':
+      shootFromCharacter();
+      break;
+
+    default:
       break;
 
   }
