@@ -148,6 +148,11 @@ int safeYMainCharacter;
 ArrayList<Movable> shootMainCharacter;
 
 /**
+ * Declaracion: Contador de disparos en protagonista 
+ */
+int shootMainCharacterCounter;
+
+/**
  * Declaracion: Puntaje de protagonista 
  */
 int scoreMainCharacter;
@@ -414,12 +419,12 @@ void setup() {
   mainCharacter = new Movable(Movable.Rect, 35, 35).setFill(255, 211, 42).setStroke(232, 65, 24, 3).setSpeedX(4).setSpeedY(5).setX(729).setY(105);
 
   /**
-   * Declaracion: Direccion de protagonista 
+   * Inicializacion: Direccion de protagonista 
    */
   directionMainCharacter = Movable.None;
 
   /**
-   * Declaracion: Zona de protagonista 
+   * Inicializacion: Zona de protagonista 
    */
   zoneMainCharacter = new Movable(Movable.Rect, 77, 64).setFill(76, 209, 55).setStroke(255, 255, 255, 1).setX(707).setY(93);
 
@@ -433,6 +438,11 @@ void setup() {
    * Inicializacion: Disparos de protagonista 
    */
   shootMainCharacter = new ArrayList<Movable>();
+
+  /**
+   * Inicializacion: Contador de disparos en protagonista 
+   */
+  shootMainCharacterCounter = 0;
 
   /**
    * Inicializacion: Puntaje de protagonista 
@@ -722,6 +732,15 @@ void draw() {
    */
 
   /**
+   * Desaparicion: Protagonista 
+   */
+  if(shootMainCharacterCounter == 5){
+    mainCharacter.setX(729).setY(105);
+    shootMainCharacterCounter = 0;
+    directionMainCharacter = Movable.None;
+  }
+
+  /**
    * Aparicion: Protagonista 
    */
   mainCharacter.move(directionMainCharacter);
@@ -906,12 +925,16 @@ void draw() {
       characterShoot.setDirection(Movable.None);
     }
 
-    // Deteccion: Choque (Disparo <=> Personaje actual)
+    // Deteccion: Choque (Disparo <=> Protagonista)
     if (characterShoot.beside(mainCharacter)) {
+
       characterShoot.setX(-characterShoot.getX());
       characterShoot.setY(-characterShoot.getY());
       characterShoot.setDirection(Movable.None);
       scoreCharacter = scoreCharacter + 100;
+
+      shootMainCharacterCounter++;
+
     }
 
   }
