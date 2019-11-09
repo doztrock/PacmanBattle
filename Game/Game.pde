@@ -182,6 +182,11 @@ int[] safeYCharacter;
 ArrayList<Movable> shootCharacter;
 
 /**
+ * Declaracion: Contador de disparos en personajes 
+ */
+int[] shootCharacterCounter;
+
+/**
  * Declaracion: Puntaje de personajes 
  */
 int scoreCharacter;
@@ -490,6 +495,13 @@ void setup() {
   shootCharacter = new ArrayList<Movable>();
 
   /**
+   * Inicializacion: Contador de disparos en personajes 
+   */
+  shootCharacterCounter = new int[]{
+    0, 0, 0, 0
+  };
+
+  /**
    * Inicializacion: Puntaje de personajes 
    */
   scoreCharacter = 0;
@@ -737,6 +749,44 @@ void draw() {
    */
 
   /**
+   * Desaparicion: Personajes 
+   */
+  for (Movable ghost : character) {
+
+    if(shootCharacterCounter[ghost.getID()] == 5){
+
+      switch(ghost.getID()){
+
+        // BLINKY
+        case 0:
+          ghost.setX(350).setY(255);
+          break;
+
+        // CLYDE
+        case 1:
+          ghost.setX(350).setY(320);
+          break;
+
+        // INKY
+        case 2:
+          ghost.setX(420).setY(255);
+          break;
+
+        // PINKY
+        case 3:
+          ghost.setX(420).setY(320);
+          break;
+
+      }
+
+      shootCharacterCounter[ghost.getID()] = 0;
+      directionCharacter[ghost.getID()] = direction[round(random(0, (direction.length - 1)))];
+
+    }
+
+  }
+
+  /**
    * Aparicion: Personaje actual
    */
   character[currentCharacter].move(directionCharacter[currentCharacter]);
@@ -810,10 +860,14 @@ void draw() {
 
     // Deteccion: Choque (Disparo <=> Personaje actual)
     if (mainShoot.beside(character[currentCharacter]) ) {
+      
       mainShoot.setX(-mainShoot.getX());
       mainShoot.setY(-mainShoot.getY());
       mainShoot.setDirection(Movable.None);
       scoreMainCharacter = scoreMainCharacter + 100;
+      
+      shootCharacterCounter[currentCharacter]++;
+      
     }
 
     for (Movable ghost : character) {
@@ -822,10 +876,14 @@ void draw() {
 
         // Deteccion: Choque (Disparo <=> Personaje)
         if (mainShoot.beside(ghost)) {
+          
           mainShoot.setX(-mainShoot.getX());
           mainShoot.setY(-mainShoot.getY());
           mainShoot.setDirection(Movable.None);
           scoreMainCharacter = scoreMainCharacter + 20;
+          
+          shootCharacterCounter[ghost.getID()]++;
+          
         }
 
       }
