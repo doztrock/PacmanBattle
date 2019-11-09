@@ -116,6 +116,11 @@ Audio mainShoot;
  */
 Audio characterShoot;
 
+/**
+ * Declaracion: Audio de desvanecimiento
+ */
+Audio disappear;
+
 
 /**
  * PROTAGONISTA
@@ -407,6 +412,11 @@ void setup() {
    * Inicializacion: Audio de disparo (Personaje)
    */
   characterShoot = new Audio("audio/characterShoot.mp3", Audio.Multiple, this);
+
+  /**
+   * Declaracion: Audio de desvanecimiento
+   */
+  disappear = new Audio("audio/disappear.mp3", Audio.Multiple, this);
 
 
   /**
@@ -735,9 +745,13 @@ void draw() {
    * Desaparicion: Protagonista 
    */
   if(shootMainCharacterCounter == 5){
+
+    disappear.play();
+
     mainCharacter.setX(729).setY(105);
     shootMainCharacterCounter = 0;
     directionMainCharacter = Movable.None;
+
   }
 
   /**
@@ -773,6 +787,8 @@ void draw() {
   for (Movable ghost : character) {
 
     if(shootCharacterCounter[ghost.getID()] == 5){
+
+      disappear.play();
 
       switch(ghost.getID()){
 
