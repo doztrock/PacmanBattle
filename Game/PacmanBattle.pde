@@ -3,7 +3,7 @@ class PacmanBattle {
   /* Plataforma */
   public static final int ARDUINO   = (1 << 0);
   public static final int PC        = (1 << 1); 
-  public static final int PLATFORM  = PC;
+  public static final int PLATFORM  = ARDUINO;
 
   /* Velocidad de transmision */
   public static final String PORT   = "/dev/ttyACM0";

@@ -882,15 +882,20 @@ void draw() {
   /** 
    * Aparicion: Disparos de protagonista 
    */
-  for (Movable mainShoot : shootMainCharacter) {
+  for (int index = 0; index < shootMainCharacter.size(); index++) {
 
+    Movable mainShoot = shootMainCharacter.get(index);
     mainShoot.move(mainShoot.getDirection());
 
     // Deteccion: Choque (Disparo <=> Laberinto || Disparo <=> Zona de personajes)
     if (mainShoot.beside(maze) || mainShoot.beside(zoneCharacter)) {
+      
       mainShoot.setX(-mainShoot.getX());
       mainShoot.setY(-mainShoot.getY());
       mainShoot.setDirection(Movable.None);
+      
+      shootMainCharacter.remove(index);
+      
     }
 
     // Deteccion: Choque (Disparo <=> Personaje actual)
@@ -902,6 +907,7 @@ void draw() {
       scoreMainCharacter = scoreMainCharacter + 100;
       
       shootCharacterCounter[currentCharacter]++;
+      shootMainCharacter.remove(index);
       
     }
 
@@ -918,6 +924,7 @@ void draw() {
           scoreMainCharacter = scoreMainCharacter + 20;
           
           shootCharacterCounter[ghost.getID()]++;
+          shootMainCharacter.remove(index);
           
         }
 
@@ -930,15 +937,20 @@ void draw() {
   /**
    * Aparicion: Disparos de personaje actual
    */
-  for (Movable characterShoot : shootCharacter) {
+  for (int index = 0; index < shootCharacter.size(); index++) {
 
+    Movable characterShoot = shootCharacter.get(index);
     characterShoot.move(characterShoot.getDirection());
 
     // Deteccion: Choque (Disparo <=> Laberinto || Disparo <=>  Zona de protagonista)
     if (characterShoot.beside(maze) || characterShoot.beside(zoneMainCharacter)) {
+
       characterShoot.setX(-characterShoot.getX());
       characterShoot.setY(-characterShoot.getY());
       characterShoot.setDirection(Movable.None);
+
+      shootCharacter.remove(index);
+
     }
 
     // Deteccion: Choque (Disparo <=> Protagonista)
@@ -950,6 +962,7 @@ void draw() {
       scoreCharacter = scoreCharacter + 100;
 
       shootMainCharacterCounter++;
+      shootCharacter.remove(index);
 
     }
 
