@@ -50,12 +50,15 @@ char GamingController::detectMovement(void) {
     return SHOOT;
   }
 
+  if (value <= this->level.SWITCH_HIGH && value >= this->level.SWITCH_LOW) {
+    return SWITCH;
+  }
+
   return NOTHING;
 }
 
 void GamingController::vibrate(void) {
 
-// TODO: Este delay se debe quitar, porque pausaria el juego
   analogWrite(this->tx, 100);
   delay(500);
   analogWrite(this->tx, 0);
@@ -65,5 +68,13 @@ void GamingController::vibrate(void) {
 
 void GamingController::assign(Level level) {
   this->level = level;
+  return;
+}
+
+void GamingController::calibrate(SerialManager serialManager){
+
+  uint8_t value = analogRead(this->rx);
+  serialManager.write("=>" + String(value));
+
   return;
 }

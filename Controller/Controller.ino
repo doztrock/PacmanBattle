@@ -39,9 +39,7 @@ GamingController gamingController1(RX_PIN_CONTROL_1, TX_PIN_CONTROL_1);
 /** 
  * Declaracion: Control #2
  */
-/*
 GamingController gamingController2(RX_PIN_CONTROL_2, TX_PIN_CONTROL_2);
-*/
 
 
 void setup() {
@@ -76,30 +74,26 @@ void setup() {
   /**
    * Inicializacion: Niveles de control #2
    */
-  /*
-  levelController1 = {
-    .LEFT_HIGH = 135  + OFFSET_HIGH,
-    .LEFT_LOW = 115 + OFFSET_LOW,
-    .UP_HIGH = 70 + OFFSET_HIGH,
-    .UP_LOW = 50 + OFFSET_LOW,
-    .DOWN_HIGH =  + OFFSET_HIGH,
-    .DOWN_LOW =  + OFFSET_LOW,
-    .RIGHT_HIGH =  + OFFSET_HIGH,
-    .RIGHT_LOW =  + OFFSET_LOW,
-    .SHOOT_HIGH =  + OFFSET_HIGH,
-    .SHOOT_LOW =  + OFFSET_LOW,
-    .SWITCH_HIGH =  + OFFSET_HIGH,
-    .SWITCH_LOW =  + OFFSET_LOW,
+  levelController2 = {
+    .LEFT_HIGH = 182  + OFFSET_HIGH,
+    .LEFT_LOW = 175 + OFFSET_LOW,
+    .UP_HIGH = 130 + OFFSET_HIGH,
+    .UP_LOW = 115 + OFFSET_LOW,
+    .DOWN_HIGH = 25 + OFFSET_HIGH,
+    .DOWN_LOW = 10 + OFFSET_LOW,
+    .RIGHT_HIGH = 191 + OFFSET_HIGH,
+    .RIGHT_LOW = 184 + OFFSET_LOW,
+    .SHOOT_HIGH = 250 + OFFSET_HIGH,
+    .SHOOT_LOW = 240 + OFFSET_LOW,
+    .SWITCH_HIGH = 65 + OFFSET_HIGH,
+    .SWITCH_LOW = 55 + OFFSET_LOW,
   };
-  */
 
   /**
    * Inicializacion: Control #2 
    */
-  /*
   gamingController2.init();
   gamingController2.assign(levelController2);
-  */
 
   return;
 }
@@ -116,11 +110,11 @@ void loop() {
     case VIBRATE_CONTROL_1:
       gamingController1.vibrate();
       break;
-/*
+
     case VIBRATE_CONTROL_2:
       gamingController2.vibrate();
       break;
-*/
+
   }
 
 
@@ -152,38 +146,40 @@ void loop() {
       break;
 
   }
-  
+
 
   /**
    * Deteccion: Control #2
    */
-  /*
-  char movementController2 = gamingController2.detectMovement(serialManager);
+  char movementController2 = gamingController2.detectMovement();
 
   switch (movementController2) {
 
     case LEFT:
-      serialManager.write('L');
+      serialManager.write(LEFT_CONTROL_2);
       break;
 
     case UP:
-      serialManager.write('U');
+      serialManager.write(UP_CONTROL_2);
       break;
 
     case DOWN:
-      serialManager.write('D');
+      serialManager.write(DOWN_CONTROL_2);
       break;
 
     case RIGHT:
-      serialManager.write('R');
+      serialManager.write(RIGHT_CONTROL_2);
       break;
 
-    case NOTHING:
-      serialManager.write('N');
+    case SHOOT:
+      serialManager.write(SHOOT_CONTROL_2);
+      break;
+
+    case SWITCH:
+      serialManager.write(SWITCH_CONTROL_2);
       break;
 
   }
-  */
 
   delay(DELAY);
   return;

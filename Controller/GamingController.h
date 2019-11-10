@@ -11,8 +11,9 @@
 #define GAMINGCONTROLLER_H 1
 
 #include "Arduino.h"
-#include "PacmanBattle.h"
 #include "Level.h"
+#include "PacmanBattle.h"
+#include "SerialManager.h"
 
 #include <stdint.h>
 
@@ -27,6 +28,7 @@ class GamingController {
     char detectMovement(void);
     void vibrate(void);
     void assign(Level);
+    void calibrate(SerialManager);
 };
 
 #endif

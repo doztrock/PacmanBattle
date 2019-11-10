@@ -16,6 +16,7 @@ class SerialManager {
     char read(void);
     void write(char);
     void write(uint8_t);
+    void write(String);
 };
 
 #endif

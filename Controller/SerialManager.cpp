@@ -33,3 +33,8 @@ void SerialManager::write(uint8_t number) {
   this->serial->println(String(number));
   return;
 }
+
+void SerialManager::write(String string) {  
+  this->serial->println(string);
+  return;
+}
