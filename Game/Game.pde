@@ -744,7 +744,7 @@ void draw() {
   /**
    * Desaparicion: Protagonista 
    */
-  if(shootMainCharacterCounter == 5){
+  if(shootMainCharacterCounter >= 5){
 
     disappear.play();
 
@@ -786,7 +786,7 @@ void draw() {
    */
   for (Movable ghost : character) {
 
-    if(shootCharacterCounter[ghost.getID()] == 5){
+    if(shootCharacterCounter[ghost.getID()] >= 5){
 
       disappear.play();
 
