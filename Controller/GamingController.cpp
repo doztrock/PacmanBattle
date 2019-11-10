@@ -46,6 +46,10 @@ char GamingController::detectMovement(void) {
     return RIGHT;
   }
 
+  if (value <= this->level.SHOOT_HIGH && value >= this->level.SHOOT_LOW) {
+    return SHOOT;
+  }
+
   return NOTHING;
 }
 

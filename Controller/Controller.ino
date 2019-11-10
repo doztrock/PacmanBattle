@@ -147,6 +147,10 @@ void loop() {
       serialManager.write(RIGHT_CONTROL_1);
       break;
 
+    case SHOOT:
+      serialManager.write(SHOOT_CONTROL_1);
+      break;
+
   }
   
 
