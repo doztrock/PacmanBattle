@@ -1012,6 +1012,8 @@ void serialEvent(Serial _) {
           break;
 
         case PacmanBattle.SHOOT_CONTROL_1:
+        case PacmanBattle.SHOOT_CONTROL_2:
+        case PacmanBattle.SWITCH_CONTROL_2:
         
           switch(currentStartMenuOption){
           
