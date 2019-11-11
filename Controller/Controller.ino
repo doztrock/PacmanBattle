@@ -75,18 +75,18 @@ void setup() {
    * Inicializacion: Niveles de control #2
    */
   levelController2 = {
-    .LEFT_HIGH = 182  + OFFSET_HIGH,
-    .LEFT_LOW = 182 - OFFSET_LOW,
-    .UP_HIGH = 114 + OFFSET_HIGH,
-    .UP_LOW = 114 - OFFSET_LOW,
-    .DOWN_HIGH = 26 + OFFSET_HIGH,
-    .DOWN_LOW = 26 - OFFSET_LOW,
-    .RIGHT_HIGH = 188 + OFFSET_HIGH,
-    .RIGHT_LOW = 188 - OFFSET_LOW,
-    .SHOOT_HIGH = 247 + OFFSET_HIGH,
-    .SHOOT_LOW = 247 - OFFSET_LOW,
-    .SWITCH_HIGH = 60 + OFFSET_HIGH,
-    .SWITCH_LOW = 60 - OFFSET_LOW,
+    .LEFT_HIGH = 175  + OFFSET_HIGH,
+    .LEFT_LOW = 175 - OFFSET_LOW,
+    .UP_HIGH = 109 + OFFSET_HIGH,
+    .UP_LOW = 109 - OFFSET_LOW,
+    .DOWN_HIGH = 27 + OFFSET_HIGH,
+    .DOWN_LOW = 27 - OFFSET_LOW,
+    .RIGHT_HIGH = 177 + OFFSET_HIGH,
+    .RIGHT_LOW = 177 - OFFSET_LOW,
+    .SHOOT_HIGH = 243 + OFFSET_HIGH,
+    .SHOOT_LOW = 243 - OFFSET_LOW,
+    .SWITCH_HIGH = 57 + OFFSET_HIGH,
+    .SWITCH_LOW = 57 - OFFSET_LOW,
   };
 
   /**
@@ -122,6 +122,7 @@ void loop() {
    * Deteccion: Control #1 
    */
   char movementController1 = gamingController1.detectMovement();
+  //gamingController1.calibrate(serialManager);
 
   switch (movementController1) {
 
@@ -152,6 +153,7 @@ void loop() {
    * Deteccion: Control #2
    */
   char movementController2 = gamingController2.detectMovement();
+  //gamingController2.calibrate(serialManager);
 
   switch (movementController2) {
 
