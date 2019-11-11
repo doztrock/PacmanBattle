@@ -53,16 +53,16 @@ void setup() {
    * Inicializacion: Niveles de control #1 
    */
   levelController1 = {
-    .LEFT_HIGH = 215 + OFFSET_HIGH,
-    .LEFT_LOW = 200 - OFFSET_LOW,
-    .UP_HIGH = 165 + OFFSET_HIGH,
-    .UP_LOW = 150 - OFFSET_LOW,
-    .DOWN_HIGH = 75 + OFFSET_HIGH,
-    .DOWN_LOW = 60 - OFFSET_LOW,
-    .RIGHT_HIGH = 225 + OFFSET_HIGH,
-    .RIGHT_LOW = 210 - OFFSET_LOW,
-    .SHOOT_HIGH = 45 + OFFSET_HIGH,
-    .SHOOT_LOW = 30-+ OFFSET_LOW
+    .LEFT_HIGH = 243 + OFFSET_HIGH,
+    .LEFT_LOW = 243 - OFFSET_LOW,
+    .UP_HIGH = 230 + OFFSET_HIGH,
+    .UP_LOW = 230 - OFFSET_LOW,
+    .DOWN_HIGH = 208 + OFFSET_HIGH,
+    .DOWN_LOW = 208 - OFFSET_LOW,
+    .RIGHT_HIGH = 181 + OFFSET_HIGH,
+    .RIGHT_LOW = 181 - OFFSET_LOW,
+    .SHOOT_HIGH = 135 + OFFSET_HIGH,
+    .SHOOT_LOW = 135-+ OFFSET_LOW
   };
 
   /**
@@ -75,18 +75,18 @@ void setup() {
    * Inicializacion: Niveles de control #2
    */
   levelController2 = {
-    .LEFT_HIGH = 175  + OFFSET_HIGH,
-    .LEFT_LOW = 175 - OFFSET_LOW,
-    .UP_HIGH = 109 + OFFSET_HIGH,
-    .UP_LOW = 109 - OFFSET_LOW,
-    .DOWN_HIGH = 27 + OFFSET_HIGH,
-    .DOWN_LOW = 27 - OFFSET_LOW,
-    .RIGHT_HIGH = 177 + OFFSET_HIGH,
-    .RIGHT_LOW = 177 - OFFSET_LOW,
-    .SHOOT_HIGH = 243 + OFFSET_HIGH,
-    .SHOOT_LOW = 243 - OFFSET_LOW,
-    .SWITCH_HIGH = 57 + OFFSET_HIGH,
-    .SWITCH_LOW = 57 - OFFSET_LOW,
+    .LEFT_HIGH = 237  + OFFSET_HIGH,
+    .LEFT_LOW = 237 - OFFSET_LOW,
+    .UP_HIGH = 225 + OFFSET_HIGH,
+    .UP_LOW = 225 - OFFSET_LOW,
+    .DOWN_HIGH = 203 + OFFSET_HIGH,
+    .DOWN_LOW = 203 - OFFSET_LOW,
+    .RIGHT_HIGH = 178 + OFFSET_HIGH,
+    .RIGHT_LOW = 178 - OFFSET_LOW,
+    .SHOOT_HIGH = 125 + OFFSET_HIGH,
+    .SHOOT_LOW = 125 - OFFSET_LOW,
+    .SWITCH_HIGH = 78 + OFFSET_HIGH,
+    .SWITCH_LOW = 78 - OFFSET_LOW,
   };
 
   /**
