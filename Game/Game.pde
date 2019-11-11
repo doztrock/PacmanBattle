@@ -121,6 +121,11 @@ Audio characterShoot;
  */
 Audio disappear;
 
+/**
+ * Declaracion: Audio de turbo
+ */
+Audio turbo;
+
 
 /**
  * PROTAGONISTA
@@ -215,6 +220,29 @@ int currentCharacter;
  * Declaracion: Moras 
  */
 ArrayList<Movable> strawberry;
+
+
+/**
+ * TURBO
+ */
+
+/**
+ * Constantes
+ */
+final int TURBO_RUNNING = (1 << 0);
+final int TURBO_STOPPED = (1 << 1);
+
+/**
+ * Declaracion: Estado turbo de protagonista
+ */
+int turboMainCharacter;
+int turboMainCharacterCurrentDuration;
+
+/**
+ * Declaracion: Estado turbo de personajes
+ */
+int turboCharacter;
+int turboCharacterCurrentDuration;
 
 
 void setup() {
@@ -418,6 +446,11 @@ void setup() {
    */
   disappear = new Audio("audio/disappear.mp3", Audio.Multiple, this);
 
+  /**
+   * Declaracion: Audio de turbo
+   */
+  turbo = new Audio("audio/turbo.mp3", Audio.Loop, this);
+
 
   /**
    * PROTAGONISTA
@@ -426,7 +459,7 @@ void setup() {
   /**
    * Inicializacion: Protagonista 
    */
-  mainCharacter = new Movable(Movable.Rect, 35, 35).setFill(255, 211, 42).setStroke(232, 65, 24, 3).setSpeedX(4).setSpeedY(5).setX(729).setY(105);
+  mainCharacter = new Movable(Movable.Rect, 35, 35).setFill(255, 211, 42).setStroke(232, 65, 24, 3).setSpeedX(4).setSpeedY(4).setX(729).setY(105);
 
   /**
    * Inicializacion: Direccion de protagonista 
@@ -544,6 +577,24 @@ void setup() {
   strawberry = new ArrayList<Movable>();
   loadStrawberry();
 
+
+  /**
+   * TURBO
+   */
+
+  /**
+   * Inicializacion: Estado turbo de protagonista
+   */
+  turboMainCharacter = TURBO_STOPPED;
+  turboMainCharacterCurrentDuration = 0;
+
+  /**
+   * Inicializacion: Estado turbo de personajes
+   */
+  turboCharacter = TURBO_STOPPED;
+  turboCharacterCurrentDuration = 0;
+
+
   return;
 }
 
@@ -559,6 +610,7 @@ void draw() {
   if(gameFinalized == true){
     
     loop.stop();
+    turbo.stop();
     
     background(0);
 
@@ -663,6 +715,73 @@ void draw() {
 
 
   /**
+   * TURBO
+   */
+
+  /**
+   * Manejo de turbo: Protagonista
+   */
+  if(progressBarOne.getProgress() == ProgressBar.MAX_PROGRESS) {
+
+    turboMainCharacter = TURBO_RUNNING;
+    mainCharacter.setSpeedX(7).setSpeedY(7);
+
+    if(turboMainCharacterCurrentDuration == 0){
+      turboMainCharacterCurrentDuration = gameCurrentDuration;
+    }
+
+    if(gameCurrentDuration == turboMainCharacterCurrentDuration - 7){
+      progressBarOne.setProgress(0);
+    }
+
+  }
+  
+  if(progressBarOne.getProgress() < ProgressBar.MAX_PROGRESS && turboMainCharacter == TURBO_RUNNING) {
+
+    turboMainCharacter = TURBO_STOPPED;
+    mainCharacter.setSpeedX(4).setSpeedY(4);
+
+    turboMainCharacterCurrentDuration = 0;
+
+  }
+
+  /**
+   * Manejo de turbo: Personajes
+   */
+  if(progressBarTwo.getProgress() == ProgressBar.MAX_PROGRESS) {
+
+    turboCharacter = TURBO_RUNNING;
+
+    character[0].setSpeedX(7).setSpeedY(7);
+    character[1].setSpeedX(7).setSpeedY(7);
+    character[2].setSpeedX(7).setSpeedY(7);
+    character[3].setSpeedX(7).setSpeedY(7);
+
+    if(turboCharacterCurrentDuration == 0){
+      turboCharacterCurrentDuration = gameCurrentDuration;
+    }
+
+    if(gameCurrentDuration == turboCharacterCurrentDuration - 7){
+      progressBarTwo.setProgress(0);
+    }
+
+  }
+  
+  if(progressBarTwo.getProgress() < ProgressBar.MAX_PROGRESS && turboCharacter == TURBO_RUNNING) {
+
+    turboCharacter = TURBO_STOPPED;
+
+    character[0].setSpeedX(5).setSpeedY(5);
+    character[1].setSpeedX(3).setSpeedY(3);
+    character[2].setSpeedX(4).setSpeedY(4);
+    character[3].setSpeedX(3).setSpeedY(3);
+
+    turboCharacterCurrentDuration = 0;
+
+  }
+
+
+  /**
    * RELOJ
    */
    
@@ -685,8 +804,14 @@ void draw() {
   /** 
    * Reproduccion: Audio de juego
    */
-  if (!intro.running())   {
+  if (!intro.running() && turboMainCharacter == TURBO_STOPPED && turboCharacter == TURBO_STOPPED) {
+    turbo.stop();
     loop.play();
+  }
+
+  if (!intro.running() && (turboMainCharacter == TURBO_RUNNING || turboCharacter == TURBO_RUNNING)) {
+    loop.stop();
+    turbo.play();
   }
 
 
