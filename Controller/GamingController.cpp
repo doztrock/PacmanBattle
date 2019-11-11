@@ -59,7 +59,7 @@ char GamingController::detectMovement(void) {
 
 void GamingController::vibrate(void) {
 
-  analogWrite(this->tx, 100);
+  analogWrite(this->tx, 175);
   delay(150);
   analogWrite(this->tx, 0);
 
