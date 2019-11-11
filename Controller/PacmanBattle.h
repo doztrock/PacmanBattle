@@ -37,8 +37,8 @@
 /**
  * Definicion: Offset
  */
-#define OFFSET_HIGH       1
-#define OFFSET_LOW        1
+#define OFFSET_HIGH       5
+#define OFFSET_LOW        5
 
 /** 
  * Definicion: Delay

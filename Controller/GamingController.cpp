@@ -28,7 +28,7 @@ void GamingController::init(void) {
 
 char GamingController::detectMovement(void) {
 
-  uint8_t value = analogRead(this->rx);
+  uint8_t value = map(analogRead(this->rx), 0, 1023, 0, 255);
 
   if (value <= this->level.LEFT_HIGH && value >= this->level.LEFT_LOW) {
     return LEFT;
@@ -72,9 +72,6 @@ void GamingController::assign(Level level) {
 }
 
 void GamingController::calibrate(SerialManager serialManager){
-
-  uint8_t value = analogRead(this->rx);
-  serialManager.write("=>" + String(value));
-
+  serialManager.write("=>" + String(map(analogRead(this->rx), 0, 1023, 0, 255)));
   return;
 }
