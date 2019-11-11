@@ -1267,7 +1267,7 @@ void shootFromMainCharacter() {
   int shootY = (mainCharacter.getY() + (mainCharacter.getHeight() / 2)) - 3;
 
   if (directionMainCharacter != Movable.None) {
-    shootMainCharacter.add(new Movable(Movable.Rect, 6, 6).setFill(255, 255, 255).setStroke(0, 0, 0, 0).setSpeedX(7).setSpeedY(7).setX(shootX).setY(shootY).setDirection(directionMainCharacter));
+    shootMainCharacter.add(new Movable(Movable.Rect, 6, 6).setFill(255, 255, 255).setStroke(0, 0, 0, 0).setSpeedX(10).setSpeedY(10).setX(shootX).setY(shootY).setDirection(directionMainCharacter));
     mainShoot.play();
   }
 
@@ -1280,7 +1280,7 @@ void shootFromCharacter() {
   int shootY = (character[currentCharacter].getY() + (character[currentCharacter].getHeight() / 2)) - 3;
 
   if (directionCharacter[currentCharacter] != Movable.None) {
-    shootCharacter.add(new Movable(Movable.Rect, 6, 6).setFill(255, 255, 255).setStroke(0, 0, 0, 0).setSpeedX(7).setSpeedY(7).setX(shootX).setY(shootY).setDirection(directionCharacter[currentCharacter]));
+    shootCharacter.add(new Movable(Movable.Rect, 6, 6).setFill(255, 255, 255).setStroke(0, 0, 0, 0).setSpeedX(10).setSpeedY(10).setX(shootX).setY(shootY).setDirection(directionCharacter[currentCharacter]));
     characterShoot.play();
   }
 
