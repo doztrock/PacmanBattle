@@ -18,7 +18,6 @@ void SerialManager::init(void) {
 char SerialManager::read(void) {
 
   if (this->serial->available() > 0) {
-    this->serial->flush();
     return this->serial->read();
   }
 

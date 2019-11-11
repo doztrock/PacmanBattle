@@ -748,6 +748,10 @@ void draw() {
 
     disappear.play();
 
+    if(PacmanBattle.PLATFORM == PacmanBattle.ARDUINO){
+      serialManager.write(PacmanBattle.VIBRATE_CONTROL_1);
+    }
+
     mainCharacter.setX(729).setY(105);
     shootMainCharacterCounter = 0;
     directionMainCharacter = Movable.None;
@@ -789,6 +793,10 @@ void draw() {
     if(shootCharacterCounter[ghost.getID()] >= 5){
 
       disappear.play();
+
+      if(PacmanBattle.PLATFORM == PacmanBattle.ARDUINO){
+        serialManager.write(PacmanBattle.VIBRATE_CONTROL_2);
+      }
 
       switch(ghost.getID()){
 
@@ -894,7 +902,9 @@ void draw() {
       mainShoot.setY(-mainShoot.getY());
       mainShoot.setDirection(Movable.None);
       
-      shootMainCharacter.remove(index);
+      if(index >= shootMainCharacter.size()){
+        shootMainCharacter.remove(index);
+      }
       
     }
 
@@ -907,7 +917,10 @@ void draw() {
       scoreMainCharacter = scoreMainCharacter + 100;
       
       shootCharacterCounter[currentCharacter]++;
-      shootMainCharacter.remove(index);
+      
+      if(index >= shootMainCharacter.size()){
+        shootMainCharacter.remove(index);
+      }
       
     }
 
@@ -924,7 +937,10 @@ void draw() {
           scoreMainCharacter = scoreMainCharacter + 20;
           
           shootCharacterCounter[ghost.getID()]++;
-          shootMainCharacter.remove(index);
+          
+          if(index >= shootMainCharacter.size()){
+            shootMainCharacter.remove(index);
+          }
           
         }
 
@@ -949,7 +965,9 @@ void draw() {
       characterShoot.setY(-characterShoot.getY());
       characterShoot.setDirection(Movable.None);
 
-      shootCharacter.remove(index);
+      if(index >= shootCharacter.size()){
+        shootCharacter.remove(index);
+      }
 
     }
 
@@ -962,7 +980,10 @@ void draw() {
       scoreCharacter = scoreCharacter + 100;
 
       shootMainCharacterCounter++;
-      shootCharacter.remove(index);
+
+      if(index >= shootCharacter.size()){
+        shootCharacter.remove(index);
+      }
 
     }
 

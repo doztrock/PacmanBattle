@@ -20,6 +20,7 @@ class SerialManager {
 
   public void write(char character) {
     this.serial.write(character);
+    this.serial.write('\n');
     return;
   }
 }
