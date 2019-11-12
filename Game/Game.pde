@@ -1,3 +1,5 @@
+import processing.video.*;
+
 /**
  * SERIAL
  */
@@ -10,6 +12,22 @@ SerialManager serialManager;
 /**
  * ELEMENTOS DE JUEGO
  */
+
+/**
+ * Constantes
+ */
+final int VIDEO_RUNNING = (1 << 0);
+final int VIDEO_STOPPED = (1 << 1);
+
+/** 
+ * Declaracion: Estado de introduccion
+ */
+int movieStatus;
+
+/** 
+ * Declaracion: Video de introduccion
+ */
+Movie movie;
 
 /** 
  * Declaracion: Menu de inicio 
@@ -267,6 +285,13 @@ void setup() {
    * Inicializacion: Pantalla 
    */
   size(800, 600);
+
+  /**
+   * Inicializacion: Video de introduccion 
+   */
+  movieStatus = VIDEO_RUNNING;
+  movie = new Movie(this, "video/PacmanBattle.mp4");
+  movie.play();  
 
   /** 
    * Inicializacion: Menu de inicio 
@@ -632,6 +657,14 @@ void draw() {
    * Aparicion: Menu de inicio
    */
   if(gameStarted == false){
+
+    if(movie.time() < movie.duration() && movieStatus == VIDEO_RUNNING){
+      background(0);
+      image(movie, 13, 73);
+      return;
+    }else{
+      movie.stop();
+    }
 
     background(0);
 
@@ -1127,6 +1160,10 @@ void draw() {
   return;
 }
 
+void movieEvent(Movie movie) {
+  movie.read();
+}
+
 void serialEvent(Serial _) {
 
   if(PacmanBattle.PLATFORM != PacmanBattle.ARDUINO){
@@ -1137,8 +1174,19 @@ void serialEvent(Serial _) {
 
       switch(serialManager.read()){
 
+        case PacmanBattle.UP_CONTROL_1:
+        case PacmanBattle.UP_CONTROL_2:
+        case PacmanBattle.DOWN_CONTROL_1:
+        case PacmanBattle.DOWN_CONTROL_2:
+
+          movieStatus = VIDEO_STOPPED;
+
+          break;
+
         case PacmanBattle.LEFT_CONTROL_1:
         case PacmanBattle.LEFT_CONTROL_2:
+
+          movieStatus = VIDEO_STOPPED;
 
           if(currentStartMenuOption > 0){
             currentStartMenuOption--;
@@ -1150,6 +1198,8 @@ void serialEvent(Serial _) {
         case PacmanBattle.RIGHT_CONTROL_1:
         case PacmanBattle.RIGHT_CONTROL_2:
 
+          movieStatus = VIDEO_STOPPED;
+
           if(currentStartMenuOption < 2){
             currentStartMenuOption++;
             beep.play();
@@ -1160,6 +1210,8 @@ void serialEvent(Serial _) {
         case PacmanBattle.SHOOT_CONTROL_1:
         case PacmanBattle.SHOOT_CONTROL_2:
         case PacmanBattle.SWITCH_CONTROL_2:
+
+          movieStatus = VIDEO_STOPPED;
         
           switch(currentStartMenuOption){
           
@@ -1252,7 +1304,16 @@ void keyPressed() {
 
       switch(keyCode){
 
+        case UP:
+        case DOWN:
+
+          movieStatus = VIDEO_STOPPED;
+
+          break;
+
         case LEFT:
+
+          movieStatus = VIDEO_STOPPED;
 
           if(currentStartMenuOption > 0){
             currentStartMenuOption--;
@@ -1263,6 +1324,8 @@ void keyPressed() {
 
         case RIGHT:
 
+          movieStatus = VIDEO_STOPPED;
+
           if(currentStartMenuOption < 2){
             currentStartMenuOption++;
             beep.play();
@@ -1271,6 +1334,8 @@ void keyPressed() {
           break;
 
         case ALT:
+
+          movieStatus = VIDEO_STOPPED;
         
           switch(currentStartMenuOption){
           
