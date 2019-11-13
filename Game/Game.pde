@@ -50,6 +50,11 @@ int gameCurrentDuration;
 int gameDuration;
 
 /** 
+ * Declaracion: Offset de duracion
+ */
+int gameDurationOffset;
+
+/** 
  * Declaracion: Bandera => Juego iniciado
  */
 boolean gameStarted;
@@ -323,6 +328,11 @@ void setup() {
    * Inicializacion: Duracion del juego
    */
   gameDuration = 0;
+
+  /** 
+   * Declaracion: Offset de duracion
+   */
+  gameDurationOffset = 0;
 
   /** 
    * Inicializacion: Bandera => Juego iniciado
@@ -666,7 +676,6 @@ void draw() {
     
     movieStatus = VIDEO_STOPPED;
     movie.stop();
-    }
 
     background(0);
 
@@ -1153,7 +1162,7 @@ void draw() {
   /** 
    * DURACION 
    */
-  gameCurrentDuration = gameDuration - (millis() / 1000);
+  gameCurrentDuration = (gameDuration + gameDurationOffset) - (millis() / 1000);
 
   if(gameCurrentDuration == 0){
     gameFinalized = true;
@@ -1235,6 +1244,7 @@ void serialEvent(Serial _) {
           }
           
           gameStarted = true;
+          gameDurationOffset = (millis() / 1000);
 
           break;
 
@@ -1359,6 +1369,7 @@ void keyPressed() {
           }
           
           gameStarted = true;
+          gameDurationOffset = (millis() / 1000);
 
           break;
 
