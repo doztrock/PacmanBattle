@@ -662,8 +662,10 @@ void draw() {
       background(0);
       image(movie, 13, 73);
       return;
-    }else{
-      movie.stop();
+    }
+    
+    movieStatus = VIDEO_STOPPED;
+    movie.stop();
     }
 
     background(0);
